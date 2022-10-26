@@ -1,0 +1,169 @@
+.top-bar-wrapper {
+  display: flex;
+  width: 80%;
+}
+
+.top-bar {
+  vertical-align: top;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.item-one {
+  margin-top: auto;
+  justify-content: flex-end;
+  flex-basis: 35%;
+}
+
+.item-two {
+  margin-top: auto;
+  justify-content: flex-end;
+  flex-basis: 35%;
+  margin-left: auto;
+}
+
+.item-three {
+  margin-top: auto;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .top-bar {
+    display: block;
+  }
+
+  .item-left {
+    width: 100%;
+  }
+
+  .item-right {
+    width: 100%;
+  }
+}
+
+li {
+  list-style-type: none;
+  width: 80%;
+  padding-bottom: 5px;
+}
+
+.loader {
+  list-style-type: none;
+  width: 80%;
+}
+
+/* On screens that are 992px or less */
+@media screen and (max-width: 992px) {
+  li {
+    list-style-type: none;
+    width: 90%;
+    padding-bottom: 5px;
+  }
+
+  .loader {
+    list-style-type: none;
+    width: 90%;
+  }
+}
+
+/* On screens that are 600px or less */
+@media screen and (max-width: 600px) {
+  li {
+    list-style-type: none;
+    width: 100%;
+    padding-bottom: 5px;
+  }
+
+  .loader {
+    list-style-type: none;
+    width: 100%;
+  }
+}
+
+ul {
+  padding: 0;
+  border-radius: 25%;
+}
+
+.createItemPriorityTextfield {
+  float: right;
+}
+
+.top-bar-container {
+  display: flex;
+}
+.top-bar-item {
+  color: white;
+  display: inline-block;
+  width: 65%;
+}
+.top-bar-item_right {
+  color: white;
+  display: flex;
+  align-items: center;
+  width: 30%;
+}
+
+.card-content-top {
+  display: flex;
+  width: 100%;
+}
+
+.card-content-top-title {
+  flex-basis: auto;
+  padding-right: 1px;
+  margin-right: 1px;
+}
+
+.card-content-top-rating {
+  margin-top: auto;
+  justify-content: flex-end;
+  flex-basis: calc(100% / 15);
+  margin-left: auto;
+}
+
+.card-content-top-category {
+  margin-top: auto;
+  justify-content: flex-end;
+  flex-basis: calc(100% / 15);
+  margin-left: 2.5%;
+}
+
+.card-content-top-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: flex-end;
+  flex-basis: calc(100% / 15);
+  margin-left: 2.5%;
+}
+
+.container {
+  display: flex;
+}
+
+.item {
+  color: black;
+  display: inline-block;
+  width: 80%;
+}
+.item_right {
+  padding-top: 18px;
+  display: inline-block;
+  align-content: flex-end;
+}
+
+.dialog-create-container {
+  display: flex;
+}
+.dialog-create-item {
+  color: black;
+  display: inline-block;
+  width: 80%;
+}
+.dialog-create-item_right {
+  padding: 1.5% 0 0 7%;
+  float: right;
+  align-content: flex-end;
+}

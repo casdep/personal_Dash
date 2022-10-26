@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  color: white;
+}
+.item {
+  display: inline-block;
+  padding-right: 5%;
+}
+.item_right {
+  align-content: flex-end;
+}

@@ -1,0 +1,43 @@
+.App {
+  background-color: #292a2d;
+  color: white;
+  height: 100vh;
+}
+
+.innerApp {
+  padding: 0 25% 0 25%;
+}
+
+/* On screens that are 992px or less */
+@media screen and (max-width: 992px) {
+  .innerApp {
+    padding: 0 12.5% 0 12.5%;
+  }
+}
+
+/* On screens that are 600px or less */
+@media screen and (max-width: 600px) {
+  .innerApp {
+    padding: 0 2.5% 0 2.5%;
+  }
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}

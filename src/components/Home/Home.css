@@ -1,0 +1,17 @@
+.Home {
+  background: #292a2d;
+  text-align: center;
+  font-size: large;
+}
+
+.Image {
+  width: 100%;
+  height: 50vh;
+}
+
+.textCenter {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

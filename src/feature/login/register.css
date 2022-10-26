@@ -1,0 +1,41 @@
+.Register_container {
+  width: 80%;
+  height: 350px;
+  background-color: #222222;
+  border-radius: 10px;
+}
+
+.input_fields {
+  padding-top: 20px;
+  width: 60%;
+  display: table;
+  margin: 0 auto;
+}
+
+.input_field_top_bar {
+  display: flex;
+}
+
+.input_field_top_bar_username {
+  width: 47.5%;
+}
+
+.input_field_top_bar_email {
+  width: 47.5%;
+
+  margin-top: auto;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.footer_items {
+  width: 60%;
+  display: flex;
+  margin: 0 auto;
+}
+
+.footer_item_one {
+  display: table;
+  margin: 0 auto;
+  text-decoration: none;
+}
