@@ -4,7 +4,6 @@ import axios from "axios";
 
 import { TextField, Button } from "@mui/material";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 
 import Dialog from "@mui/material/Dialog";
@@ -33,11 +32,13 @@ export default function Planner() {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const [tasks, setTasks] = useState([]);
-  const [tasksCategories, setTasksCategories] = useState([]);
-  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState(
-    "Select filter"
-  );
   const [tasksLoader, setTasksLoader] = useState(false);
+  const [tasksCategories, setTasksCategories] = useState([]);
+  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState("");
+  const [selectedSortingOption, setSelectedSortingOption] = useState("");
+  const [queryParamUrl, setQueryParamUrl] = useState(
+    new URL("http://localhost:3001/task-management/tasks")
+  );
   const [open, setOpen] = useState(false);
   const [openCreateDialog, setCreateDialogOpen] = useState(false);
   const [openEditDialog, setEditDialogOpen] = useState(false);
@@ -60,11 +61,29 @@ export default function Planner() {
     getAllTasks();
   }, []);
 
-  async function getAllTasks() {
+  async function getAllTasks(event) {
     setTasksLoader(true);
+    let url = queryParamUrl;
+
+    if (event) {
+      let urlNew = queryParamUrl.href;
+      let newUrl = new URL(urlNew);
+
+      if (event[1] === "") {
+        newUrl.searchParams.delete(event[0]);
+      } else {
+        newUrl.searchParams.set(event[0], event[1]);
+      }
+
+      let lastUrl = new URL(newUrl.href);
+      url = lastUrl.href;
+
+      setQueryParamUrl(lastUrl);
+    }
+
     await axios({
       method: "get",
-      url: "http://localhost:3001/tasks",
+      url: url,
     })
       .then(function(res) {
         const tasks = res.data.data;
@@ -74,11 +93,25 @@ export default function Planner() {
         const uniqueCategories = [
           ...new Set(tasks.map((task) => task.category)),
         ];
-        setTasksCategories(uniqueCategories);
+        if (tasksCategories.length === 0) {
+          setTasksCategories(uniqueCategories);
+        }
       })
       .catch(function(response) {
         console.log(response);
       });
+  }
+
+  function handleSelectedCategoryChange(event) {
+    const filteredCategory = event.target.value;
+    setSelectedCategoryFilter(filteredCategory);
+    getAllTasks(["category", filteredCategory]);
+  }
+
+  function handleSelectedSortChange(event) {
+    const sortingOption = event.target.value;
+    setSelectedSortingOption(sortingOption);
+    getAllTasks(["sort", sortingOption]);
   }
 
   function createHandleClickOpen() {
@@ -107,7 +140,7 @@ export default function Planner() {
     try {
       const response = await axios({
         method: "delete",
-        url: "http://localhost:3001/task/" + value.id,
+        url: "http://localhost:3001/task-management/tasks/" + value.id,
         headers: { "Content-Type": "form-data" },
       }).then((res) => {
         setOpen(false);
@@ -131,7 +164,7 @@ export default function Planner() {
     try {
       const response = await axios({
         method: "post",
-        url: "http://localhost:3001/task",
+        url: "http://localhost:3001/task-management/tasks",
         data: createTaskFormData,
         headers: { "content-type": "application/x-www-form-urlencoded" },
       }).then((res) => {
@@ -152,10 +185,6 @@ export default function Planner() {
     });
   }
 
-  function handleSelectedCategoryChange(event) {
-    setSelectedCategoryFilter(event.target.value);
-  }
-
   return (
     <div className="Planner">
       <h1>PLANNER</h1>
@@ -174,14 +203,12 @@ export default function Planner() {
               id="demo-simple-select-standard"
               value={selectedCategoryFilter}
               onChange={handleSelectedCategoryChange}
-              focused
               sx={{
-                borderColor: "Blue",
                 color: "white",
               }}
             >
-              <MenuItem disabled value="Select filter">
-                <em>None</em>
+              <MenuItem value="">
+                <i>None</i>
               </MenuItem>
               {tasksCategories.map((tasksCategorie) => {
                 return (
@@ -204,24 +231,31 @@ export default function Planner() {
               label="Select sorting"
               labelId="demo-simple-select-standard-label"
               id="demo-simple-select-standard"
-              value={selectedCategoryFilter}
-              onChange={handleSelectedCategoryChange}
-              focused
+              value={selectedSortingOption}
+              onChange={handleSelectedSortChange}
               sx={{
-                borderColor: "Blue",
                 color: "white",
               }}
             >
-              <MenuItem value="oldest_first">
-                <em>Id, oldest first</em>
+              <MenuItem selected value="">
+                <i>None</i>
               </MenuItem>
-              <MenuItem value="newest_first">
-                <em>Id, newest first</em>
+              <MenuItem value="id_asc">
+                <em>Id, lowest first</em>
               </MenuItem>
-              <MenuItem value="highest_priority_first">
+              <MenuItem value="id_desc">
+                <em>Id, highest first</em>
+              </MenuItem>
+              <MenuItem value="createdAt_desc">
+                <em>Created, newest first</em>
+              </MenuItem>
+              <MenuItem value="createdAt_asc">
+                <em>Created, oldest first</em>
+              </MenuItem>
+              <MenuItem value="priority_desc">
                 <em>Priority, highest first</em>
               </MenuItem>
-              <MenuItem value="lowest_priority_first">
+              <MenuItem value="priority_asc">
                 <em>Priority, lowest first</em>
               </MenuItem>
             </Select>
@@ -257,6 +291,15 @@ export default function Planner() {
                           {value.title}
                         </Typography>
                       </div>
+                      <div className="card-content-top-category">
+                        <Typography
+                          gutterBottom
+                          variant="body1"
+                          component={"span"}
+                        >
+                          {value.category}
+                        </Typography>
+                      </div>
                       <div className="card-content-top-rating">
                         <Typography
                           gutterBottom
@@ -264,15 +307,6 @@ export default function Planner() {
                           component={"span"}
                         >
                           {value.priority}/10
-                        </Typography>
-                      </div>
-                      <div className="card-content-top-category">
-                        <Typography
-                          gutterBottom
-                          variant="h6"
-                          component={"span"}
-                        >
-                          {value.category}
                         </Typography>
                       </div>
 

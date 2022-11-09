@@ -45,7 +45,11 @@
 li {
   list-style-type: none;
   width: 80%;
-  padding-bottom: 5px;
+  padding-bottom: 1px;
+}
+
+.card-container:hover {
+  background-color: rgb(249, 253, 255);
 }
 
 .loader {
@@ -55,10 +59,15 @@ li {
 
 /* On screens that are 992px or less */
 @media screen and (max-width: 992px) {
+  .top-bar-wrapper {
+    display: flex;
+    width: 100%;
+  }
+
   li {
     list-style-type: none;
     width: 90%;
-    padding-bottom: 5px;
+    padding-bottom: 1px;
   }
 
   .loader {
@@ -72,7 +81,6 @@ li {
   li {
     list-style-type: none;
     width: 100%;
-    padding-bottom: 5px;
   }
 
   .loader {
@@ -117,24 +125,27 @@ ul {
 }
 
 .card-content-top-rating {
-  margin-top: auto;
-  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
   flex-basis: calc(100% / 15);
-  margin-left: auto;
+  margin-left: 2.5%;
 }
 
 .card-content-top-category {
-  margin-top: auto;
-  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
   flex-basis: calc(100% / 15);
-  margin-left: 2.5%;
+  margin-left: auto;
 }
 
 .card-content-top-menu {
   display: flex;
   align-items: center;
   justify-content: center;
-  justify-content: flex-end;
   flex-basis: calc(100% / 15);
   margin-left: 2.5%;
 }
@@ -166,4 +177,8 @@ ul {
   padding: 1.5% 0 0 7%;
   float: right;
   align-content: flex-end;
+}
+
+.MuiInputBase-root {
+  border-color: (blue);
 }
