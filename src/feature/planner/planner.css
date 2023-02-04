@@ -45,11 +45,11 @@
 li {
   list-style-type: none;
   width: 80%;
-  padding-bottom: 1px;
+  padding-bottom: 2px;
 }
 
 .card-container:hover {
-  background-color: rgb(249, 253, 255);
+  background-color: rgb(237, 244, 248);
 }
 
 .loader {
@@ -67,7 +67,7 @@ li {
   li {
     list-style-type: none;
     width: 90%;
-    padding-bottom: 1px;
+    padding-bottom: 2px;
   }
 
   .loader {
@@ -94,7 +94,12 @@ ul {
   border-radius: 25%;
 }
 
+.createItemCategoryTextfield {
+  width: 70%;
+}
+
 .createItemPriorityTextfield {
+  width: 20%;
   float: right;
 }
 

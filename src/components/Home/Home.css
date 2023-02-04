@@ -4,9 +4,30 @@
   font-size: large;
 }
 
+.shadow {
+  display: block;
+  position: relative;
+}
+
 .Image {
   width: 100%;
   height: 50vh;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.shadow:before {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -moz-box-shadow: inset 0px 0px 3px 1px #292a2d;
+  -webkit-box-shadow: inset 0px 0px 3px 1px #292a2d;
+  box-shadow: inset 0px 0px 3px 1px #292a2d;
 }
 
 .textCenter {

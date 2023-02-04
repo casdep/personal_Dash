@@ -1,30 +1,32 @@
 import React, { useEffect, useState } from "react";
-
 import axios from "axios";
 
-import { TextField, Button } from "@mui/material";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
+import {
+  Button,
+  Card,
+  CardContent,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  FormControl,
+  IconButton,
+  InputLabel,
+  LinearProgress,
+  Menu,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
 
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import FormControl from "@mui/material/FormControl";
-import IconButton from "@mui/material/IconButton";
-import InputLabel from "@mui/material/InputLabel";
-import LinearProgress from "@mui/material/LinearProgress";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-
-import Typography from "@mui/material/Typography";
-
-import CloseIcon from "@mui/icons-material/Close";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import {
+  CloseIcon,
+  DeleteIcon,
+  EditIcon,
+  MenuRoundedIcon,
+} from "@mui/icons-material/Close";
 
 import "./planner.css";
 
@@ -36,25 +38,28 @@ export default function Planner() {
   const [tasksCategories, setTasksCategories] = useState([]);
   const [selectedCategoryFilter, setSelectedCategoryFilter] = useState("");
   const [selectedSortingOption, setSelectedSortingOption] = useState("");
+  const [selectedTaskId, setSelectedTaskId] = useState("");
   const [queryParamUrl, setQueryParamUrl] = useState(
     new URL("http://localhost:3001/task-management/tasks")
   );
   const [open, setOpen] = useState(false);
-  const [openCreateDialog, setCreateDialogOpen] = useState(false);
   const [openEditDialog, setEditDialogOpen] = useState(false);
   const [taskToDeleteName, setTaskToDeleteName] = useState("");
 
-  const [formValue, setformValue] = useState({
+  const [formValue, setFormValue] = useState({
+    id: "",
     user: "cas",
     title: "",
     category: "",
     discription: "",
-    priority: 0,
+    priority: 1,
   });
 
   const openHamburgerMenu = Boolean(anchorEl);
-  const handleHambuerMenuClick = (event) => {
-    setAnchorEl(event.currentTarget);
+
+  const handleHambuerMenuClick = (e, id) => {
+    setSelectedTaskId(id);
+    setAnchorEl(e.currentTarget);
   };
 
   useEffect(() => {
@@ -122,25 +127,18 @@ export default function Planner() {
     setAnchorEl(null);
   }
 
-  function handleClickOpen(value) {
-    setTaskToDeleteName(value.title);
+  function handleDeleteOpen() {
+    const selectedItem = tasks.find((key) => key.id === selectedTaskId);
+
+    setTaskToDeleteName(selectedItem.title);
     setOpen(true);
   }
 
-  function handleEditOpen(value) {
-    setEditDialogOpen(true);
-  }
-
-  function dismissDialog() {
-    setOpen(false);
-    setCreateDialogOpen(false);
-  }
-
-  async function acceptDeleteDialog(value) {
+  async function acceptDeleteDialog(event) {
     try {
-      const response = await axios({
+      await axios({
         method: "delete",
-        url: "http://localhost:3001/task-management/tasks/" + value.id,
+        url: "http://localhost:3001/task-management/tasks/" + selectedTaskId,
         headers: { "Content-Type": "form-data" },
       }).then((res) => {
         setOpen(false);
@@ -152,43 +150,97 @@ export default function Planner() {
     }
   }
 
-  async function acceptCreateTask() {
-    const createTaskFormData = new URLSearchParams();
+  function handleInputChange(event) {
+    const target = event.target;
+    var value = target.value;
+    const key = target.name;
 
-    createTaskFormData.append("user", formValue.user);
-    createTaskFormData.append("title", formValue.title);
-    createTaskFormData.append("category", formValue.category);
-    createTaskFormData.append("discription", formValue.discription);
-    createTaskFormData.append("priority", formValue.priority);
+    console.log("Handle Change event: " + key);
+
+    if (key === "priority") {
+      if (value === "") {
+        //Allows inputfield to be empty
+      } else if (value < 1) {
+        value = 1;
+      } else if (value > 10) {
+        value = 10;
+      }
+    }
+
+    console.log([key]);
+    console.log(value);
+
+    //sets the entered value to their according key in the state
+
+    setFormValue({
+      ...formValue,
+      [key]: value,
+    });
+  }
+
+  function handleEditOpen() {
+    const selectedItem = tasks.find((key) => key.id === selectedTaskId);
+    console.log(selectedItem);
+
+    for (const key in selectedItem) {
+      const value = selectedItem[key];
+
+      setFormValue((prevState) => ({
+        ...prevState,
+        [key]: value,
+      }));
+    }
+
+    setEditDialogOpen(true);
+  }
+
+  function dismissDialog() {
+    setOpen(false);
+    setCreateDialogOpen(false);
+  }
+
+  async function handleEditSubmit(event) {
+    console.log(event);
+    const editTaskFormData = new URLSearchParams();
+    // const createTaskFormData = new FormData();
+
+    console.log(formValue.id);
+
+    editTaskFormData.append("user", formValue.user);
+    editTaskFormData.append("title", formValue.title);
+    editTaskFormData.append("category", formValue.category);
+    editTaskFormData.append("discription", formValue.discription);
+    editTaskFormData.append("priority", formValue.priority);
 
     try {
-      const response = await axios({
-        method: "post",
-        url: "http://localhost:3001/task-management/tasks",
-        data: createTaskFormData,
+      await axios({
+        method: "put",
+        url: "http://localhost:3001/task-management/tasks/" + formValue.id,
+        data: editTaskFormData,
         headers: { "content-type": "application/x-www-form-urlencoded" },
       }).then((res) => {
-        setCreateDialogOpen(false);
+        setEditDialogOpen(false);
         setTasks([]);
         getAllTasks();
+        setFormValue({
+          id: "",
+          user: "cas",
+          title: "",
+          category: "",
+          discription: "",
+          priority: 1,
+        });
       });
+      console.log(window.location);
     } catch (error) {
       setCreateDialogOpen(false);
       console.log(error);
     }
   }
 
-  function handleChange(event) {
-    setformValue({
-      ...formValue,
-      [event.target.name]: event.target.value,
-    });
-  }
-
   return (
     <div className="Planner">
       <h1>PLANNER</h1>
-
       <div className="top-bar-wrapper">
         <div className="top-bar item-one">
           <FormControl fullWidth>
@@ -271,13 +323,13 @@ export default function Planner() {
           </Button>
         </div>
       </div>
-
       <ul>
         {tasksLoader ? <LinearProgress className="loader" /> : ""}
 
         {tasks.map((value, index) => {
+          let id = value.id;
           return (
-            <li key={index}>
+            <li key={id}>
               <Card>
                 <div className="card-container">
                   <CardContent>
@@ -318,7 +370,7 @@ export default function Planner() {
                           }
                           aria-haspopup="true"
                           aria-expanded={openHamburgerMenu ? "true" : undefined}
-                          onClick={handleHambuerMenuClick}
+                          onClick={(e) => handleHambuerMenuClick(e, id)}
                         />
                         <Menu
                           id="basic-menu"
@@ -333,7 +385,7 @@ export default function Planner() {
                             <IconButton
                               aria-label="delete"
                               size="small"
-                              onClick={() => handleClickOpen(value)}
+                              onClick={() => handleDeleteOpen(value)}
                             >
                               <DeleteIcon fontSize="inherit" />
                               &nbsp; Delete item
@@ -387,88 +439,6 @@ export default function Planner() {
           );
         })}
       </ul>
-      <Dialog
-        open={openCreateDialog}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <div className="dialog-create-container">
-          <div className="dialog-create-item">
-            <DialogTitle id="alert-dialog-title">Create new task</DialogTitle>
-          </div>
-
-          <div className="dialog-create-item_right" size="small">
-            <IconButton
-              aria-label="close"
-              size="large"
-              onClick={() => dismissDialog()}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          </div>
-        </div>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            <TextField
-              type="title"
-              name="title"
-              id="outlined-basic"
-              variant="outlined"
-              margin="normal"
-              color="primary"
-              label="Title"
-              defaultValue={formValue.title}
-              onChange={handleChange}
-              focused
-            />
-            <br />
-            <TextField
-              type="category"
-              name="category"
-              id="outlined-basic"
-              variant="outlined"
-              margin="normal"
-              color="primary"
-              label="Category"
-              defaultValue={formValue.category}
-              onChange={handleChange}
-              focused
-            />
-
-            <TextField
-              className="createItemPriorityTextfield"
-              name="priority"
-              id="outlined-basic"
-              variant="outlined"
-              margin="normal"
-              color="primary"
-              label="Priority"
-              type="number"
-              defaultValue={formValue.priority}
-              onChange={handleChange}
-              focused
-            />
-            <TextField
-              type="discription"
-              name="discription"
-              id="outlined-basic"
-              variant="outlined"
-              margin="normal"
-              color="primary"
-              label="Discription"
-              defaultValue={formValue.discription}
-              onChange={handleChange}
-              focused
-              fullWidth
-            />
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => acceptCreateTask()} autoFocus>
-            Create task
-          </Button>
-        </DialogActions>
-      </Dialog>
 
       {/* Edit a task */}
       <Dialog
@@ -501,12 +471,14 @@ export default function Planner() {
               margin="normal"
               color="primary"
               label="Title"
-              defaultValue={formValue.title}
-              onChange={handleChange}
+              value={formValue.title}
+              onChange={handleInputChange}
               focused
             />
             <br />
             <TextField
+              required
+              className="createItemCategoryTextfield"
               type="category"
               name="category"
               id="outlined-basic"
@@ -514,11 +486,30 @@ export default function Planner() {
               margin="normal"
               color="primary"
               label="Category"
-              defaultValue={formValue.category}
-              onChange={handleChange}
+              value={formValue.category}
+              onChange={handleInputChange}
               focused
             />
-
+            <TextField
+              required
+              className="createItemPriorityTextfield"
+              name="priority"
+              id="outlined-basic"
+              variant="outlined"
+              margin="normal"
+              color="primary"
+              label="Priority"
+              type="number"
+              value={formValue.priority}
+              onChange={handleInputChange}
+              focused
+              inputProps={{
+                min: "0",
+                max: "10",
+                step: "1",
+                inputMode: "numeric",
+              }}
+            />
             <TextField
               type="discription"
               name="discription"
@@ -527,15 +518,15 @@ export default function Planner() {
               margin="normal"
               color="primary"
               label="Discription"
-              defaultValue={formValue.discription}
-              onChange={handleChange}
+              value={formValue.discription}
+              onChange={handleInputChange}
               focused
               fullWidth
             />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => acceptCreateTask()} autoFocus>
+          <Button onClick={() => handleEditSubmit()} autoFocus>
             Save task
           </Button>
         </DialogActions>

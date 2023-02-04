@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import "./Home.css";
 
-const image = require("./home_forest.jpg");
+const image = require("./home_mountain.jpg");
 
 function Home() {
   const [dateState, setDateState] = useState(new Date());
@@ -10,15 +10,16 @@ function Home() {
     setInterval(() => setDateState(new Date()), 1000);
   }, []);
 
-  let hour = dateState.toLocaleDateString("en-GB", {
-    day: "numeric",
-  });
+  //ToDo Leet checker
 
   return (
     <div className="Home">
-      <img className="Image" src={image} alt="" />
+      <div class="shadow">
+        <img className="Image" src={image} alt="" />
+      </div>
       <div className="textCenter">
         <h1> HOME </h1>
+        <h3> Welcome back Cas! </h3>
         <p>
           {dateState.toLocaleDateString("en-GB", {
             day: "numeric",

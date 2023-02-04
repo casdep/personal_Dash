@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 import { TextField, Button } from "@mui/material";
@@ -20,7 +20,7 @@ export default function LoginForm() {
     loginFormData.append("password", formValue.password);
 
     try {
-      const response = await axios({
+      await axios({
         method: "post",
         url: "http://localhost:3001/task",
         data: loginFormData,

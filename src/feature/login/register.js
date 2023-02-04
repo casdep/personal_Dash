@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 import { TextField, Button } from "@mui/material";
-import Link from "@mui/material/Link";
-import Typography from "@mui/material/Typography";
 
 import "./register.css";
 
@@ -21,7 +19,7 @@ export default function Register() {
     registerFormData.append("password", formValue.password);
 
     try {
-      const response = await axios({
+      await axios({
         method: "post",
         url: "http://localhost:3001/task",
         data: registerFormData,
