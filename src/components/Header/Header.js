@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Button } from "@mui/material";
 import "./Header.css";
 
-function Header() {
-  const [theme, setTheme] = useState("light");
+import { useDispatch, useSelector } from "react-redux";
 
-  useEffect(() => {
-    document.body.className = theme;
-  }, [theme]);
+import { appTheme } from "../../store/slicers/generalSlice";
 
-  const toggleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
+export default function Header() {
+  const dispatch = useDispatch();
+
+  const getAppTheme = useSelector((state) => state.general.appTheme);
+
+  function switchDarkmode() {
+    if (getAppTheme === "dark") {
+      dispatch(appTheme("light"));
     } else {
-      setTheme("light");
+      dispatch(appTheme("dark"));
     }
-  };
+  }
 
   return (
     <div className="header">
@@ -26,7 +28,7 @@ function Header() {
         <a href="/planner">Planner</a>
         <a href="/about">About</a>
         <a href="/login">Login</a>
-        <Button className="darkMode-Hover" onClick={toggleTheme}>
+        <Button className="darkMode-Hover" onClick={() => switchDarkmode()}>
           <span role="img" aria-label="dark mode button">
             🌙
           </span>
@@ -35,5 +37,3 @@ function Header() {
     </div>
   );
 }
-
-export default Header;

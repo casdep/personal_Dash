@@ -9,10 +9,12 @@ const About = () => {
         <b>Cas de Pender </b>
         <br />
         Website developed with: <br />
-        React, <br />
+        <h3>Front-end</h3>
+        React <br />
         Material UI <br />
-        NodeJs <br />
-        NoSQL Database
+        <h3>Back-end</h3>
+        Prisma - NodeJs Express <br />
+        PostgreSQL- SQLDatabase
       </p>
     </div>
   );

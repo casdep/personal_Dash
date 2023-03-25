@@ -14,28 +14,28 @@ function Home() {
 
   return (
     <div className="Home">
-      <div class="shadow">
+      <div className="imageContainer">
         <img className="Image" src={image} alt="" />
-      </div>
-      <div className="textCenter">
-        <h1> HOME </h1>
-        <h3> Welcome back Cas! </h3>
-        <p>
-          {dateState.toLocaleDateString("en-GB", {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-          })}
-        </p>
+        <div className="textCenter">
+          <h1> HOME </h1>
+          <h3> Welcome back Cas! </h3>
+          <p>
+            {dateState.toLocaleDateString("en-GB", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            })}
+          </p>
 
-        <p>
-          {dateState.toLocaleString("en-GB", {
-            hour: "numeric",
-            minute: "numeric",
-            second: "numeric",
-            hour12: false,
-          })}
-        </p>
+          <p>
+            {dateState.toLocaleString("en-GB", {
+              hour: "numeric",
+              minute: "numeric",
+              second: "numeric",
+              hour12: false,
+            })}
+          </p>
+        </div>
       </div>
     </div>
   );

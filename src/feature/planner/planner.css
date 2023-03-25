@@ -170,15 +170,18 @@ ul {
   align-content: flex-end;
 }
 
-.dialog-create-container {
+.dialog-create-container,
+.dialog-edit-container {
   display: flex;
 }
-.dialog-create-item {
+.dialog-create-item,
+.dialog-edit-item {
   color: black;
   display: inline-block;
   width: 80%;
 }
-.dialog-create-item_right {
+.dialog-create-item_right,
+.dialog-edit-item_right {
   padding: 1.5% 0 0 7%;
   float: right;
   align-content: flex-end;
