@@ -9,8 +9,8 @@ import Header from "../Header/Header";
 import Home from "../Home/Home";
 import About from "../../feature/about/about";
 import Planner from "../../feature/planner/planner";
-import Login from "../../../login/login";
-import Register from "../../../login/register";
+import Login from "../../feature/login/login";
+import Register from "../../feature/login/register";
 
 export default function App() {
   const getAppTheme = useSelector((state) => state.general.appTheme);
