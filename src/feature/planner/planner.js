@@ -52,7 +52,7 @@ export default function Planner() {
   const [selectedCategoryFilter, setSelectedCategoryFilter] = useState("");
   const [selectedSortingOption, setSelectedSortingOption] = useState("");
   const [queryParamUrl, setQueryParamUrl] = useState(
-    new URL("http://localhost:3001/task-management/tasks")
+    new URL(process.env.REACT_APP_API_URL + "/task-management/tasks")
   );
   const [open, setOpen] = useState(false);
   const [taskToDeleteName, setTaskToDeleteName] = useState("");
@@ -137,7 +137,9 @@ export default function Planner() {
       await axios({
         method: "delete",
         url:
-          "http://localhost:3001/task-management/tasks/" + getSelectedTask.id,
+          process.env.REACT_APP_API_URL +
+          "/task-management/tasks/" +
+          getSelectedTask.id,
         headers: { "Content-Type": "form-data" },
       }).then((res) => {
         setOpen(false);

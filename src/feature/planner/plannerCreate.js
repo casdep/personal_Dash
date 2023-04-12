@@ -39,6 +39,8 @@ export default function PlannerCreate() {
   });
 
   useEffect(() => {
+    console.log("BE URL");
+    console.log(process.env.REACT_APP_API_URL);
     if (getPlannerDialogOpen === "edit") {
       setEditValues();
     }
@@ -63,6 +65,9 @@ export default function PlannerCreate() {
     const key = target.name;
 
     if (key === "priority") {
+      if (value.match(".")) {
+        value = parseInt(value);
+      }
       if (value === "") {
         //Allows inputfield to be empty
       } else if (value < 1) {
@@ -100,7 +105,7 @@ export default function PlannerCreate() {
     try {
       await axios({
         method: "post",
-        url: "http://localhost:3001/task-management/tasks",
+        url: process.env.REACT_APP_API_URL + "/task-management/tasks",
         data: createTaskFormData,
         headers: { "content-type": "application/x-www-form-urlencoded" },
       }).then((res) => {
@@ -137,7 +142,10 @@ export default function PlannerCreate() {
     try {
       await axios({
         method: "put",
-        url: "http://localhost:3001/task-management/tasks/" + formValue.id,
+        url:
+          process.env.REACT_APP_API_URL +
+          "/task-management/tasks/" +
+          formValue.id,
         data: editTaskFormData,
         headers: { "content-type": "application/x-www-form-urlencoded" },
       }).then((res) => {
@@ -162,7 +170,7 @@ export default function PlannerCreate() {
 
   return (
     <Dialog
-      open={getPlannerDialogOpen}
+      open={true}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
