@@ -1,4 +1,5 @@
 .Login_container {
+  margin: 0 auto;
   width: 80%;
   height: 280px;
   background-color: #222222;
@@ -14,10 +15,10 @@
 .footer_items {
   width: 60%;
   display: flex;
-  margin: 0 auto;
 }
 
 .footer_item_one {
+  margin: 0 !important;
   text-decoration: none;
 }
 
@@ -25,4 +26,13 @@
   margin-top: auto;
   justify-content: flex-end;
   margin-left: auto;
+}
+
+@media screen and (max-width: 550px) {
+  .Login_container {
+    width: 100%;
+  }
+  .input_fields {
+    width: 80%;
+  }
 }

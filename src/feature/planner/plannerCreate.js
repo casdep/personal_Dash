@@ -39,16 +39,12 @@ export default function PlannerCreate() {
   });
 
   useEffect(() => {
-    console.log("BE URL");
-    console.log(process.env.REACT_APP_API_URL);
     if (getPlannerDialogOpen === "edit") {
       setEditValues();
     }
   }, []);
 
   function setEditValues() {
-    console.log(" aapwwwwwwwwwwwwwwwwwwwwwwwwwwje");
-
     for (const key in getSelectedTask) {
       const value = getSelectedTask[key];
 
@@ -65,7 +61,7 @@ export default function PlannerCreate() {
     const key = target.name;
 
     if (key === "priority") {
-      if (value.match(".")) {
+      if (value.match(".") || value.match(",")) {
         value = parseInt(value);
       }
       if (value === "") {
@@ -127,11 +123,7 @@ export default function PlannerCreate() {
   }
 
   async function handleEditSubmit(event) {
-    console.log(event);
     const editTaskFormData = new URLSearchParams();
-    // const createTaskFormData = new FormData();
-
-    console.log(formValue.id);
 
     editTaskFormData.append("user", formValue.user);
     editTaskFormData.append("title", formValue.title);
@@ -161,7 +153,6 @@ export default function PlannerCreate() {
         //reloads the page to retreive the new item
         window.location.reload();
       });
-      console.log(window.location);
     } catch (error) {
       dispatch(plannerDialogOpen(""));
       console.log(error);

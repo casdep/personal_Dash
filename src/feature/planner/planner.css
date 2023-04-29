@@ -1,6 +1,5 @@
 .top-bar-wrapper {
   display: flex;
-  width: 80%;
 }
 
 .top-bar {
@@ -61,7 +60,6 @@ li {
 @media screen and (max-width: 992px) {
   .top-bar-wrapper {
     display: flex;
-    width: 100%;
   }
 
   li {
@@ -77,7 +75,7 @@ li {
 }
 
 /* On screens that are 600px or less */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 550px) {
   li {
     list-style-type: none;
     width: 100%;
@@ -86,6 +84,29 @@ li {
   .loader {
     list-style-type: none;
     width: 100%;
+  }
+
+  .item-one {
+    flex-basis: 45%;
+  }
+
+  .item-two {
+    flex-basis: 45%;
+  }
+
+  .item-three {
+    display: none;
+  }
+
+  .create-button-mobile {
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
+  }
+}
+@media screen and (min-width: 550px) {
+  .create-button-mobile {
+    display: none;
   }
 }
 
@@ -189,4 +210,9 @@ ul {
 
 .MuiInputBase-root {
   border-color: (blue);
+}
+
+.MuiButtonBase-root {
+  min-height: 56px !important;
+  width: max-content;
 }

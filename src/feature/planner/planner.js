@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+
 import { useSelector, useDispatch } from "react-redux";
 
 import PlannerCreate from "./plannerCreate";
@@ -167,20 +170,13 @@ export default function Planner() {
       <div className="top-bar-wrapper">
         <div className="top-bar item-one">
           <FormControl fullWidth>
-            <InputLabel htmlFor="grouped-native-select">
-              Select filter
-            </InputLabel>
+            <InputLabel htmlFor="grouped-native-select">Filter</InputLabel>
             <Select
               className="filterItemsSelector"
-              color="primary"
-              label="Select filter"
+              label="Filter"
               labelId="demo-simple-select-standard-label"
-              id="demo-simple-select-standard"
               value={selectedCategoryFilter}
               onChange={handleSelectedCategoryChange}
-              sx={{
-                color: "white",
-              }}
             >
               <MenuItem value="">
                 <i>None</i>
@@ -197,20 +193,13 @@ export default function Planner() {
         </div>
         <div className="top-bar item-two">
           <FormControl fullWidth>
-            <InputLabel htmlFor="grouped-native-select">
-              Select sorting
-            </InputLabel>
+            <InputLabel htmlFor="grouped-native-select">Sorting</InputLabel>
             <Select
               className="sortingItemsSelector"
-              color="primary"
-              label="Select sorting"
+              label="Sorting"
               labelId="demo-simple-select-standard-label"
-              id="demo-simple-select-standard"
               value={selectedSortingOption}
               onChange={handleSelectedSortChange}
-              sx={{
-                color: "white",
-              }}
             >
               <MenuItem selected value="">
                 <i>None</i>
@@ -240,11 +229,20 @@ export default function Planner() {
           <Button
             variant="contained"
             onClick={() => createHandleClickOpen()}
-            size="medium"
+            size="large"
           >
             Create Item
           </Button>
         </div>
+      </div>
+      <div className="create-button-mobile">
+        <Fab
+          color="primary"
+          aria-label="add"
+          onClick={() => createHandleClickOpen()}
+        >
+          <AddIcon />
+        </Fab>
       </div>
       <ul>
         {tasksLoader ? <LinearProgress className="loader" /> : ""}

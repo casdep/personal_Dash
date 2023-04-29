@@ -1,12 +1,15 @@
 /* Style the header with a grey background and some padding */
-.header {
+.wrapper {
   overflow: hidden;
   background-color: #252627;
-  padding: 20px 25% 20px 25%;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 /* Style the header links */
-.header a {
+.wrapper a {
   float: left;
   color: grey;
   text-align: center;
@@ -18,7 +21,7 @@
 }
 
 /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
-.header a.logo {
+.wrapper a.logo {
   padding-left: 0;
   color: whitesmoke;
   background-color: #252627;
@@ -27,18 +30,26 @@
 }
 
 /* Change the background color on mouse-over */
-.header a:hover {
+.wrapper a:hover {
   color: white;
 }
 
 /* Style the active/current link*/
-.header a.active {
+.wrapper a.active {
   color: white;
 }
 
 /* Float the link section to the right */
 .header-right {
-  float: right;
+  align-items: center;
+  display: flex;
+  height: 3rem;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.home {
+  display: none;
 }
 
 /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
@@ -50,6 +61,28 @@
   }
   .header-right {
     float: none;
+  }
+}
+@media screen and (max-width: 550px) {
+  header {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+  }
+  .wrapper {
+    padding: 10px;
+    justify-content: space-evenly;
+  }
+  .logo {
+    display: none;
+  }
+  .home {
+    display: inline;
+    color: white !important;
+    font-size: 20px !important;
   }
 }
 

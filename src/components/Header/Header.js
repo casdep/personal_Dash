@@ -20,20 +20,26 @@ export default function Header() {
   }
 
   return (
-    <div className="header">
-      <a href="/" className="logo">
-        Cas de Pender
-      </a>
-      <div className="header-right">
-        <a href="/planner">Planner</a>
-        <a href="/about">About</a>
-        <a href="/login">Login</a>
-        <Button className="darkMode-Hover" onClick={() => switchDarkmode()}>
-          <span role="img" aria-label="dark mode button">
-            🌙
-          </span>
-        </Button>
+    <header>
+      <div className="wrapper">
+        <a href="/" className="logo">
+          Cas de Pender
+        </a>
+
+        <div className="header-right">
+          <a href="/planner">Planner</a>
+          <a href="/about">About</a>
+          <a href="/" className="home">
+            Home
+          </a>
+          <a href="/login">Login</a>
+          <Button className="darkMode-Hover" onClick={() => switchDarkmode()}>
+            <span role="img" aria-label="dark mode button">
+              🌙
+            </span>
+          </Button>
+        </div>
       </div>
-    </div>
+    </header>
   );
 }

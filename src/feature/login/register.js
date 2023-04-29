@@ -1,34 +1,44 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import { TextField, Button } from "@mui/material";
 
 import "./register.css";
 
 export default function Register() {
+  const navigate = useNavigate();
+
   const [formValue, setformValue] = useState({
-    username: "",
     email: "",
+    username: "",
     password: "",
+    passwordConfirmed: "",
   });
 
   async function handleSubmit() {
     const registerFormData = new URLSearchParams();
 
-    registerFormData.append("Username", formValue.username);
-    registerFormData.append("password", formValue.password);
+    if (formValue.password === formValue.passwordConfirmed) {
+      registerFormData.append("email", formValue.email);
+      registerFormData.append("username", formValue.username);
+      registerFormData.append("password", formValue.password);
 
-    try {
-      await axios({
-        method: "post",
-        url: "http://localhost:3001/task",
-        data: registerFormData,
-        headers: { "content-type": "application/x-www-form-urlencoded" },
-      }).then((res) => {
-        console.log(res);
-      });
-    } catch (error) {
-      console.log(error);
+      try {
+        await axios({
+          method: "post",
+          url: process.env.REACT_APP_API_URL + "/account-management/users",
+          data: registerFormData,
+          headers: { "content-type": "application/x-www-form-urlencoded" },
+        }).then((res) => {
+          console.log(res);
+          navigate("/login");
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      alert("AAA");
     }
   }
 
@@ -48,33 +58,23 @@ export default function Register() {
           <div className="input_field_top_bar">
             <div className="input_field_top_bar_username">
               <TextField
-                inputProps={{ style: { color: "white" } }}
                 type="username"
                 name="username"
-                id="outlined-basic"
-                variant="outlined"
                 margin="normal"
-                color="primary"
                 label="Username"
                 defaultValue={formValue.username}
                 onChange={handleChange}
-                focused
                 fullWidth
               />
             </div>
             <div className="input_field_top_bar_email">
               <TextField
-                inputProps={{ style: { color: "white" } }}
                 type="email"
                 name="email"
-                id="outlined-basic"
-                variant="outlined"
                 margin="normal"
-                color="primary"
                 label="E-maildress"
                 defaultValue={formValue.email}
                 onChange={handleChange}
-                focused
                 fullWidth
               />
             </div>
@@ -84,28 +84,20 @@ export default function Register() {
             inputProps={{ style: { color: "white" } }}
             type="password"
             name="password"
-            id="outlined-basic"
-            variant="outlined"
             margin="normal"
-            color="primary"
             label="Password"
             defaultValue={formValue.password}
             onChange={handleChange}
-            focused
             fullWidth
           />
           <TextField
             inputProps={{ style: { color: "white" } }}
             type="password"
-            name="confirm_password"
-            id="outlined-basic"
-            variant="outlined"
+            name="passwordConfirmed"
             margin="normal"
-            color="primary"
             label="Confirm Password"
-            defaultValue={formValue.password}
+            defaultValue={formValue.passwordConfirmed}
             onChange={handleChange}
-            focused
             fullWidth
           />
         </div>

@@ -1,6 +1,7 @@
 .container {
   display: flex;
   color: white;
+  background-color: black;
 }
 .item {
   display: inline-block;

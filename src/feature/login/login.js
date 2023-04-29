@@ -16,6 +16,9 @@ export default function LoginForm() {
   async function handleSubmit() {
     const loginFormData = new URLSearchParams();
 
+    console.log(formValue.username);
+    console.log(formValue.password);
+
     loginFormData.append("Username", formValue.username);
     loginFormData.append("password", formValue.password);
 
@@ -50,28 +53,22 @@ export default function LoginForm() {
             inputProps={{ style: { color: "white" } }}
             type="username"
             name="username"
-            id="outlined-basic"
             variant="outlined"
             margin="normal"
-            color="primary"
             label="Username"
             defaultValue={formValue.username}
             onChange={handleChange}
-            focused
             fullWidth
           />
           <TextField
             inputProps={{ style: { color: "white" } }}
             type="password"
             name="password"
-            id="outlined-basic"
             variant="outlined"
             margin="normal"
-            color="primary"
             label="Password"
             defaultValue={formValue.password}
             onChange={handleChange}
-            focused
             fullWidth
           />
         </div>
@@ -85,7 +82,8 @@ export default function LoginForm() {
               component={"span"}
               inputProps={{ style: { color: "red" } }}
             >
-              New user?&nbsp;
+              New user?
+              <br />
               <Link href="/register" underline="hover">
                 {"Register here"}
               </Link>

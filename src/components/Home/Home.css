@@ -4,13 +4,12 @@
 }
 
 .imageContainer {
-  position: relative;
   text-align: center;
 }
 
 .textCenter {
   position: absolute;
-  top: 20%;
+  top: 22.5%;
   left: 50%;
   transform: translate(-50%, -50%);
 }

@@ -1,4 +1,5 @@
 .Register_container {
+  margin: 0 auto;
   width: 80%;
   height: 350px;
   background-color: #222222;
@@ -29,7 +30,7 @@
 }
 
 .footer_items {
-  width: 60%;
+  width: 80%;
   display: flex;
   margin: 0 auto;
 }
@@ -38,4 +39,13 @@
   display: table;
   margin: 0 auto;
   text-decoration: none;
+}
+
+@media screen and (max-width: 550px) {
+  .Register_container {
+    width: 100%;
+  }
+  .input_fields {
+    width: 80%;
+  }
 }
