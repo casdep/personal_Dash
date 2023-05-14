@@ -42,6 +42,7 @@ export default function PlannerCreate() {
     if (getPlannerDialogOpen === "edit") {
       setEditValues();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function setEditValues() {

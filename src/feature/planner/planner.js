@@ -70,6 +70,7 @@ export default function Planner() {
 
   useEffect(() => {
     getAllTasks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function getAllTasks(event) {
