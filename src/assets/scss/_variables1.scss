@@ -1,0 +1,103 @@
+// Register fonts
+$main-font: "Roboto", Arial, Helvetica, sans-serif;
+$title-font: "Open Sans", Arial, Helvetica, sans-serif;
+
+$font-map: (
+  "main-font": $main-font,
+  "title-font": $title-font,
+);
+
+//Font weights
+$weight-normal: 400;
+$weight-medium: 500;
+$weight-semibold: 600;
+$weight-bold: 700;
+
+$font-weight-map: (
+  "normal": $weight-normal,
+  "medium": $weight-medium,
+  "semibold": $weight-semibold,
+  "bold": $weight-bold,
+);
+
+$background-dark: #252b37;
+$background-light: #ffffff;
+
+$contract-dark: #ffffff;
+$contract-light: #222222;
+
+$accent: #1976d2;
+
+$success: #00c000;
+$error: red;
+$warning: #ec5252;
+
+.dark {
+  background-color: $background-dark;
+}
+
+.light {
+  background-color: $background-light;
+}
+
+// $theme-colors: (
+//   "background": $background,
+//   "bright": $bright,
+//   "accent": $accent,
+//   "success": $success,
+//   "error": $error,
+//   "warning": $warning,
+// );
+
+// Spacing
+$spacing: 0.3125rem;
+$spacing-0: 0px;
+$spacing-1: $spacing;
+$spacing-2: $spacing * 2;
+$spacing-3: $spacing * 3;
+$spacing-4: $spacing * 4;
+$spacing-5: $spacing * 5;
+$spacing-6: $spacing * 6;
+$spacing-7: $spacing * 7;
+$spacing-8: $spacing * 8;
+$spacing-9: $spacing * 9;
+$spacing-10: $spacing * 10;
+$spacing-11: $spacing * 11;
+$spacing-12: $spacing * 12;
+
+// z-index
+$z-layers: (
+  "default": 1,
+  "second": 2,
+  "third": 3,
+  "fourth": 4,
+  "fifth": 5,
+  "below": -1,
+  "contribution": 9,
+  "footer": 100,
+  "menu": 110,
+  "modal": 50,
+  "submit": 5,
+  "carousel": 100,
+  "popup": 200,
+);
+
+// font-sizes
+$extra-small: 0.5rem; // ~8px
+$small: 0.875rem; // ~14px
+$normal: 1rem; // ~16px
+$semi-normal: 1.125rem; // ~18px
+$medium: 1.5rem; // ~24px
+$large: 2rem; // ~32px
+$extra-large: 3rem; // ~48px
+
+$font-sizes: (
+  "extra-small": $extra-small,
+  "small": $small,
+  "normal": $normal,
+  "medium": $medium,
+  "large": $large,
+  "extra-large": $extra-large,
+);
+
+$header-height: 3.8rem;

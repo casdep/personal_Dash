@@ -36,6 +36,7 @@ import DeleteIcon from "@mui/icons-material/Close";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import EditIcon from "@mui/icons-material/Edit";
 
+import "../../assets/scss/theme.scss";
 import "./planner.css";
 
 export default function Planner() {
@@ -95,7 +96,7 @@ export default function Planner() {
       method: "get",
       url: url,
     })
-      .then(function(res) {
+      .then(function (res) {
         const tasks = res.data.data;
         setTasks(tasks);
         setTasksLoader(false);
@@ -107,7 +108,7 @@ export default function Planner() {
           setTasksCategories(uniqueCategories);
         }
       })
-      .catch(function(response) {});
+      .catch(function (response) {});
   }
 
   function handleSelectedCategoryChange(event) {

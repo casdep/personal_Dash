@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+}
+
+html, body, #__nuxt, #__layout {
+  height: 100%;
+  min-height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+html {
+  font-family: map-get($font-map, "main-font");
+  font-size: 16px;
+}
+
+body {
+  margin: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  font-family: map-get($font-map, "main-font"), sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+  input {
+    font-size: 16px;
+  }
+}
+
+.full-page {
+  height: calc(100vh - $header-height);
+  width: 100vw;
+}
+
+.page-wrapper {
+  padding: $spacing-5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover { text-decoration: none; color: inherit; }
+a:focus { text-decoration: none; color: inherit; }
+a:active { text-decoration: none; color: inherit; }
+
+
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}

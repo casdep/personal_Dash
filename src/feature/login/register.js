@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { TextField, Button } from "@mui/material";
 
 import "./register.css";
+import "../../assets/scss/theme.scss";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ export default function Register() {
       registerFormData.append("email", formValue.email);
       registerFormData.append("username", formValue.username);
       registerFormData.append("password", formValue.password);
+      registerFormData.append("role", "Member");
 
       try {
         await axios({

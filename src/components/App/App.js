@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import "./App.css";
+import "../../assets/scss/theme.scss";
 
 import Header from "../Header/Header";
 import Home from "../Home/Home";

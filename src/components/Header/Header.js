@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 import "./Header.css";
+import "../../assets/scss/theme.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 

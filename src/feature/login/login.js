@@ -5,7 +5,8 @@ import { TextField, Button } from "@mui/material";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
-import "./login.css";
+import "../../assets/scss/theme.scss";
+import "./login.scss";
 
 export default function LoginForm() {
   const [formValue, setformValue] = useState({
@@ -19,13 +20,13 @@ export default function LoginForm() {
     console.log(formValue.username);
     console.log(formValue.password);
 
-    loginFormData.append("Username", formValue.username);
+    loginFormData.append("email", formValue.username);
     loginFormData.append("password", formValue.password);
 
     try {
       await axios({
         method: "post",
-        url: "http://localhost:3001/task",
+        url: process.env.REACT_APP_API_URL + "/account-management/authenticate",
         data: loginFormData,
         headers: { "content-type": "application/x-www-form-urlencoded" },
       }).then((res) => {

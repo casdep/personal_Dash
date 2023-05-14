@@ -11,7 +11,7 @@
 /* Style the header links */
 .wrapper a {
   float: left;
-  color: grey;
+  color: lightgrey;
   text-align: center;
   padding: 12px;
   text-decoration: none;
@@ -27,16 +27,6 @@
   background-color: #252627;
   font-size: 25px;
   font-weight: bold;
-}
-
-/* Change the background color on mouse-over */
-.wrapper a:hover {
-  color: white;
-}
-
-/* Style the active/current link*/
-.wrapper a.active {
-  color: white;
 }
 
 /* Float the link section to the right */

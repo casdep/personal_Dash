@@ -1,0 +1,45 @@
+@import "./variables";
+
+.dark {
+  height: 100vh;
+  background-color: $background-dark;
+  color: $color-dark;
+
+  .textCenter {
+    text-shadow: 2px 2px 2px $color-light;
+  }
+
+  .MuiFormLabel-root,
+  .MuiFormLabel-root.MuiSvgIcon-root,
+  .MuiInputBase-input,
+  .MuiSelect-select {
+    color: $color-dark !important;
+  }
+  .MuiOutlinedInput-notchedOutline {
+    border-color: $color-dark !important;
+  }
+}
+
+.light {
+  height: 100vh;
+  background-color: #faf9f6;
+  color: $color-light;
+
+  .Image {
+    box-shadow: 0 0 20px 6px rgba(0, 0, 0, 0.3);
+  }
+  .textCenter {
+    text-shadow: 2px 2px 2px $color-dark;
+  }
+
+  .MuiFormLabel-root,
+  .MuiFormLabel-root.MuiSvgIcon-root,
+  .MuiInputBase-input,
+  .MuiSelect-select {
+    color: $color-light !important;
+  }
+
+  .MuiOutlinedInput-notchedOutline {
+    border-color: $color-light !important;
+  }
+}

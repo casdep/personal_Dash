@@ -1,8 +1,6 @@
-html,
 body {
   margin: 0;
   height: 100%;
-  background-color: #333;
 }
 
 .App {
@@ -11,8 +9,7 @@ body {
 }
 
 .innerApp {
-  min-height: 100%;
-  padding: 0 25% 0 25%;
+  padding: 0 25%;
 }
 
 p,
@@ -56,35 +53,4 @@ a {
 body {
   margin: 0px;
   padding: 0px;
-}
-
-.dark {
-  height: 100vh;
-  background-color: #333;
-  color: #fff;
-}
-.light {
-  height: 100vh;
-  background-color: #fff;
-  color: #333;
-}
-
-.MuiFormLabel-root {
-  color: white !important;
-}
-
-.MuiFormLabel-root.MuiSvgIcon-root {
-  color: white !important;
-}
-
-.MuiInputBase-input {
-  color: white !important;
-}
-
-.MuiSelect-select {
-  color: white !important;
-}
-
-.MuiOutlinedInput-notchedOutline {
-  border-color: white !important;
 }

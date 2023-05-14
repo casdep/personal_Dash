@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import "./Home.css";
 
-const image = require("./home_mountain.jpg");
+const image_dark = require("./home_mountain.jpg");
+const image_light = require("./home_forest.jpg");
 
 function Home() {
   const [dateState, setDateState] = useState(new Date());
@@ -10,12 +12,18 @@ function Home() {
     setInterval(() => setDateState(new Date()), 1000);
   }, []);
 
+  const getAppTheme = useSelector((state) => state.general.appTheme);
+
   //ToDo Leet checker
 
   return (
     <div className="Home">
       <div className="imageContainer">
-        <img className="Image" src={image} alt="" />
+        <img
+          className="Image"
+          src={getAppTheme === "dark" ? image_dark : image_light}
+          alt=""
+        />
         <div className="textCenter">
           <h1> HOME </h1>
           <h3> Welcome back Cas! </h3>
