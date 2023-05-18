@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "@mui/material";
-import "./Header.css";
-import "../../assets/scss/theme.scss";
+import "./Header.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -15,8 +14,10 @@ export default function Header() {
   function switchDarkmode() {
     if (getAppTheme === "dark") {
       dispatch(appTheme("light"));
+      document.cookie = `theme=light`;
     } else {
       dispatch(appTheme("dark"));
+      document.cookie = `theme=dark`;
     }
   }
 

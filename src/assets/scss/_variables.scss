@@ -20,7 +20,41 @@ $font-weight-map: (
   "bold": $weight-bold,
 );
 
-$background-dark: #252b37;
+$dark-color1: #1a1a1a;
+$dark-color2: #333333;
+$dark-color3: #4d4d4d;
+$dark-color4: #666666;
+$dark-color5: #808080;
+
+$light-color1: #ffffff;
+$light-color2: #f9f9f9;
+$light-color3: #f5f5f5;
+$light-color4: #ededed;
+$light-color5: #e0e0e0;
+
+$accent1: #1976d2;
+$accent2: #2581db;
+$accent3: #318ce4;
+$accent4: #3c97ed;
+$accent5: #47a2f6;
+$accent6: #52adf0;
+$accent7: #5db8f9;
+$accent8: #68c3ff;
+$accent9: #73ceff;
+$accent10: #7ed9ff;
+
+$shade1: #7ed9ff;
+$shade2: #8ce3ff;
+$shade3: #9aeaff;
+$shade4: #a8f2ff;
+$shade5: #b6f9ff;
+$shade6: #c4ffff;
+$shade7: #d2ffff;
+$shade8: #e0f1ff;
+$shade9: #eeffff;
+$shade10: #fcffff;
+
+$background-dark: #333333;
 $background-light: #ffffff;
 
 $color-dark: #ffffff;
@@ -28,8 +62,6 @@ $color-light: #222222;
 
 $contract-dark: #ffffff;
 $contract-light: #222222;
-
-$accent: #1976d2;
 
 $success: #00c000;
 $error: red;

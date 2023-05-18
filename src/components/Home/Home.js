@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import "./Home.css";
+import "./Home.scss";
 
 const image_dark = require("./home_mountain.jpg");
 const image_light = require("./home_forest.jpg");

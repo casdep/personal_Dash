@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const value = ("; " + document.cookie).split(`; theme=`).pop().split(";")[0];
+
 export const generalSlice = createSlice({
   name: "general",
   initialState: {
-    appTheme: "dark",
+    appTheme: value,
   },
   reducers: {
     appTheme: (state, action) => {
-      state.appTheme = action.payload;
+      state.appTheme = value;
     },
   },
 });

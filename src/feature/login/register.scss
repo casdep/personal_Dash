@@ -1,9 +1,15 @@
+@import "../../assets/scss/variables";
+
 .Register_container {
   margin: 0 auto;
   width: 80%;
   height: 350px;
   background-color: #222222;
   border-radius: 10px;
+}
+
+.light .Register_container {
+  background-color: $shade8;
 }
 
 .input_fields {

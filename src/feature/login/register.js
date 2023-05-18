@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { TextField, Button } from "@mui/material";
 
-import "./register.css";
+import "./register.scss";
 import "../../assets/scss/theme.scss";
 
 export default function Register() {
@@ -20,7 +20,12 @@ export default function Register() {
   async function handleSubmit() {
     const registerFormData = new URLSearchParams();
 
-    if (formValue.password === formValue.passwordConfirmed) {
+    if (
+      formValue.password === formValue.passwordConfirmed &&
+      formValue.email.match(/^\S+@\S+\.\S+$/) &&
+      formValue.username.length > 2 &&
+      formValue.password.length > 7
+    ) {
       registerFormData.append("email", formValue.email);
       registerFormData.append("username", formValue.username);
       registerFormData.append("password", formValue.password);
@@ -40,6 +45,7 @@ export default function Register() {
         console.log(error);
       }
     } else {
+      //todo alert wrong input
       alert("AAA");
     }
   }

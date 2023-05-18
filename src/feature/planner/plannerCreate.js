@@ -18,7 +18,7 @@ import {
 
 import CloseIcon from "@mui/icons-material/Close";
 
-import "./plannerCreate.css";
+import "./plannerCreate.scss";
 
 export default function PlannerCreate() {
   const dispatch = useDispatch();

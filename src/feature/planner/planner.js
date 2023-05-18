@@ -37,7 +37,7 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import EditIcon from "@mui/icons-material/Edit";
 
 import "../../assets/scss/theme.scss";
-import "./planner.css";
+import "./planner.scss";
 
 export default function Planner() {
   const dispatch = useDispatch();

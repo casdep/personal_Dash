@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import { TextField, Button } from "@mui/material";
 import Link from "@mui/material/Link";
@@ -9,6 +10,7 @@ import "../../assets/scss/theme.scss";
 import "./login.scss";
 
 export default function LoginForm() {
+  const navigate = useNavigate();
   const [formValue, setformValue] = useState({
     username: "",
     password: "",
@@ -17,10 +19,7 @@ export default function LoginForm() {
   async function handleSubmit() {
     const loginFormData = new URLSearchParams();
 
-    console.log(formValue.username);
-    console.log(formValue.password);
-
-    loginFormData.append("email", formValue.username);
+    loginFormData.append("userIdentifier", formValue.userIdentifier);
     loginFormData.append("password", formValue.password);
 
     try {
@@ -31,6 +30,8 @@ export default function LoginForm() {
         headers: { "content-type": "application/x-www-form-urlencoded" },
       }).then((res) => {
         console.log(res);
+        document.cookie = `token=${res.data.token}`;
+        navigate("/");
       });
     } catch (error) {
       console.log(error);
@@ -52,12 +53,12 @@ export default function LoginForm() {
         <div className="input_fields">
           <TextField
             inputProps={{ style: { color: "white" } }}
-            type="username"
-            name="username"
+            type="userIdentifier"
+            name="userIdentifier"
             variant="outlined"
             margin="normal"
-            label="Username"
-            defaultValue={formValue.username}
+            label="Username or E-mail"
+            defaultValue={formValue.userIdentifier}
             onChange={handleChange}
             fullWidth
           />

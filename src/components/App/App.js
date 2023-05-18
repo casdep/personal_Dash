@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
-import "./App.css";
+import "./App.scss";
 import "../../assets/scss/theme.scss";
 
 import Header from "../Header/Header";
