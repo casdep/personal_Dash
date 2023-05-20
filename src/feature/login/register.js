@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Snackbar, Alert } from "@mui/material";
 
 import "./register.scss";
 import "../../assets/scss/theme.scss";
@@ -10,6 +10,7 @@ import "../../assets/scss/theme.scss";
 export default function Register() {
   const navigate = useNavigate();
 
+  const [open, setOpen] = React.useState(false);
   const [formValue, setformValue] = useState({
     email: "",
     username: "",
@@ -46,7 +47,7 @@ export default function Register() {
       }
     } else {
       //todo alert wrong input
-      alert("AAA");
+      handleClick();
     }
   }
 
@@ -57,9 +58,26 @@ export default function Register() {
     });
   }
 
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className="Register">
       <h1>Register</h1>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        open={open}
+        severity="error"
+        onClose={handleClose}
+        message="I love snacks"
+      >
+        <Alert severity="error">wejooo broer</Alert>
+      </Snackbar>
 
       <div className="Register_container">
         <div className="input_fields">
@@ -73,6 +91,7 @@ export default function Register() {
                 defaultValue={formValue.username}
                 onChange={handleChange}
                 fullWidth
+                helperText="Incorrect entry."
               />
             </div>
             <div className="input_field_top_bar_email">

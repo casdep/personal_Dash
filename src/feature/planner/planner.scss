@@ -1,3 +1,5 @@
+@import "../../assets/scss/theme.scss";
+
 .top-bar-wrapper {
   display: flex;
 }
@@ -214,5 +216,20 @@ ul {
 
 .MuiButtonBase-root {
   min-height: 56px !important;
-  width: max-content;
+  min-width: 56px !important;
+  width: auto !important;
+}
+
+.light {
+  .MuiCard-root {
+    box-shadow: 1px 1px 5px #c7c7c7 !important;
+    border: #fbfbfb;
+    border-style: double;
+    border-width: 1px;
+  }
+}
+.MuiIconButton-root {
+  background: none !important;
+  border-radius: 0% !important;
+  width: fit-content !important;
 }

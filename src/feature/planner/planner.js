@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+import "./planner.scss";
+
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 
@@ -35,9 +37,6 @@ import {
 import DeleteIcon from "@mui/icons-material/Close";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import EditIcon from "@mui/icons-material/Edit";
-
-import "../../assets/scss/theme.scss";
-import "./planner.scss";
 
 export default function Planner() {
   const dispatch = useDispatch();

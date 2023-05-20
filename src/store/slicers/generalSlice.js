@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const value = ("; " + document.cookie).split(`; theme=`).pop().split(";")[0];
+const value = localStorage.getItem("theme");
 
 export const generalSlice = createSlice({
   name: "general",
@@ -9,7 +9,9 @@ export const generalSlice = createSlice({
   },
   reducers: {
     appTheme: (state, action) => {
-      state.appTheme = value;
+      console.log("a");
+      console.log(action);
+      state.appTheme = action.payload;
     },
   },
 });

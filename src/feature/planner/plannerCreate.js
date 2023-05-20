@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import "./plannerCreate.scss";
+
 import { useSelector, useDispatch } from "react-redux";
 
 import { plannerDialogOpen } from "../../store/slicers/plannerSlice";
@@ -17,8 +19,6 @@ import {
 } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
-
-import "./plannerCreate.scss";
 
 export default function PlannerCreate() {
   const dispatch = useDispatch();
@@ -199,22 +199,18 @@ export default function PlannerCreate() {
               label="Title"
               value={formValue.title}
               onChange={handleInputChange}
-              // onChange={(e) => setName(e.target.value)}
-              focused
             />
             <br />
             <TextField
               required
               type="category"
               name="category"
-              id="outlined-basic"
               variant="outlined"
               margin="normal"
               color="primary"
               label="Category"
               value={formValue.category}
               onChange={handleInputChange}
-              focused
             />
 
             <TextField
@@ -229,7 +225,6 @@ export default function PlannerCreate() {
               type="number"
               value={formValue.priority}
               onChange={handleInputChange}
-              focused
             />
             <TextField
               type="discription"
@@ -241,7 +236,6 @@ export default function PlannerCreate() {
               label="Discription"
               value={formValue.discription}
               onChange={handleInputChange}
-              focused
               fullWidth
             />
           </DialogContentText>

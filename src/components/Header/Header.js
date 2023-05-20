@@ -1,9 +1,9 @@
 import React from "react";
-import { Button } from "@mui/material";
+
 import "./Header.scss";
 
+import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-
 import { appTheme } from "../../store/slicers/generalSlice";
 
 export default function Header() {
@@ -12,12 +12,13 @@ export default function Header() {
   const getAppTheme = useSelector((state) => state.general.appTheme);
 
   function switchDarkmode() {
+    console.log(getAppTheme);
     if (getAppTheme === "dark") {
       dispatch(appTheme("light"));
-      document.cookie = `theme=light`;
+      localStorage.setItem("theme", "light");
     } else {
       dispatch(appTheme("dark"));
-      document.cookie = `theme=dark`;
+      localStorage.setItem("theme", "dark");
     }
   }
 
