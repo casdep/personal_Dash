@@ -91,7 +91,6 @@ export default function Register() {
                 defaultValue={formValue.username}
                 onChange={handleChange}
                 fullWidth
-                helperText="Incorrect entry."
               />
             </div>
             <div className="input_field_top_bar_email">

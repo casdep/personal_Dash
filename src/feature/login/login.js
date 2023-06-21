@@ -32,6 +32,7 @@ export default function LoginForm() {
         console.log(res);
         document.cookie = `token=${res.data.token}`;
         navigate("/");
+        window.location.reload();
       });
     } catch (error) {
       console.log(error);
@@ -46,55 +47,58 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="Login">
+    <div className="login">
       <h1>Login</h1>
 
-      <div className="Login_container">
-        <div className="input_fields">
-          <TextField
-            inputProps={{ style: { color: "white" } }}
-            type="userIdentifier"
-            name="userIdentifier"
-            variant="outlined"
-            margin="normal"
-            label="Username or E-mail"
-            defaultValue={formValue.userIdentifier}
-            onChange={handleChange}
-            fullWidth
-          />
-          <TextField
-            inputProps={{ style: { color: "white" } }}
-            type="password"
-            name="password"
-            variant="outlined"
-            margin="normal"
-            label="Password"
-            defaultValue={formValue.password}
-            onChange={handleChange}
-            fullWidth
-          />
-        </div>
-
-        <br />
-        <div className="footer_items">
-          <div className="footer_item_one">
-            <Typography
-              gutterBottom
-              variant="body1"
-              component={"span"}
-              inputProps={{ style: { color: "red" } }}
-            >
-              New user?
-              <br />
-              <Link href="/register" underline="hover">
-                {"Register here"}
-              </Link>
-            </Typography>
+      <div className="login_container">
+        <div className="login_container--content">
+          <div className="input_fields">
+            <TextField
+              inputProps={{ style: { color: "white" } }}
+              type="userIdentifier"
+              name="userIdentifier"
+              variant="outlined"
+              margin="normal"
+              label="Username or E-mail"
+              defaultValue={formValue.userIdentifier}
+              onChange={handleChange}
+              fullWidth
+            />
+            <TextField
+              inputProps={{ style: { color: "white" } }}
+              type="password"
+              name="password"
+              variant="outlined"
+              margin="normal"
+              label="Password"
+              defaultValue={formValue.password}
+              onChange={handleChange}
+              fullWidth
+            />
           </div>
-          <div className="footer_item_two">
-            <Button variant="contained" onClick={() => handleSubmit()}>
-              Log in
-            </Button>
+          <div className="footer_items">
+            <div className="footer_item_one">
+              <Button variant="contained" onClick={() => handleSubmit()}>
+                Log in
+              </Button>
+
+              <Typography
+                gutterBottom
+                variant="body1"
+                component={"span"}
+                inputProps={{ style: { color: "red" } }}
+              >
+                <Link href="/register" underline="hover">
+                  {"Forgot password?"}
+                </Link>
+              </Typography>
+            </div>
+            <hr />
+            <div className="footer_item_two">
+              <Button variant="contained" href="/register">
+                Create new account
+              </Button>
+            </div>
           </div>
         </div>
       </div>

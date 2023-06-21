@@ -203,25 +203,19 @@ export default function Planner() {
               onChange={handleSelectedSortChange}
             >
               <MenuItem selected value="">
-                <i>None</i>
-              </MenuItem>
-              <MenuItem value="id_asc">
-                <em>Id, lowest first</em>
-              </MenuItem>
-              <MenuItem value="id_desc">
-                <em>Id, highest first</em>
+                None
               </MenuItem>
               <MenuItem value="createdAt_desc">
-                <em>Created, newest first</em>
+                <strong>Created</strong> &nbsp; - Newest first
               </MenuItem>
               <MenuItem value="createdAt_asc">
-                <em>Created, oldest first</em>
+                <strong>Created</strong> &nbsp; - Oldest first
               </MenuItem>
               <MenuItem value="priority_desc">
-                <em>Priority, highest first</em>
+                <strong>Priority</strong> &nbsp; - Highest first
               </MenuItem>
               <MenuItem value="priority_asc">
-                <em>Priority, lowest first</em>
+                <strong>Priority</strong> &nbsp; - Lowest first
               </MenuItem>
             </Select>
           </FormControl>

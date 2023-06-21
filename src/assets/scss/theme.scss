@@ -1,7 +1,8 @@
 @import "./variables";
+@import "./breakpoints.scss";
 
 .dark {
-  height: 100vh;
+  height: 100.4vh;
   background-color: $background-dark;
   color: $color-dark;
 
@@ -21,8 +22,8 @@
 }
 
 .light {
-  height: 100vh;
-  background-color: #faf9f6;
+  height: 100.4vh;
+  background-color: $light-color1;
   color: $color-light;
 
   .Image {

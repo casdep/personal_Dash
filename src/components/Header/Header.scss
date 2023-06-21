@@ -1,14 +1,15 @@
 @import "../../assets/scss/theme.scss";
 
 /* Style the header with a grey background and some padding */
-.wrapper {
+.header-wrapper {
   position: relative;
   overflow: hidden;
   background-color: #252627;
-  padding: 15px 0;
+  padding: 15px 25%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  margin: -5px 0;
 
   & a {
     float: left;
@@ -22,6 +23,7 @@
 
     &.logo {
       padding-left: 0;
+      padding-right: 80px;
       color: whitesmoke;
       font-size: 25px;
       font-weight: bold;
@@ -30,7 +32,7 @@
 }
 
 .light {
-  .wrapper {
+  .header-wrapper {
     background-color: $light-color2;
     a {
       color: $font-dark;
@@ -51,8 +53,13 @@
   display: none;
 }
 
-/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
-@media screen and (max-width: 660) {
+@include max-laptop {
+  .header-wrapper {
+    padding: 15px 12.5%;
+  }
+}
+
+@include max-tablet {
   .header a {
     float: none;
     display: block;
@@ -62,7 +69,23 @@
     float: none;
   }
 }
-@media screen and (max-width: 550px) {
+
+@include min-phone {
+  .profile-phone {
+    display: none;
+  }
+  .profile-desktop {
+    display: unset;
+  }
+}
+
+@include max-phone {
+  .profile-phone {
+    display: unset;
+  }
+  .profile-desktop {
+    display: none;
+  }
   header {
     width: 100%;
     position: absolute;
@@ -71,7 +94,7 @@
     position: fixed;
     bottom: 0;
   }
-  .wrapper {
+  .header-wrapper {
     padding: 10px;
     justify-content: space-evenly;
   }

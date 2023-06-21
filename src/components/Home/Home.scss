@@ -23,7 +23,7 @@ img {
   height: 100%;
 }
 
-@media screen and (max-width: 550px) {
+@include max-phone {
   .textCenter {
     top: 11rem;
   }

@@ -1,46 +1,62 @@
-@import "../../assets/scss/variables";
+@import "../../assets/scss/theme";
 
-.Login_container {
-  margin: 0 auto;
-  width: 80%;
-  height: 280px;
-  background-color: #222222;
-  border-radius: 10px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-}
-
-.light .Login_container {
+.light .login_container {
   background-color: $shade8;
 }
 
-.input_fields {
-  padding-top: 20px;
-  width: 60%;
-  display: table;
+.login_container {
   margin: 0 auto;
-}
+  width: 80%;
+  height: fit-content;
+  background-color: #222222;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 
-.footer_items {
-  width: 60%;
-  display: flex;
-}
+  &--content {
+    padding: 20px 0;
+    width: 60%;
+    display: table;
+    margin: 0 auto;
 
-.footer_item_one {
-  margin: 0 !important;
-  text-decoration: none;
-}
+    .footer_items {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
 
-.footer_item_two {
-  margin-top: auto;
-  justify-content: flex-end;
-  margin-left: auto;
-}
+      Button {
+        margin: 1rem 0;
+      }
 
-@media screen and (max-width: 550px) {
-  .Login_container {
-    width: 100%;
+      .footer_item_one {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: -webkit-fill-available;
+        .MuiButtonBase-root {
+          width: -webkit-fill-available !important;
+        }
+      }
+      hr {
+        width: -webkit-fill-available;
+      }
+      .footer_item_two {
+        align-items: center;
+
+        Button {
+          background-color: $accent4;
+        }
+      }
+    }
   }
-  .input_fields {
-    width: 80%;
+}
+
+@include max-phone {
+  .login {
+    .login_container {
+      width: 100%;
+    }
+    .input_fields {
+      width: 100%;
+    }
   }
 }

@@ -3,28 +3,28 @@ import React from "react";
 import "./Header.scss";
 
 import { Button } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { appTheme } from "../../store/slicers/generalSlice";
+
+import { IconButton } from "@mui/material";
+import PersonIcon from "@mui/icons-material/Person";
 
 export default function Header() {
-  const dispatch = useDispatch();
-
-  const getAppTheme = useSelector((state) => state.general.appTheme);
-
-  function switchDarkmode() {
-    console.log(getAppTheme);
-    if (getAppTheme === "dark") {
-      dispatch(appTheme("light"));
-      localStorage.setItem("theme", "light");
+  function profileOrLoginButton() {
+    if (document.cookie.indexOf("token=") !== -1) {
+      return (
+        <a href="/profile">
+          <IconButton aria-label="close" size="large">
+            <PersonIcon sx={{ color: "#1976d2" }} />
+          </IconButton>
+        </a>
+      );
     } else {
-      dispatch(appTheme("dark"));
-      localStorage.setItem("theme", "dark");
+      return <a href="/login">Login</a>;
     }
   }
 
   return (
     <header>
-      <div className="wrapper">
+      <div className="header-wrapper">
         <a href="/" className="logo">
           Cas de Pender
         </a>
@@ -32,15 +32,11 @@ export default function Header() {
         <div className="header-right">
           <a href="/planner">Planner</a>
           <a href="/about">About</a>
+          <div className="profile-desktop">{profileOrLoginButton()}</div>
           <a href="/" className="home">
             Home
           </a>
-          <a href="/login">Login</a>
-          <Button className="darkMode-Hover" onClick={() => switchDarkmode()}>
-            <span role="img" aria-label="dark mode button">
-              🌙
-            </span>
-          </Button>
+          <div className="profile-phone">{profileOrLoginButton()}</div>
         </div>
       </div>
     </header>

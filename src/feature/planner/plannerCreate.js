@@ -197,12 +197,14 @@ export default function PlannerCreate() {
               margin="normal"
               color="primary"
               label="Title"
+              fullWidth
               value={formValue.title}
               onChange={handleInputChange}
             />
             <br />
             <TextField
               required
+              className="createItemCategoryTextfield"
               type="category"
               name="category"
               variant="outlined"
@@ -241,7 +243,7 @@ export default function PlannerCreate() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleSubmit}>
+          <Button variant="contained" onClick={handleSubmit}>
             {getPlannerDialogOpen === "edit" ? "Save task" : "Create task"}
           </Button>
         </DialogActions>
