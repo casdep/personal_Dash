@@ -2,8 +2,6 @@ import React from "react";
 
 import "./Header.scss";
 
-import { Button } from "@mui/material";
-
 import { IconButton } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 
