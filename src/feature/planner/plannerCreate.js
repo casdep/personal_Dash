@@ -6,6 +6,7 @@ import "./plannerCreate.scss";
 import { useSelector, useDispatch } from "react-redux";
 
 import { plannerDialogOpen } from "../../store/slicers/plannerSlice";
+import { getCookie } from "../../utils/getCookie";
 
 import {
   Button,
@@ -104,7 +105,10 @@ export default function PlannerCreate() {
         method: "post",
         url: process.env.REACT_APP_API_URL + "/task-management/tasks",
         data: createTaskFormData,
-        headers: { "content-type": "application/x-www-form-urlencoded" },
+        headers: {
+          Authorization: "Bearer " + getCookie("token"),
+          "content-type": "application/x-www-form-urlencoded",
+        },
       }).then((res) => {
         setFormValue({
           user: "cas",
@@ -140,11 +144,13 @@ export default function PlannerCreate() {
           "/task-management/tasks/" +
           formValue.id,
         data: editTaskFormData,
-        headers: { "content-type": "application/x-www-form-urlencoded" },
+        headers: {
+          Authorization: "Bearer " + getCookie("token"),
+          "content-type": "application/x-www-form-urlencoded",
+        },
       }).then((res) => {
         setFormValue({
           id: "",
-          user: "cas",
           title: "",
           category: "",
           discription: "",

@@ -15,6 +15,8 @@ import {
   selectedTask,
 } from "../../store/slicers/plannerSlice";
 
+import { getCookie } from "../../utils/getCookie";
+
 import {
   Button,
   Card,
@@ -95,6 +97,9 @@ export default function Planner() {
     await axios({
       method: "get",
       url: url,
+      headers: {
+        Authorization: "Bearer " + getCookie("token"),
+      },
     })
       .then(function (res) {
         const tasks = res.data.data;
@@ -144,7 +149,10 @@ export default function Planner() {
           process.env.REACT_APP_API_URL +
           "/task-management/tasks/" +
           getSelectedTask.id,
-        headers: { "Content-Type": "form-data" },
+        headers: {
+          Authorization: "Bearer " + getCookie("token"),
+          "content-type": "application/x-www-form-urlencoded",
+        },
       }).then((res) => {
         setOpen(false);
         setTasks([]);
