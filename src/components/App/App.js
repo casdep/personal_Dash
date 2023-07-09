@@ -27,7 +27,7 @@ export default function App() {
 
   const getAppTheme = useSelector((state) => state.general.appTheme);
   return (
-    <div className={getAppTheme}>
+    <div className={getAppTheme || "dark"}>
       <Header />
       <div className="innerApp">
         <Routes>

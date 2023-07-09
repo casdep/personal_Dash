@@ -21,12 +21,12 @@ function Home() {
       <div className="imageContainer">
         <img
           className="Image"
-          src={getAppTheme === "dark" ? image_dark : image_light}
+          src={getAppTheme === "light" ? image_light : image_dark}
           alt=""
         />
         <div className="textCenter">
           <h1> HOME </h1>
-          <h3> Welcome back Cas! </h3>
+          <h2> Welcome back Cas! </h2>
           <p>
             {dateState.toLocaleDateString("en-GB", {
               day: "numeric",
