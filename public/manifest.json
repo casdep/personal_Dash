@@ -1,7 +1,7 @@
 {
   "short_name": "Dep Dash",
   "name": "Dep Dash",
-  "start_url": "",
+  "start_url": "/",
   "icons": [
     {
       "src": "favicon.ico",
