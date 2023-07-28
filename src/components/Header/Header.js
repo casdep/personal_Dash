@@ -6,6 +6,12 @@ import { IconButton } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 
 export default function Header() {
+  function isAuthenticated() {
+    if (document.cookie.indexOf("token=") !== -1) {
+      return <a href="/planner">Planner</a>;
+    }
+  }
+
   function profileOrLoginButton() {
     if (document.cookie.indexOf("token=") !== -1) {
       return (
@@ -26,9 +32,9 @@ export default function Header() {
         <a href="/" className="logo">
           Cas de Pender
         </a>
-
         <div className="header-right">
-          <a href="/planner">Planner</a>
+          {isAuthenticated()}
+
           <a href="/about">About</a>
           <div className="profile-desktop">{profileOrLoginButton()}</div>
           <a href="/" className="home">

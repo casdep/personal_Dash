@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import "./App.scss";
 import "../../assets/scss/theme.scss";
 
+import { privateRoute as PrivateRoute } from "../privateRoute";
 import Header from "../Header/Header";
 import Home from "../Home/Home";
 import About from "../../feature/about/about";
@@ -31,11 +32,13 @@ export default function App() {
       <Header />
       <div className="innerApp">
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route exact path="/" element={<PrivateRoute />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/planner" element={<Planner />} />
+          </Route>
           <Route path="/register" element={<Register />} />
-          <Route path="/planner" element={<Planner />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </div>

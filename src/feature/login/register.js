@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import { TextField, Button, Snackbar, Alert } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 
 import "./register.scss";
 import "../../assets/scss/theme.scss";
@@ -10,45 +10,76 @@ import "../../assets/scss/theme.scss";
 export default function Register() {
   const navigate = useNavigate();
 
-  const [open, setOpen] = React.useState(false);
   const [formValue, setformValue] = useState({
     email: "",
     username: "",
     password: "",
     passwordConfirmed: "",
   });
+  const [usernameError, setUsernameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordConfirmError, setPasswordConfirmError] = useState("");
 
   async function handleSubmit() {
     const registerFormData = new URLSearchParams();
 
-    if (
-      formValue.password === formValue.passwordConfirmed &&
-      formValue.email.match(/^\S+@\S+\.\S+$/) &&
-      formValue.username.length > 2 &&
-      formValue.password.length > 7
-    ) {
-      registerFormData.append("email", formValue.email);
-      registerFormData.append("username", formValue.username);
-      registerFormData.append("password", formValue.password);
-      registerFormData.append("role", "Member");
-
-      try {
-        await axios({
-          method: "post",
-          url: process.env.REACT_APP_API_URL + "/account-management/users",
-          data: registerFormData,
-          headers: { "content-type": "application/x-www-form-urlencoded" },
-        }).then((res) => {
-          console.log(res);
-          navigate("/login");
-        });
-      } catch (error) {
-        console.log(error);
-      }
+    if (!formValue.username) {
+      setUsernameError("Please enter an username");
+    } else if (formValue.username.length < 3) {
+      setUsernameError("Username must be atleast 3 charachters long");
     } else {
-      //todo alert wrong input
-      handleClick();
+      setUsernameError();
     }
+
+    if (!formValue.email) {
+      setEmailError("Please enter your email");
+    } else if (!formValue.email.match(/^\S+@\S+\.\S+$/)) {
+      setEmailError("Please enter a valid email");
+    } else {
+      setEmailError();
+    }
+
+    if (!formValue.password) {
+      setPasswordError("Please enter a password");
+    } else if (formValue.password.length < 8) {
+      setPasswordError("Password must be atleast 8 charachters long");
+    } else {
+      setPasswordError();
+    }
+
+    if (!formValue.passwordConfirmed) {
+      setPasswordConfirmError("Please confirm your password");
+    } else if (formValue.passwordConfirmed !== formValue.password) {
+      setPasswordConfirmError("Passwords do not match");
+    } else {
+      setPasswordConfirmError();
+    }
+
+    if (
+      !formValue.username ||
+      !formValue.email ||
+      !formValue.password ||
+      !formValue.passwordConfirmed
+    ) {
+      return;
+    }
+
+    registerFormData.append("email", formValue.email);
+    registerFormData.append("username", formValue.username);
+    registerFormData.append("password", formValue.password);
+    registerFormData.append("role", "Member");
+
+    try {
+      await axios({
+        method: "post",
+        url: process.env.REACT_APP_API_URL + "/account-management/users",
+        data: registerFormData,
+        headers: { "content-type": "application/x-www-form-urlencoded" },
+      }).then((res) => {
+        navigate("/login");
+      });
+    } catch (error) {}
   }
 
   function handleChange(event) {
@@ -58,27 +89,11 @@ export default function Register() {
     });
   }
 
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <div className="Register">
-      <h1>Register</h1>
-      <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        open={open}
-        severity="error"
-        onClose={handleClose}
-        message="I love snacks"
-      >
-        <Alert severity="error">wejooo broer</Alert>
-      </Snackbar>
-
+      <div className="pageTitle">
+        <h1>Register</h1>
+      </div>
       <div className="Register_container">
         <div className="input_fields">
           <div className="input_field_top_bar">
@@ -91,6 +106,8 @@ export default function Register() {
                 defaultValue={formValue.username}
                 onChange={handleChange}
                 fullWidth
+                error={usernameError}
+                helperText={usernameError}
               />
             </div>
             <div className="input_field_top_bar_email">
@@ -102,6 +119,8 @@ export default function Register() {
                 defaultValue={formValue.email}
                 onChange={handleChange}
                 fullWidth
+                error={emailError}
+                helperText={emailError}
               />
             </div>
           </div>
@@ -115,6 +134,8 @@ export default function Register() {
             defaultValue={formValue.password}
             onChange={handleChange}
             fullWidth
+            error={passwordError}
+            helperText={passwordError}
           />
           <TextField
             inputProps={{ style: { color: "white" } }}
@@ -125,6 +146,8 @@ export default function Register() {
             defaultValue={formValue.passwordConfirmed}
             onChange={handleChange}
             fullWidth
+            error={passwordConfirmError}
+            helperText={passwordConfirmError}
           />
         </div>
 

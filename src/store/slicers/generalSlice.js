@@ -9,8 +9,6 @@ export const generalSlice = createSlice({
   },
   reducers: {
     appTheme: (state, action) => {
-      console.log("a");
-      console.log(action);
       state.appTheme = action.payload;
     },
   },

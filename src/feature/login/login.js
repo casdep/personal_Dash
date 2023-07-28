@@ -11,13 +11,32 @@ import "./login.scss";
 
 export default function LoginForm() {
   const navigate = useNavigate();
-  const [formValue, setformValue] = useState({
+  const [formValue, setFormValue] = useState({
     username: "",
     password: "",
   });
+  const [wrongCredentials, setWrongCredentials] = useState(false);
+  const [userIdentifierError, setUserIdentifierError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
   async function handleSubmit() {
     const loginFormData = new URLSearchParams();
+
+    if (!formValue.userIdentifier) {
+      setUserIdentifierError(true);
+    } else {
+      setUserIdentifierError(false);
+    }
+
+    if (!formValue.password) {
+      setPasswordError(true);
+    } else {
+      setPasswordError(false);
+    }
+
+    if (!formValue.userIdentifier || !formValue.password) {
+      return;
+    }
 
     loginFormData.append("userIdentifier", formValue.userIdentifier);
     loginFormData.append("password", formValue.password);
@@ -29,18 +48,17 @@ export default function LoginForm() {
         data: loginFormData,
         headers: { "content-type": "application/x-www-form-urlencoded" },
       }).then((res) => {
-        console.log(res);
         document.cookie = `token=${res.data.token}`;
         navigate("/");
         window.location.reload();
       });
     } catch (error) {
-      console.log(error);
+      setWrongCredentials(true);
     }
   }
 
   function handleChange(event) {
-    setformValue({
+    setFormValue({
       ...formValue,
       [event.target.name]: event.target.value,
     });
@@ -48,21 +66,30 @@ export default function LoginForm() {
 
   return (
     <div className="login">
-      <h1>Login</h1>
+      <div className="pageTitle">
+        <h1>Login</h1>
+      </div>
 
       <div className="login_container">
         <div className="login_container--content">
           <div className="input_fields">
+            {wrongCredentials && (
+              <p>The username/email or password provided is incorrect</p>
+            )}
             <TextField
               inputProps={{ style: { color: "white" } }}
-              type="userIdentifier"
+              type="text"
               name="userIdentifier"
               variant="outlined"
               margin="normal"
-              label="Username or E-mail"
+              label="Username or email"
               defaultValue={formValue.userIdentifier}
               onChange={handleChange}
               fullWidth
+              error={userIdentifierError}
+              helperText={
+                userIdentifierError ? "Please enter your username or email" : ""
+              }
             />
             <TextField
               inputProps={{ style: { color: "white" } }}
@@ -74,6 +101,8 @@ export default function LoginForm() {
               defaultValue={formValue.password}
               onChange={handleChange}
               fullWidth
+              error={passwordError}
+              helperText={passwordError ? "Please enter your password" : ""}
             />
           </div>
           <div className="footer_items">

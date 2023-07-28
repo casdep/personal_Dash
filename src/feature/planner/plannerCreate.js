@@ -38,6 +38,8 @@ export default function PlannerCreate() {
     discription: "",
     priority: 1,
   });
+  const [titleError, setTitleError] = useState("");
+  const [categoryError, setCategoryError] = useState("");
 
   useEffect(() => {
     if (getPlannerDialogOpen === "edit") {
@@ -92,13 +94,28 @@ export default function PlannerCreate() {
 
   async function createTask() {
     const createTaskFormData = new URLSearchParams();
-    // const createTaskFormData = new FormData();
+
+    if (!formValue.title) {
+      setTitleError("Please enter a title");
+    } else {
+      setTitleError();
+    }
+
+    if (!formValue.category) {
+      setCategoryError("Please enter a category");
+    } else {
+      setCategoryError();
+    }
+
+    if (!formValue.title || !formValue.category) {
+      return;
+    }
 
     createTaskFormData.append("user", formValue.user);
     createTaskFormData.append("title", formValue.title);
     createTaskFormData.append("category", formValue.category);
-    createTaskFormData.append("discription", formValue.discription);
     createTaskFormData.append("priority", formValue.priority);
+    createTaskFormData.append("discription", formValue.discription);
 
     try {
       await axios({
@@ -123,7 +140,6 @@ export default function PlannerCreate() {
       });
     } catch (error) {
       dispatch(plannerDialogOpen(""));
-      console.log(error);
     }
   }
 
@@ -162,7 +178,6 @@ export default function PlannerCreate() {
       });
     } catch (error) {
       dispatch(plannerDialogOpen(""));
-      console.log(error);
     }
   }
 
@@ -206,6 +221,8 @@ export default function PlannerCreate() {
               fullWidth
               value={formValue.title}
               onChange={handleInputChange}
+              error={titleError}
+              helperText={titleError}
             />
             <br />
             <TextField
@@ -219,10 +236,11 @@ export default function PlannerCreate() {
               label="Category"
               value={formValue.category}
               onChange={handleInputChange}
+              error={categoryError}
+              helperText={categoryError}
             />
 
             <TextField
-              required
               className="createItemPriorityTextfield"
               name="priority"
               id="outlined-basic"

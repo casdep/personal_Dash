@@ -48,3 +48,12 @@
     width: fit-content;
   }
 }
+
+@include max-phone {
+  .pageTitle {
+    text-align: center !important;
+    display: unset;
+    font-size: 10px;
+    color: $light-color1;
+  }
+}
