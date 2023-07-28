@@ -39,7 +39,6 @@ export default function Profile() {
   };
 
   function handleChange(e) {
-    console.log(e.target.value);
     if (e.target.value === false) {
       dispatch(appTheme("light"));
       localStorage.setItem("theme", "light");
@@ -64,7 +63,9 @@ export default function Profile() {
 
   return (
     <div className="Profile">
-      <h1>Profile</h1>
+      <div className="pageTitle">
+        <h1>Profile</h1>
+      </div>
 
       <p>
         <b>Name:</b> <br />

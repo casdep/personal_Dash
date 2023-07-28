@@ -158,9 +158,7 @@ export default function Planner() {
         setTasks([]);
         getAllTasks();
       });
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
 
   function handleEditOpen(e) {
@@ -174,7 +172,10 @@ export default function Planner() {
 
   return (
     <div className="Planner">
-      <h1>PLANNER</h1>
+      <div className="pageTitle">
+        <h1>Planner</h1>
+      </div>
+      <hr className="mobile-devider" />
       {getPlannerDialogOpen !== "" ? <PlannerCreate /> : ""}
       <div className="top-bar-wrapper">
         <div className="top-bar item-one">
