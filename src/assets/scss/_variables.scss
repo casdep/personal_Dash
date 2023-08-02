@@ -20,8 +20,17 @@ $font-weight-map: (
   "bold": $weight-bold,
 );
 
-$font-light: #ffffff;
-$font-dark: #333;
+$dark-text: #ffffff;
+$dark-background: #333333;
+$dark-primary: #252627;
+$dark-secondary: #666666;
+$dark-accent: #4299ff;
+
+$light-text: #333333;
+$light-background: #ffffff;
+$light-primary: #f9f9f9;
+$light-secondary: #f9f9f9;
+$light-accent: #4299ff;
 
 $dark-color1: #1a1a1a;
 $dark-color2: #333333;
@@ -57,25 +66,16 @@ $shade8: #e0f1ff;
 $shade9: #eeffff;
 $shade10: #fcffff;
 
-$background-dark: #333333;
-$background-light: #ffffff;
-
-$color-dark: #ffffff;
-$color-light: #222222;
-
-$contract-dark: #ffffff;
-$contract-light: #222222;
-
 $success: #00c000;
 $error: red;
 $warning: #ec5252;
 
 .dark {
-  background-color: $background-dark;
+  background-color: $dark-background;
 }
 
 .light {
-  background-color: $background-light;
+  background-color: $light-background;
 }
 
 // $theme-colors: (

@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 
 import "./Home.scss";
 
+import { getTokenValue } from "../../utils/getTokenValue";
+
 const image_dark = require("./home_mountain.jpg");
 const image_light = require("./home_forest.jpg");
 
@@ -26,7 +28,7 @@ function Home() {
         />
         <div className="textCenter">
           <h1> HOME </h1>
-          <h2> Welcome back Cas! </h2>
+          <h2> Welcome back {getTokenValue("username")} </h2>
           <p>
             {dateState.toLocaleDateString("en-GB", {
               day: "numeric",

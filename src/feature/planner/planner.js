@@ -37,7 +37,7 @@ import {
 } from "@mui/material";
 
 import DeleteIcon from "@mui/icons-material/Close";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import EditIcon from "@mui/icons-material/Edit";
 
 export default function Planner() {
@@ -175,7 +175,6 @@ export default function Planner() {
       <div className="pageTitle">
         <h1>Planner</h1>
       </div>
-      <hr className="mobile-devider" />
       {getPlannerDialogOpen !== "" ? <PlannerCreate /> : ""}
       <div className="top-bar-wrapper">
         <div className="top-bar item-one">
@@ -288,7 +287,7 @@ export default function Planner() {
                       </div>
 
                       <div className="card-content-top-menu">
-                        <MenuRoundedIcon
+                        <MoreHorizIcon
                           id="basic-button"
                           aria-controls={
                             openHamburgerMenu ? "basic-menu" : undefined
@@ -332,7 +331,7 @@ export default function Planner() {
 
                     <div className="card-content-bottom">
                       <Typography variant="body1" color="text.secondary">
-                        {value.discription}
+                        {value.description}
                       </Typography>
                     </div>
                   </CardContent>

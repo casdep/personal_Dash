@@ -3,45 +3,53 @@
 
 .dark {
   height: 100.4vh;
-  background-color: $background-dark;
-  color: $color-dark;
+  background-color: $dark-background;
+  color: $dark-text;
 
   .textCenter {
-    text-shadow: 0px 0px 15px $color-light;
+    text-shadow: 0px 0px 15px $light-text;
+  }
+
+  .pageTitle {
+    color: $dark-text;
   }
 
   .MuiFormLabel-root,
   .MuiFormLabel-root.MuiSvgIcon-root,
   .MuiInputBase-input,
   .MuiSelect-select {
-    color: $color-dark !important;
+    color: $dark-text !important;
   }
   .MuiOutlinedInput-notchedOutline {
-    border-color: $color-dark !important;
+    border-color: $dark-text !important;
   }
 }
 
 .light {
   height: 100.4vh;
   background-color: $light-color1;
-  color: $color-light;
+  color: $light-text;
 
   .Image {
     box-shadow: 0 0 20px 6px rgba(0, 0, 0, 0.3);
   }
   .textCenter {
-    text-shadow: 0px 0px 15px $color-dark;
+    text-shadow: 0px 0px 15px $dark-text;
+  }
+
+  .pageTitle {
+    color: $light-text;
   }
 
   .MuiFormLabel-root,
   .MuiFormLabel-root.MuiSvgIcon-root,
   .MuiInputBase-input,
   .MuiSelect-select {
-    color: $color-light !important;
+    color: $light-text !important;
   }
 
   .MuiOutlinedInput-notchedOutline {
-    border-color: $color-light !important;
+    border-color: $light-text !important;
   }
 
   .MuiIconButton-root {

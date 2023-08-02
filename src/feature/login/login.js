@@ -6,8 +6,8 @@ import { TextField, Button } from "@mui/material";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
-import "../../assets/scss/theme.scss";
 import "./login.scss";
+import "../../assets/scss/theme.scss";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -48,7 +48,12 @@ export default function LoginForm() {
         data: loginFormData,
         headers: { "content-type": "application/x-www-form-urlencoded" },
       }).then((res) => {
-        document.cookie = `token=${res.data.token}`;
+        const expirationDate = new Date();
+        //sets the cookie for one year
+        expirationDate.setFullYear(expirationDate.getFullYear() + 10);
+        document.cookie = `token=${
+          res.data.token
+        }; expires=${expirationDate.toUTCString()};`;
         navigate("/");
         window.location.reload();
       });
@@ -69,7 +74,6 @@ export default function LoginForm() {
       <div className="pageTitle">
         <h1>Login</h1>
       </div>
-
       <div className="login_container">
         <div className="login_container--content">
           <div className="input_fields">
@@ -77,10 +81,8 @@ export default function LoginForm() {
               <p>The username/email or password provided is incorrect</p>
             )}
             <TextField
-              inputProps={{ style: { color: "white" } }}
               type="text"
               name="userIdentifier"
-              variant="outlined"
               margin="normal"
               label="Username or email"
               defaultValue={formValue.userIdentifier}
@@ -92,10 +94,8 @@ export default function LoginForm() {
               }
             />
             <TextField
-              inputProps={{ style: { color: "white" } }}
               type="password"
               name="password"
-              variant="outlined"
               margin="normal"
               label="Password"
               defaultValue={formValue.password}
@@ -117,7 +117,7 @@ export default function LoginForm() {
                 component={"span"}
                 inputProps={{ style: { color: "red" } }}
               >
-                <Link href="/register" underline="hover">
+                <Link href="/resetPassword" underline="hover">
                   {"Forgot password?"}
                 </Link>
               </Typography>

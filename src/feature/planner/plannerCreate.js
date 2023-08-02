@@ -35,7 +35,7 @@ export default function PlannerCreate() {
     user: "cas",
     title: "",
     category: "",
-    discription: "",
+    description: "",
     priority: 1,
   });
   const [titleError, setTitleError] = useState("");
@@ -115,7 +115,7 @@ export default function PlannerCreate() {
     createTaskFormData.append("title", formValue.title);
     createTaskFormData.append("category", formValue.category);
     createTaskFormData.append("priority", formValue.priority);
-    createTaskFormData.append("discription", formValue.discription);
+    createTaskFormData.append("description", formValue.description);
 
     try {
       await axios({
@@ -131,7 +131,7 @@ export default function PlannerCreate() {
           user: "cas",
           title: "",
           category: "",
-          discription: "",
+          description: "",
           priority: 1,
         });
         dispatch(plannerDialogOpen(""));
@@ -149,7 +149,7 @@ export default function PlannerCreate() {
     editTaskFormData.append("user", formValue.user);
     editTaskFormData.append("title", formValue.title);
     editTaskFormData.append("category", formValue.category);
-    editTaskFormData.append("discription", formValue.discription);
+    editTaskFormData.append("description", formValue.description);
     editTaskFormData.append("priority", formValue.priority);
 
     try {
@@ -169,7 +169,7 @@ export default function PlannerCreate() {
           id: "",
           title: "",
           category: "",
-          discription: "",
+          description: "",
           priority: 1,
         });
         dispatch(plannerDialogOpen(""));
@@ -210,14 +210,11 @@ export default function PlannerCreate() {
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             <TextField
-              required
-              type="title"
+              type="text"
               name="title"
-              id="outlined-basic"
-              variant="outlined"
-              margin="normal"
-              color="primary"
               label="Title"
+              id="outlined-basic"
+              margin="normal"
               fullWidth
               value={formValue.title}
               onChange={handleInputChange}
@@ -226,14 +223,11 @@ export default function PlannerCreate() {
             />
             <br />
             <TextField
-              required
-              className="createItemCategoryTextfield"
-              type="category"
+              type="text"
               name="category"
-              variant="outlined"
-              margin="normal"
-              color="primary"
               label="Category"
+              className="createItemCategoryTextfield"
+              margin="normal"
               value={formValue.category}
               onChange={handleInputChange}
               error={categoryError}
@@ -241,26 +235,22 @@ export default function PlannerCreate() {
             />
 
             <TextField
-              className="createItemPriorityTextfield"
-              name="priority"
-              id="outlined-basic"
-              variant="outlined"
-              margin="normal"
-              color="primary"
-              label="Priority"
               type="number"
+              name="priority"
+              label="Priority"
+              className="createItemPriorityTextfield"
+              id="outlined-basic"
+              margin="normal"
               value={formValue.priority}
               onChange={handleInputChange}
             />
             <TextField
-              type="discription"
-              name="discription"
+              type="text"
+              name="description"
+              label="Description"
               id="outlined-basic"
-              variant="outlined"
               margin="normal"
-              color="primary"
-              label="Discription"
-              value={formValue.discription}
+              value={formValue.description}
               onChange={handleInputChange}
               fullWidth
             />

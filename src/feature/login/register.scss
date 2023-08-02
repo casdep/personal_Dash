@@ -1,58 +1,52 @@
 @import "../../assets/scss/theme";
 
-.light .Register_container {
+.light .register_container {
   background-color: $shade8;
 }
 
-.Register_container {
+.register_container {
   margin: 0 auto;
   width: 80%;
-  height: 350px;
+  height: fit-content;
   background-color: #222222;
   border-radius: 10px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 
-  .input_fields {
-    padding-top: 20px;
-    width: 60%;
-    display: table;
-    margin: 0 auto;
-  }
+  &--content {
+    padding: 20px 20%;
 
-  .input_field_top_bar {
-    display: flex;
-  }
+    .input_field_top_bar {
+      display: flex;
+    }
 
-  .input_field_top_bar_username {
-    width: 47.5%;
-  }
+    .input_field_top_bar_username {
+      width: 47.5%;
+    }
 
-  .input_field_top_bar_email {
-    width: 47.5%;
+    .input_field_top_bar_email {
+      width: 47.5%;
 
-    margin-top: auto;
-    justify-content: flex-end;
-    margin-left: auto;
-  }
+      margin-top: auto;
+      justify-content: flex-end;
+      margin-left: auto;
+    }
 
-  .footer_items {
-    width: 80%;
-    display: flex;
-    margin: 0 auto;
-  }
+    .footer_items {
+      width: 80%;
+      display: flex;
+      margin: 0 auto;
+    }
 
-  .footer_item_one {
-    display: table;
-    margin: 0 auto;
-    text-decoration: none;
+    .footer_item_one {
+      display: table;
+      margin: 0 auto;
+      text-decoration: none;
+    }
   }
 }
 
 @include max-phone {
-  .Register_container {
-    width: 100%;
-  }
-  .input_fields {
-    width: 80%;
+  .register_container {
+    width: 95%;
   }
 }

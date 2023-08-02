@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import { appTheme } from "../../store/slicers/generalSlice";
 
+import { getTokenValue } from "../../utils/getTokenValue";
+
 import {
   Button,
   Dialog,
@@ -48,12 +50,6 @@ export default function Profile() {
     }
   }
 
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${"token"}=`);
-    if (parts.length === 2) return parts.pop().split(";").shift();
-  }
-
   function logout() {
     document.cookie = "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     handleClose();
@@ -62,14 +58,17 @@ export default function Profile() {
   }
 
   return (
-    <div className="Profile">
+    <div className="profile">
       <div className="pageTitle">
         <h1>Profile</h1>
       </div>
 
-      <p>
+      <p className="profile--content">
         <b>Name:</b> <br />
-        Cas de Pender
+        {getTokenValue("username")}
+        <hr />
+        <b>Account id:</b> <br />
+        {getTokenValue("userId")}
         <hr />
         <b>Theme:</b>
         <div class="dark-light-wrapper">
@@ -94,10 +93,6 @@ export default function Profile() {
             </div>
           </div>
         </div>
-        <hr />
-        <b>Current token:</b>
-        <br />
-        {getCookie()}
         <hr />
         <b>Click here to log out:</b>
         <br />

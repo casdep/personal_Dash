@@ -14,6 +14,7 @@ import Profile from "../../feature/profile/profile";
 import Planner from "../../feature/planner/planner";
 import Login from "../../feature/login/login";
 import Register from "../../feature/login/register";
+import ResetPassword from "../../feature/login/resetPassword";
 
 export default function App() {
   useEffect(() => {
@@ -39,6 +40,7 @@ export default function App() {
             <Route path="/planner" element={<Planner />} />
           </Route>
           <Route path="/register" element={<Register />} />
+          <Route path="/resetPassword" element={<ResetPassword />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </div>

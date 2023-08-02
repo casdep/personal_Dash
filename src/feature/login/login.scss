@@ -13,10 +13,7 @@
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 
   &--content {
-    padding: 20px 0;
-    width: 60%;
-    display: table;
-    margin: 0 auto;
+    padding: 20px 20%;
 
     .footer_items {
       align-items: center;
@@ -53,10 +50,7 @@
 @include max-phone {
   .login {
     .login_container {
-      width: 100%;
-    }
-    .input_fields {
-      width: 100%;
+      width: 95%;
     }
   }
 }
