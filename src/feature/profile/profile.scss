@@ -3,6 +3,25 @@
 .profile {
   word-wrap: break-word;
 
+  .profileContainer {
+    float: left;
+    width: 50%;
+  }
+
+  &Picture {
+    max-width: 12.5rem;
+  }
+
+  .deleteProfilePicture {
+    cursor: pointer;
+    color: red;
+    text-decoration-color: red;
+  }
+
+  .editProfilePicture {
+    cursor: pointer;
+  }
+
   &--content {
     width: 50%;
     .logout {
@@ -14,6 +33,10 @@
         color: rgb(222, 0, 0);
       }
     }
+  }
+
+  .profileBrowser {
+    float: left;
   }
 }
 

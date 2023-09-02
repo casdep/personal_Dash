@@ -15,6 +15,18 @@
   &--content {
     padding: 20px 20%;
 
+    .passwordRow {
+      display: flex;
+    }
+
+    .showPassword {
+      height: 54px;
+      margin: 16px 0 8px -58px;
+      border: solid;
+      border-width: 1px;
+      border-radius: 4px;
+    }
+
     .footer_items {
       align-items: center;
       display: flex;

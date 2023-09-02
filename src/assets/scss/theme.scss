@@ -10,8 +10,27 @@
     text-shadow: 0px 0px 15px $light-text;
   }
 
+  h1,
+  h2,
+  h3,
+  h5,
+  h5,
+  h6,
+  p,
+  span {
+    color: $dark-text;
+  }
+
   .pageTitle {
     color: $dark-text;
+  }
+
+  .MuiPaper-root {
+    background-color: #252627;
+
+    .MuiSvgIcon-root {
+      color: $light-color1;
+    }
   }
 
   .MuiFormLabel-root,
@@ -30,6 +49,17 @@
   background-color: $light-color1;
   color: $light-text;
 
+  h1,
+  h2,
+  h3,
+  h5,
+  h5,
+  h6,
+  p,
+  span {
+    color: $light-text;
+  }
+
   .Image {
     box-shadow: 0 0 20px 6px rgba(0, 0, 0, 0.3);
   }
@@ -39,6 +69,14 @@
 
   .pageTitle {
     color: $light-text;
+  }
+
+  .MuiPaper-root {
+    background-color: $light-color1;
+
+    .MuiSvgIcon-root {
+      color: #252627;
+    }
   }
 
   .MuiFormLabel-root,

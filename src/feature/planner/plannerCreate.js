@@ -182,86 +182,88 @@ export default function PlannerCreate() {
   }
 
   return (
-    <Dialog
-      open={true}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-    >
-      <form onSubmit={handleSubmit}>
-        <div className="dialog-create-container">
-          <div className="dialog-create-item">
-            <DialogTitle id="alert-dialog-title">
-              {getPlannerDialogOpen === "edit"
-                ? "Edit a task"
-                : "Create new task"}
-            </DialogTitle>
-          </div>
+    <div className="plannerCreate">
+      <Dialog
+        open={true}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <form onSubmit={handleSubmit}>
+          <div className="dialog-create-container">
+            <div className="dialog-create-item">
+              <DialogTitle id="alert-dialog-title">
+                {getPlannerDialogOpen === "edit"
+                  ? "Edit a task"
+                  : "Create new task"}
+              </DialogTitle>
+            </div>
 
-          <div className="dialog-create-item_right" size="small">
-            <IconButton
-              aria-label="close"
-              size="large"
-              onClick={() => dispatch(plannerDialogOpen(""))}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
+            <div className="dialog-create-item_right" size="small">
+              <IconButton
+                aria-label="close"
+                size="large"
+                onClick={() => dispatch(plannerDialogOpen(""))}
+              >
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            </div>
           </div>
-        </div>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            <TextField
-              type="text"
-              name="title"
-              label="Title"
-              id="outlined-basic"
-              margin="normal"
-              fullWidth
-              value={formValue.title}
-              onChange={handleInputChange}
-              error={titleError}
-              helperText={titleError}
-            />
-            <br />
-            <TextField
-              type="text"
-              name="category"
-              label="Category"
-              className="createItemCategoryTextfield"
-              margin="normal"
-              value={formValue.category}
-              onChange={handleInputChange}
-              error={categoryError}
-              helperText={categoryError}
-            />
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              <TextField
+                type="text"
+                name="title"
+                label="Title"
+                id="outlined-basic"
+                margin="normal"
+                fullWidth
+                value={formValue.title}
+                onChange={handleInputChange}
+                error={titleError}
+                helperText={titleError}
+              />
+              <br />
+              <TextField
+                type="text"
+                name="category"
+                label="Category"
+                className="createItemCategoryTextfield"
+                margin="normal"
+                value={formValue.category}
+                onChange={handleInputChange}
+                error={categoryError}
+                helperText={categoryError}
+              />
 
-            <TextField
-              type="number"
-              name="priority"
-              label="Priority"
-              className="createItemPriorityTextfield"
-              id="outlined-basic"
-              margin="normal"
-              value={formValue.priority}
-              onChange={handleInputChange}
-            />
-            <TextField
-              type="text"
-              name="description"
-              label="Description"
-              id="outlined-basic"
-              margin="normal"
-              value={formValue.description}
-              onChange={handleInputChange}
-              fullWidth
-            />
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button variant="contained" onClick={handleSubmit}>
-            {getPlannerDialogOpen === "edit" ? "Save task" : "Create task"}
-          </Button>
-        </DialogActions>
-      </form>
-    </Dialog>
+              <TextField
+                type="number"
+                name="priority"
+                label="Priority"
+                className="createItemPriorityTextfield"
+                id="outlined-basic"
+                margin="normal"
+                value={formValue.priority}
+                onChange={handleInputChange}
+              />
+              <TextField
+                type="text"
+                name="description"
+                label="Description"
+                id="outlined-basic"
+                margin="normal"
+                value={formValue.description}
+                onChange={handleInputChange}
+                fullWidth
+              />
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button variant="contained" onClick={handleSubmit}>
+              {getPlannerDialogOpen === "edit" ? "Save task" : "Create task"}
+            </Button>
+          </DialogActions>
+        </form>
+      </Dialog>
+    </div>
   );
 }

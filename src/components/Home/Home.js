@@ -12,6 +12,7 @@ function Home() {
   const [dateState, setDateState] = useState(new Date());
   useEffect(() => {
     setInterval(() => setDateState(new Date()), 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getAppTheme = useSelector((state) => state.general.appTheme);

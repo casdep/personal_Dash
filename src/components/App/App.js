@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import "./App.scss";
@@ -17,13 +17,24 @@ import Register from "../../feature/login/register";
 import ResetPassword from "../../feature/login/resetPassword";
 
 export default function App() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     setTheme();
-  }, []); // Pass an empty array to only call the function once on mount.
+    checkStartPage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function setTheme() {
     if (localStorage.getItem("theme") === null) {
       localStorage.setItem("theme", "dark");
+    }
+  }
+
+  function checkStartPage() {
+    if (!sessionStorage.getItem("isNewSession")) {
+      sessionStorage.setItem("isNewSession", "false");
+      navigate("/planner");
     }
   }
 

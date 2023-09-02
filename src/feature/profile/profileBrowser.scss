@@ -1,0 +1,29 @@
+@import "../../assets/scss/theme";
+
+.profileBrowser {
+  width: 50%;
+
+  ul {
+    padding-left: 0;
+    list-style-type: none;
+
+    li {
+      margin: 5px 10px;
+
+      .container {
+        display: flex;
+        color: white;
+
+        .div-left {
+          display: inline-block;
+          padding-right: 5%;
+        }
+        .div-right {
+          width: 100%;
+          align-content: flex-end;
+          text-align: right;
+        }
+      }
+    }
+  }
+}

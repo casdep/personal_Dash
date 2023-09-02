@@ -37,7 +37,7 @@ import {
 } from "@mui/material";
 
 import DeleteIcon from "@mui/icons-material/Close";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditIcon from "@mui/icons-material/Edit";
 
 export default function Planner() {
@@ -171,7 +171,7 @@ export default function Planner() {
   }
 
   return (
-    <div className="Planner">
+    <div className="planner">
       <div className="pageTitle">
         <h1>Planner</h1>
       </div>
@@ -287,7 +287,7 @@ export default function Planner() {
                       </div>
 
                       <div className="card-content-top-menu">
-                        <MoreHorizIcon
+                        <MoreVertIcon
                           id="basic-button"
                           aria-controls={
                             openHamburgerMenu ? "basic-menu" : undefined

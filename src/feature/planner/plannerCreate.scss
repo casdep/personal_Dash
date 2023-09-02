@@ -1,14 +1,16 @@
 @import "../../assets/scss/theme.scss";
 
-.container {
-  display: flex;
-  color: white;
-  background-color: black;
-}
-.item {
-  display: inline-block;
-  padding-right: 5%;
-}
-.item_right {
-  align-content: flex-end;
+.plannerCreate {
+  .container {
+    display: flex;
+    color: white;
+    background-color: black;
+  }
+  .item {
+    display: inline-block;
+    padding-right: 5%;
+  }
+  .item_right {
+    align-content: flex-end;
+  }
 }

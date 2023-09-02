@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, IconButton } from "@mui/material";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 import "./login.scss";
 import "../../assets/scss/theme.scss";
@@ -18,6 +20,7 @@ export default function LoginForm() {
   const [wrongCredentials, setWrongCredentials] = useState(false);
   const [userIdentifierError, setUserIdentifierError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   async function handleSubmit() {
     const loginFormData = new URLSearchParams();
@@ -69,6 +72,10 @@ export default function LoginForm() {
     });
   }
 
+  function togglePasswordVisibility() {
+    setShowPassword(!showPassword);
+  }
+
   return (
     <div className="login">
       <div className="pageTitle">
@@ -93,17 +100,27 @@ export default function LoginForm() {
                 userIdentifierError ? "Please enter your username or email" : ""
               }
             />
-            <TextField
-              type="password"
-              name="password"
-              margin="normal"
-              label="Password"
-              defaultValue={formValue.password}
-              onChange={handleChange}
-              fullWidth
-              error={passwordError}
-              helperText={passwordError ? "Please enter your password" : ""}
-            />
+            <div className="passwordRow">
+              <TextField
+                type={showPassword ? "text" : "password"}
+                name="password"
+                margin="normal"
+                label="Password"
+                defaultValue={formValue.password}
+                onChange={handleChange}
+                fullWidth
+                error={passwordError}
+                helperText={passwordError ? "Please enter your password" : ""}
+              />
+              <div className="showPassword">
+                <IconButton
+                  onClick={togglePasswordVisibility}
+                  style={{ color: "#4299ff" }}
+                >
+                  {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                </IconButton>
+              </div>
+            </div>
           </div>
           <div className="footer_items">
             <div className="footer_item_one">
