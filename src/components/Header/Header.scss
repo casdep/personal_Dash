@@ -1,5 +1,9 @@
 @import "../../assets/scss/theme.scss";
 
+header {
+  z-index: 99;
+}
+
 /* Style the header with a grey background and some padding */
 .header-wrapper {
   position: relative;

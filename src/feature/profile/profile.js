@@ -73,25 +73,21 @@ export default function Profile() {
       </div>
       <div className="profileContainer">
         <div>
-          <img
-            className="profilePicture"
-            src="https://i.stack.imgur.com/W4LQr.jpg?s=256&g=1"
-            alt="profile"
-          />
-          <br />
-          <Link
-            className="deleteProfilePicture"
-            onClick={() => deleteProfilePicture()}
-          >
-            Delete profile picture
-          </Link>
-          &nbsp;|&nbsp;
-          <Link
-            className="editProfilePicture"
-            onClick={() => editProfilePicture()}
-          >
-            Edit profile picture
-          </Link>
+          <div className="profilePictureContainer">
+            <img
+              className="profilePicture"
+              src="https://i.stack.imgur.com/W4LQr.jpg?s=256&g=1"
+              alt="profile"
+            />
+            <div class="overlay">
+              <Link className="left" onClick={() => deleteProfilePicture()}>
+                <strong>Delete</strong>
+              </Link>
+              <Link className="right" onClick={() => editProfilePicture()}>
+                <strong>Edit</strong>
+              </Link>
+            </div>
+          </div>
           <p className="profile--content">
             <b>Name:</b> <br />
             {getTokenValue("username")}

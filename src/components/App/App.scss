@@ -12,7 +12,8 @@ body {
 }
 
 .innerApp {
-  padding: 0 25%;
+  height: 100vh;
+  padding: 2rem 25% 0;
 }
 
 p,
@@ -26,12 +27,14 @@ a {
 
 @include max-laptop {
   .innerApp {
-    padding: 0 12.5%;
+    height: 100vh;
+    padding: 2rem 12.5%;
   }
 }
 
 @include max-phone {
   .innerApp {
+    height: 100vh;
     padding: 0 2.5%;
   }
   h1 {

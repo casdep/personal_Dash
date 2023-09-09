@@ -1,16 +1,28 @@
 @import "../../assets/scss/theme.scss";
 
-.plannerCreate {
+form {
   .container {
     display: flex;
     color: white;
     background-color: black;
   }
-  .item {
+
+  .dialog-create-item {
     display: inline-block;
     padding-right: 5%;
   }
-  .item_right {
+  .dialog-create-item_right {
     align-content: flex-end;
+    float: right;
+  }
+
+  .createItemCategoryTextfield {
+    padding-right: 1rem;
+    width: 65%;
+  }
+
+  .createItemPriorityTextfield {
+    float: right;
+    width: 25%;
   }
 }

@@ -181,10 +181,17 @@ export default function PlannerCreate() {
     }
   }
 
+  const handleClose = (event, reason) => {
+    if (reason && reason === "backdropClick") {
+      dispatch(plannerDialogOpen(""));
+    }
+  };
+
   return (
     <div className="plannerCreate">
       <Dialog
         open={true}
+        onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >

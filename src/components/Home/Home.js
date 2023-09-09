@@ -28,7 +28,6 @@ function Home() {
           alt=""
         />
         <div className="textCenter">
-          <h1> HOME </h1>
           <h2> Welcome back {getTokenValue("username")} </h2>
           <p>
             {dateState.toLocaleDateString("en-GB", {

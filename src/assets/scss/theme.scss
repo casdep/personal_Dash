@@ -1,8 +1,12 @@
 @import "./variables";
 @import "./breakpoints.scss";
 
+.pageTitle {
+  display: none;
+}
+
 .dark {
-  height: 100.4vh;
+  height: 100%;
   background-color: $dark-background;
   color: $dark-text;
 
@@ -45,7 +49,7 @@
 }
 
 .light {
-  height: 100.4vh;
+  height: 100%;
   background-color: $light-color1;
   color: $light-text;
 

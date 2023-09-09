@@ -13,18 +13,23 @@
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 
   &--content {
-    padding: 20px 20%;
+    padding: 20px 10%;
 
     .passwordRow {
       display: flex;
     }
 
     .showPassword {
-      height: 54px;
-      margin: 16px 0 8px -58px;
+      height: fit-content;
+      width: 54px;
+      margin: 16.1px 0 8px -56px;
       border: solid;
       border-width: 1px;
       border-radius: 4px;
+
+      .MuiButtonBase-root {
+        padding: 27.5%;
+      }
     }
 
     .footer_items {
@@ -40,13 +45,14 @@
         align-items: center;
         display: flex;
         flex-direction: column;
-        width: -webkit-fill-available;
+        width: 100%;
         .MuiButtonBase-root {
-          width: -webkit-fill-available !important;
+          width: 100%;
         }
       }
       hr {
-        width: -webkit-fill-available;
+        width: 100%;
+        margin-bottom: 1rem;
       }
       .footer_item_two {
         align-items: center;
