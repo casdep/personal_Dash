@@ -7,6 +7,10 @@
     padding-left: 0;
     list-style-type: none;
 
+    .MuiCard-root {
+      margin-bottom: 8px !important;
+    }
+
     li {
       margin: 5px 10px;
 

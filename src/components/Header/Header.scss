@@ -2,59 +2,31 @@
 
 header {
   z-index: 99;
-}
 
-/* Style the header with a grey background and some padding */
-.header-wrapper {
-  position: relative;
-  overflow: hidden;
-  background-color: #252627;
-  padding: 15px 25%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: -5px 0;
-
-  & a {
-    float: left;
-    color: lightgrey;
-    text-align: center;
-    padding: 12px;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 25px;
-    border-radius: 4px;
-
-    &.logo {
-      padding-left: 0;
-      padding-right: 80px;
-      color: whitesmoke;
-      font-size: 25px;
-      font-weight: bold;
-    }
-  }
-}
-
-.light {
-  .header-wrapper {
-    background-color: $light-color2;
-    a {
-      color: $light-text;
-    }
-  }
-}
-
-/* Float the link section to the right */
-.header-right {
-  align-items: center;
-  display: flex;
   height: 3rem;
-  justify-content: space-between;
-  list-style: none;
-}
+  width: 100vw;
+  box-sizing: border-box;
+  position: fixed;
 
-.home {
-  display: none;
+  a {
+    padding: 12px;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+  }
+
+  /* Style the header with a grey background and some padding */
+  .header-wrapper-desktop {
+    padding: 15px 5%;
+    margin: -5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #131719;
+  }
+  .header-wrapper-mobile {
+    display: none;
+  }
 }
 
 @include max-laptop {
@@ -75,39 +47,25 @@ header {
 }
 
 @include min-phone {
-  .profile-phone {
-    display: none;
-  }
-  .profile-desktop {
-    display: unset;
-  }
 }
 
 @include max-phone {
-  .profile-phone {
-    display: unset;
-  }
-  .profile-desktop {
-    display: none;
-  }
   header {
     width: 100%;
-    position: absolute;
-    bottom: 0;
-    text-align: center;
     position: fixed;
+    text-align: center;
     bottom: 0;
-  }
-  .header-wrapper {
-    padding: 10px;
-    justify-content: space-evenly;
-  }
-  .logo {
-    display: none;
-  }
-  .home {
-    display: inline;
-    font-size: 20px !important;
+    .header-wrapper-mobile {
+      margin: -15px 0;
+      padding: 0 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #131719;
+    }
+    .header-wrapper-desktop {
+      display: none;
+    }
   }
 }
 
@@ -123,4 +81,13 @@ header {
 .light {
   background-color: #fff;
   color: #333;
+}
+
+.light {
+  .header-wrapper {
+    background-color: white;
+    a {
+      color: $light-text;
+    }
+  }
 }

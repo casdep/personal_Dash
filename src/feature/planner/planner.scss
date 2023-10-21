@@ -145,6 +145,19 @@
     flex-basis: auto;
     padding-right: 1px;
     margin-right: 1px;
+    overflow: hidden;
+    flex-grow: 6;
+  }
+
+  .card-content-top-category {
+    justify-content: flex-start;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-left: auto;
+    padding: 0 1rem;
+    overflow: hidden;
+    flex-grow: 0;
   }
 
   .card-content-top-rating {
@@ -152,24 +165,17 @@
     align-items: center;
     justify-content: center;
     margin-top: 5px;
-    flex-basis: calc(100% / 15);
+    flex-grow: 0;
     margin-left: 2.5%;
-  }
-
-  .card-content-top-category {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 5px;
-    flex-basis: calc(100% / 15);
-    margin-left: auto;
+    justify-content: flex-end;
   }
 
   .card-content-top-menu {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-basis: calc(100% / 15);
+    flex-grow: 0;
+
     margin-left: 2.5%;
 
     &:hover {

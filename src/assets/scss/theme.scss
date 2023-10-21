@@ -1,6 +1,24 @@
 @import "./variables";
 @import "./breakpoints.scss";
 
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h5,
+h5,
+h6,
+p,
+a,
+span {
+  font-family: "Montserrat", sans-serif !important;
+}
+
 .pageTitle {
   display: none;
 }

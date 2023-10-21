@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -41,8 +41,16 @@ export default function Profile() {
     setOpen(false);
   };
 
+  const fileInputRef = useRef(null);
+
   const editProfilePicture = () => {
-    console.log("edited");
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    // Handle the file selection here
+    console.log("File selected:", selectedFile);
   };
 
   const deleteProfilePicture = () => {
@@ -83,9 +91,17 @@ export default function Profile() {
               <Link className="left" onClick={() => deleteProfilePicture()}>
                 <strong>Delete</strong>
               </Link>
-              <Link className="right" onClick={() => editProfilePicture()}>
+              <input
+                type="file"
+                id="fileInput"
+                accept="image/*"
+                style={{ display: "none" }}
+                ref={fileInputRef}
+                onChange={handleFileChange}
+              />
+              <button className="right" onClick={editProfilePicture}>
                 <strong>Edit</strong>
-              </Link>
+              </button>
             </div>
           </div>
           <p className="profile--content">
