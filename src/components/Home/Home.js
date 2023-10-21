@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 import { Button } from "@mui/material";
@@ -11,12 +11,6 @@ const image_dark = require("./image_dark.png");
 const image_light = require("./image_light.jpg");
 
 function Home() {
-  const [dateState, setDateState] = useState(new Date());
-  useEffect(() => {
-    setInterval(() => setDateState(new Date()), 1000);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const getAppTheme = useSelector((state) => state.general.appTheme);
 
   function welcomBack() {
