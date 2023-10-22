@@ -220,7 +220,7 @@ export default function PlannerCreate() {
               <TextField
                 type="text"
                 name="title"
-                label="Title"
+                label="Title*"
                 id="outlined-basic"
                 margin="normal"
                 fullWidth
@@ -233,7 +233,7 @@ export default function PlannerCreate() {
               <TextField
                 type="text"
                 name="category"
-                label="Category"
+                label="Category*"
                 className="createItemCategoryTextfield"
                 margin="normal"
                 value={formValue.category}
@@ -245,7 +245,7 @@ export default function PlannerCreate() {
               <TextField
                 type="number"
                 name="priority"
-                label="Priority"
+                label="Priority*"
                 className="createItemPriorityTextfield"
                 id="outlined-basic"
                 margin="normal"

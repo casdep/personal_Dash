@@ -115,6 +115,9 @@ span {
   .MuiIconButton-root {
     width: fit-content;
   }
+  .MuiSnackbarContent-message {
+    color: black;
+  }
 }
 
 @include max-phone {

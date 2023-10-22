@@ -74,20 +74,13 @@ header {
   transform: scale(1.15);
 }
 
-.dark {
-  background-color: #333;
-  color: #fff;
-}
 .light {
-  background-color: #fff;
-  color: #333;
-}
-
-.light {
-  .header-wrapper {
-    background-color: white;
-    a {
-      color: $light-text;
+  header {
+    .header-wrapper-mobile {
+      background-color: $light-color4;
+      a {
+        color: $light-text;
+      }
     }
   }
 }

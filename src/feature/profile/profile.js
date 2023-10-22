@@ -108,6 +108,9 @@ export default function Profile() {
             <b>Name:</b> <br />
             {getTokenValue("username")}
             <hr />
+            <b>E-mail:</b> <br />
+            {getTokenValue("email")}
+            <hr />
             <b>Account id:</b> <br />
             {getTokenValue("userId")}
             <hr />

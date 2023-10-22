@@ -106,9 +106,9 @@
   .profileBrowser {
     float: left;
   }
-}
 
-/*
+  /*
+THEME TOGGLE SWITCH
 F5EB42 - sun inner
 E4C74D - sun outer
 FFFFFF - cloud inner
@@ -120,168 +120,196 @@ DEE1C5 - moon outer
 FCFCFC - stars
 */
 
-body {
-  background-color: #f3f3f3;
-}
-
-.dark-light-wrapper {
-  margin: 15px 0;
-}
-
-/////////////////////////////////////////////////
-// Mixins
-/////////////////////////////////////////////////
-@mixin crater($top, $left, $size) {
-  content: "";
-  position: absolute;
-  top: $top;
-  left: $left;
-  width: $size;
-  height: $size;
-  background-color: #efeeda;
-  border-radius: 100%;
-  border: 4px solid #dee1c5;
-}
-
-@mixin cloudBubble($top, $right, $width, $height, $deg) {
-  content: "";
-  display: block;
-  position: relative;
-  top: $top;
-  right: $right;
-  width: $width;
-  height: $height;
-  border: 8px solid #d4d4d2;
-  border-radius: 100%;
-  border-right-color: transparent;
-  border-bottom-color: transparent;
-  transform: rotateZ($deg);
-  background-color: #fff;
-}
-
-/////////////////////////////////////////////////
-// Day State
-/////////////////////////////////////////////////
-.toggle {
-  position: relative;
-  display: inline-block;
-  width: 100px;
-  padding: 4px;
-  border-radius: 40px;
-}
-
-.toggle:before,
-.toggle:after {
-  content: "";
-  display: table;
-}
-
-.toggle:after {
-  clear: both;
-}
-
-.toggle-bg {
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  width: 100%;
-  height: 100%;
-  background-color: #c0e6f6;
-  border-radius: 40px;
-  border: 4px solid #81c0d5;
-  transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.toggle-input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 1px solid red;
-  border-radius: 40px;
-  z-index: 2;
-  opacity: 0;
-}
-
-.toggle-switch {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  margin-left: 50px;
-  background-color: #f5eb42;
-  border: 4px solid #e4c74d;
-  border-radius: 50%;
-  transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.toggle-switch-figure {
-  position: absolute;
-  bottom: -14px;
-  left: -50px;
-  display: block;
-  width: 80px;
-  height: 30px;
-  border: 8px solid #d4d4d2;
-  border-radius: 20px;
-  background-color: #fff;
-  transform: scale(0.4);
-  transition: all 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  &:after {
-    @include cloudBubble(-65px, -42px, 15px, 15px, 70deg);
+  body {
+    background-color: #f3f3f3;
   }
-  &:before {
-    @include cloudBubble(-25px, -10px, 30px, 30px, 30deg);
+
+  .dark-light-wrapper {
+    margin: 15px 0;
   }
-}
 
-.toggle-switch-figureAlt {
-  @include crater(5px, 2px, 2px);
+  /////////////////////////////////////////////////
+  // Mixins
+  /////////////////////////////////////////////////
+  @mixin crater($top, $left, $size) {
+    content: "";
+    position: absolute;
+    top: $top;
+    left: $left;
+    width: $size;
+    height: $size;
+    background-color: #efeeda;
+    border-radius: 100%;
+    border: 4px solid #dee1c5;
+  }
 
-  box-shadow: 42px -7px 0 -3px #fcfcfc, 75px -10px 0 -3px #fcfcfc,
-    54px 4px 0 -4px #fcfcfc, 83px 7px 0 -2px #fcfcfc, 63px 18px 0 -4px #fcfcfc,
-    44px 28px 0 -2px #fcfcfc, 78px 23px 0 -3px #fcfcfc;
+  @mixin cloudBubble($top, $right, $width, $height, $deg) {
+    content: "";
+    display: block;
+    position: relative;
+    top: $top;
+    right: $right;
+    width: $width;
+    height: $height;
+    border: 8px solid #d4d4d2;
+    border-radius: 100%;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    transform: rotateZ($deg);
+    background-color: #fff;
+  }
 
-  transition: all 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transform: scale(0);
-}
+  /////////////////////////////////////////////////
+  // Day State
+  /////////////////////////////////////////////////
+  .toggle {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    padding: 4px;
+    border-radius: 40px;
+  }
 
-.toggle-switch-figureAlt:before {
-  @include crater(-6px, 18px, 7px);
-}
+  .toggle:before,
+  .toggle:after {
+    content: "";
+    display: table;
+  }
 
-.toggle-switch-figureAlt:after {
-  @include crater(19px, 15px, 2px);
-}
+  .toggle:after {
+    clear: both;
+  }
 
-/////////////////////////////////////////////////
-// Night State
-/////////////////////////////////////////////////
-.toggle-input:checked ~ .toggle-switch {
-  margin-left: 0;
-  border-color: #dee1c5;
-  background-color: #fffdf2;
-}
+  .toggle-bg {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 100%;
+    height: 100%;
+    background-color: #c0e6f6;
+    border-radius: 40px;
+    border: 4px solid #81c0d5;
+    transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
 
-.toggle-input:checked ~ .toggle-bg {
-  background-color: #484848;
-  border-color: #202020;
-}
+  .toggle-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid red;
+    border-radius: 40px;
+    z-index: 2;
+    opacity: 0;
+  }
 
-.toggle-input:checked ~ .toggle-switch .toggle-switch-figure {
-  margin-left: 40px;
-  opacity: 0;
-  transform: scale(0.1);
-}
+  .toggle-switch {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin-left: 50px;
+    background-color: #f5eb42;
+    border: 4px solid #e4c74d;
+    border-radius: 50%;
+    transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
 
-.toggle-input:checked ~ .toggle-switch .toggle-switch-figureAlt {
-  transform: scale(1);
+  .toggle-switch-figure {
+    position: absolute;
+    bottom: -14px;
+    left: -50px;
+    display: block;
+    width: 80px;
+    height: 30px;
+    border: 8px solid #d4d4d2;
+    border-radius: 20px;
+    background-color: #fff;
+    transform: scale(0.4);
+    transition: all 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    &:after {
+      @include cloudBubble(-65px, -42px, 15px, 15px, 70deg);
+    }
+    &:before {
+      @include cloudBubble(-25px, -10px, 30px, 30px, 30deg);
+    }
+  }
+
+  .toggle-switch-figureAlt {
+    @include crater(5px, 2px, 2px);
+
+    box-shadow: 42px -7px 0 -3px #fcfcfc, 75px -10px 0 -3px #fcfcfc,
+      54px 4px 0 -4px #fcfcfc, 83px 7px 0 -2px #fcfcfc, 63px 18px 0 -4px #fcfcfc,
+      44px 28px 0 -2px #fcfcfc, 78px 23px 0 -3px #fcfcfc;
+
+    transition: all 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: scale(0);
+  }
+
+  .toggle-switch-figureAlt:before {
+    @include crater(-6px, 18px, 7px);
+  }
+
+  .toggle-switch-figureAlt:after {
+    @include crater(19px, 15px, 2px);
+  }
+
+  /////////////////////////////////////////////////
+  // Night State
+  /////////////////////////////////////////////////
+  .toggle-input:checked ~ .toggle-switch {
+    margin-left: 0;
+    border-color: #dee1c5;
+    background-color: #fffdf2;
+  }
+
+  .toggle-input:checked ~ .toggle-bg {
+    background-color: #484848;
+    border-color: #202020;
+  }
+
+  .toggle-input:checked ~ .toggle-switch .toggle-switch-figure {
+    margin-left: 40px;
+    opacity: 0;
+    transform: scale(0.1);
+  }
+
+  .toggle-input:checked ~ .toggle-switch .toggle-switch-figureAlt {
+    transform: scale(1);
+  }
 }
 
 @include max-phone {
   .profile {
-    .Login_container {
+    .profileContainer {
       width: 100%;
+
+      .profilePictureContainer {
+        padding: 2rem 0 0 3rem;
+        max-width: 10rem;
+        .profilePicture {
+          max-width: 10rem;
+        }
+      }
+      .profile--content {
+        margin: -3rem 0.5rem 0.5rem;
+        padding: 4rem 2rem 2rem;
+        width: calc(100% - 5rem);
+        border-radius: 8px;
+        background-color: #252627;
+      }
+    }
+    .profileBrowser {
+      margin: 1rem;
+      width: calc(100% - 2rem);
+    }
+  }
+
+  .light {
+    .profile {
+      .profile--content {
+        background-color: $light-color4;
+      }
     }
   }
 }
