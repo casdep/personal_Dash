@@ -1,0 +1,46 @@
+@import "../../assets/scss/theme.scss";
+
+.notes {
+  .notesWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    .note {
+      list-style: none;
+      flex-basis: calc((100% - 24rem) / 4);
+      margin: 0 1rem 1rem;
+      padding: 1rem 2rem;
+      background-color: rgba(82, 84, 98, 0.9);
+    }
+  }
+}
+
+@include max-laptop {
+  .notes {
+    .notesWrapper {
+      .note {
+        flex-basis: calc((100% - 18rem) / 3);
+      }
+    }
+  }
+}
+
+@include max-tablet {
+  .notes {
+    .notesWrapper {
+      .note {
+        flex-basis: calc((100% - 12rem) / 2);
+      }
+    }
+  }
+}
+
+@include max-phone {
+  .notes {
+    .notesWrapper {
+      .note {
+        flex-basis: calc((100% - 6rem) / 1);
+      }
+    }
+  }
+}

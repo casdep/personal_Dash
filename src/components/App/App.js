@@ -15,8 +15,11 @@ import About from "../../feature/about/about";
 import Profile from "../../feature/profile/profile";
 import Planner from "../../feature/planner/planner";
 import Login from "../../feature/login/login";
+import Notes from "../../feature/notes/notes";
 import Register from "../../feature/login/register";
 import ResetPassword from "../../feature/login/resetPassword";
+
+import { getCookie } from "../../utils/getCookie";
 
 export default function App() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -36,8 +39,10 @@ export default function App() {
   }
 
   function checkStartPage() {
-    if (!sessionStorage.getItem("isNewSession")) {
+    if (!sessionStorage.getItem("isNewSession") && getCookie("token")) {
+      console.log("Cookie not logged in");
       sessionStorage.setItem("isNewSession", "false");
+      //ToDo get the favo page of the user and use the navigate to that, not just to /planner
       navigate("/planner");
     }
   }
@@ -80,6 +85,7 @@ export default function App() {
           <Route exact path="/" element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/planner" element={<Planner />} />
+            <Route path="/notes" element={<Notes />} />
           </Route>
           <Route path="/register" element={<Register />} />
           <Route path="/resetPassword" element={<ResetPassword />} />

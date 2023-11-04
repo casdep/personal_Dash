@@ -76,7 +76,8 @@ header {
 
 .light {
   header {
-    .header-wrapper-mobile {
+    .header-wrapper-mobile,
+    .header-wrapper-desktop {
       background-color: $light-color4;
       a {
         color: $light-text;

@@ -9,9 +9,16 @@ import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
 
 export default function Header() {
+  const linkColor = "#1976d2";
+
   function isAuthenticated() {
     if (document.cookie.indexOf("token=") !== -1) {
-      return <a href="/planner">Planner</a>;
+      return (
+        <>
+          <a href="/notes">Notes</a>
+          <a href="/planner">Planner</a>
+        </>
+      );
     }
   }
 
@@ -33,7 +40,9 @@ export default function Header() {
     <header>
       <div className="header-wrapper-desktop">
         <div className="left">
-          <a href="/">Cas de Pender</a>
+          <a href="/">
+            <b>Cas de Pender</b>
+          </a>
         </div>
 
         <div className="center">
@@ -46,16 +55,16 @@ export default function Header() {
       </div>
       <div className="header-wrapper-mobile">
         <IconButton aria-label="close" size="large">
-          <MenuIcon sx={{ color: "#1976d2" }} />
+          <MenuIcon sx={{ color: linkColor }} />
         </IconButton>
         <a href="/">
           <IconButton aria-label="close" size="large">
-            <HomeIcon sx={{ color: "#1976d2" }} />
+            <HomeIcon sx={{ color: linkColor }} />
           </IconButton>
         </a>
         <a href="/planner">
           <IconButton aria-label="close" size="large">
-            <CalendarMonthIcon sx={{ color: "#1976d2" }} />
+            <CalendarMonthIcon sx={{ color: linkColor }} />
           </IconButton>
         </a>
 

@@ -33,7 +33,7 @@ function Home() {
           </div>
           <div className="details">
             <p>See full overview of information</p>
-            <a href="/about>">
+            <a href="/about">
               <Button variant="contained">View details here</Button>
             </a>
           </div>

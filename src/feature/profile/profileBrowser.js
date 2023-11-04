@@ -25,8 +25,9 @@ import { getCookie } from "../../utils/getCookie";
 const ProfileBrowser = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [users, setUsers] = useState([]);
-  const [selectedUserSnackbarMessage, setSelectedUserSnackbarMessage] =
-    useState({});
+  const [selectedUsername, setSelectedUsername] = useState("");
+  const [selectedUserId, setSelectedUserId] = useState("");
+  const [selectedRole, setSelectedRole] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
@@ -74,14 +75,15 @@ const ProfileBrowser = () => {
   }
 
   function handleRoleChange(user, event) {
-    setSelectedUserSnackbarMessage({
-      username: user.username,
-      role: event.target.value,
-    });
+    setSelectedUsername(user.username);
+    setSelectedUserId(user.id);
+    setSelectedRole(event.target.value);
+
     setDialogOpen(true);
   }
 
   function acceptDialog() {
+    setUserRule();
     setDialogOpen(false);
     setSnackbarOpen(true);
     findUsers(searchTerm);
@@ -93,6 +95,26 @@ const ProfileBrowser = () => {
 
   function handleSnackbarClose() {
     setSnackbarOpen(false);
+  }
+
+  async function setUserRule() {
+    console.log(selectedRole);
+    try {
+      await axios({
+        method: "put",
+        url:
+          process.env.REACT_APP_API_URL +
+          "/account-management/users/role/" +
+          selectedUserId,
+        data: { role: selectedRole },
+        headers: {
+          Authorization: "Bearer " + getCookie("token"),
+          "content-type": "application/json",
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -107,7 +129,7 @@ const ProfileBrowser = () => {
           horizontal: "right",
         }}
         severity="success"
-        message={`Role of ${selectedUserSnackbarMessage.username} has been changed to ${selectedUserSnackbarMessage.role}!`}
+        message={`Role of ${selectedUsername} has been changed to ${selectedRole}!`}
       />
       <div>
         <TextField
@@ -175,8 +197,7 @@ const ProfileBrowser = () => {
                 <DialogContent>
                   <DialogContentText id="alert-dialog-description">
                     Are you sure you want to set the role of{" "}
-                    <b>{selectedUserSnackbarMessage.username}</b> to{" "}
-                    <b>{selectedUserSnackbarMessage.role}</b>?
+                    <b>{selectedUsername}</b> to <b>{selectedRole}</b>?
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>

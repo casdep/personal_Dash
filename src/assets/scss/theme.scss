@@ -64,6 +64,9 @@ span {
   .MuiOutlinedInput-notchedOutline {
     border-color: $dark-text !important;
   }
+  .MuiSvgIcon-root {
+    color: $dark-text !important;
+  }
 }
 
 .light {
@@ -100,7 +103,9 @@ span {
       color: #252627;
     }
   }
-
+  .MuiSvgIcon-root {
+    color: $light-color1 !important;
+  }
   .MuiFormLabel-root,
   .MuiFormLabel-root.MuiSvgIcon-root,
   .MuiInputBase-input,
@@ -115,9 +120,42 @@ span {
   .MuiIconButton-root {
     width: fit-content;
   }
+  .MuiCard-root {
+    box-shadow: 1px 1px 5px #c7c7c7 !important;
+    border: #fbfbfb;
+    border-style: double;
+    border-width: 1px;
+  }
   .MuiSnackbarContent-message {
     color: black;
   }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.dark {
+  ::-webkit-scrollbar-track {
+    background: $dark-background;
+  }
+}
+.light {
+  ::-webkit-scrollbar-track {
+    background: $light-color1;
+  }
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 @include max-phone {
