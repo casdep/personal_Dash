@@ -4,13 +4,13 @@ import { TextField, Button, Link, Typography } from "@mui/material";
 
 import "./resetPassword.scss";
 
-
 export default function ResetPassword() {
   const [userIdentifierError, setUserIdentifierError] = useState(false);
 
   function handleSubmit() {
     console.log("lol");
-    // setUserIdentifierError(e);
+    //todo
+    setUserIdentifierError("lol");
   }
 
   return (

@@ -91,7 +91,7 @@ export default function Header() {
           <MenuItem onClick={() => handleClose("about")}>About</MenuItem>
         </Menu>
         <Link to="/">
-          <IconButton aria-label="close" size="large" color="secondary">
+          <IconButton aria-label="close" size="large" color={linkColorHome}>
             <HomeIcon color="secondary" />
           </IconButton>
         </Link>

@@ -1,7 +1,6 @@
 import React from "react";
 
 import "./notes.scss";
-import { Card } from "@mui/material";
 
 export default function Notes() {
   function editNote(id) {
