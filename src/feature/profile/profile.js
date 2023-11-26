@@ -87,7 +87,7 @@ export default function Profile() {
               src="https://i.stack.imgur.com/W4LQr.jpg?s=256&g=1"
               alt="profile"
             />
-            <div class="overlay">
+            <div className="overlay">
               <Link className="left" onClick={() => deleteProfilePicture()}>
                 <strong>Delete</strong>
               </Link>
@@ -104,21 +104,30 @@ export default function Profile() {
               </button>
             </div>
           </div>
-          <p className="profile--content">
-            <b>Name:</b> <br />
-            {getTokenValue("username")}
+          <div className="profile--content">
+            <p>
+              <b>Name:</b>
+              <br />
+              {getTokenValue("username")}
+            </p>
             <hr />
-            <b>E-mail:</b> <br />
-            {getTokenValue("email")}
+            <p>
+              <b>E-mail:</b> <br />
+              {getTokenValue("email")}
+            </p>
             <hr />
-            <b>Account id:</b> <br />
-            {getTokenValue("userId")}
+            <p>
+              <b>Account id:</b> <br />
+              {getTokenValue("userId")}
+            </p>
             <hr />
-            <b>Theme:</b>
-            <div class="dark-light-wrapper">
-              <div class="toggle">
+            <p>
+              <b>Theme</b>
+            </p>
+            <div className="dark-light-wrapper">
+              <div className="toggle">
                 <input
-                  class="toggle-input"
+                  className="toggle-input"
                   type="checkbox"
                   id="checkbox"
                   onChange={(e) => {
@@ -130,20 +139,21 @@ export default function Profile() {
                     });
                   }}
                 />
-                <div class="toggle-bg"></div>
-                <div class="toggle-switch">
-                  <div class="toggle-switch-figure"></div>
-                  <div class="toggle-switch-figureAlt"></div>
+                <div className="toggle-bg"></div>
+                <div className="toggle-switch">
+                  <div className="toggle-switch-figure"></div>
+                  <div className="toggle-switch-figureAlt"></div>
                 </div>
               </div>
             </div>
             <hr />
-            <b>Click here to log out:</b>
-            <br />
+            <p>
+              <b>Click here to log out:</b>
+            </p>
             <Link className="logout" onClick={handleClickOpen}>
               Log Out
             </Link>
-          </p>
+          </div>
           <Dialog
             open={open}
             onClose={handleClose}

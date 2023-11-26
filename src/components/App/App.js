@@ -4,18 +4,18 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 import "./App.scss";
-import "../../assets/scss/theme.scss";
 
 import Snackbar from "@mui/material/Snackbar";
 
 import { privateRoute as PrivateRoute } from "../privateRoute";
 import Header from "../Header/Header";
 import Home from "../Home/Home";
-import About from "../../feature/about/about";
+import About from "../about/about";
 import Profile from "../../feature/profile/profile";
 import Planner from "../../feature/planner/planner";
 import Login from "../../feature/login/login";
 import Notes from "../../feature/notes/notes";
+import NotFound from "../NotFound/NotFound";
 import Register from "../../feature/login/register";
 import ResetPassword from "../../feature/login/resetPassword";
 
@@ -90,6 +90,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
           <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </div>

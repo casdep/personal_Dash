@@ -23,6 +23,29 @@ span {
   display: none;
 }
 
+.innerApp {
+  margin: 0 auto;
+  @include min-phone {
+    max-width: 540px;
+  }
+
+  @include min-tablet {
+    max-width: 720px;
+  }
+
+  @include min-laptop {
+    max-width: 960px;
+  }
+
+  @include min-desktop {
+    max-width: 1140px;
+  }
+
+  @include min-widescreen {
+    max-width: 1320px;
+  }
+}
+
 .dark {
   height: 100%;
   background-color: $dark-background;
@@ -129,33 +152,6 @@ span {
   .MuiSnackbarContent-message {
     color: black;
   }
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-.dark {
-  ::-webkit-scrollbar-track {
-    background: $dark-background;
-  }
-}
-.light {
-  ::-webkit-scrollbar-track {
-    background: $light-color1;
-  }
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }
 
 @include max-phone {
