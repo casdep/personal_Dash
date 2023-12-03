@@ -1,22 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Header.scss";
 
-import { IconButton } from "@mui/material";
+import { IconButton, Menu, MenuItem } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
 
 export default function Header() {
-  const linkColor = "#1976d2";
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+
+  const handleClick = function (event) {
+    setOpen(true);
+  };
+
+  const handleClose = function (route) {
+    setOpen(false);
+    navigate("/" + route);
+  };
 
   function isAuthenticated() {
     if (document.cookie.indexOf("token=") !== -1) {
       return (
+        //this empty tag is needed as a parent tag
         <>
-          <a href="/notes">Notes</a>
-          <a href="/planner">Planner</a>
+          <Link to="/notes">Notes</Link>
+          <Link to="/planner">Planner</Link>
         </>
       );
     }
@@ -25,14 +38,14 @@ export default function Header() {
   function profileOrLoginButton() {
     if (document.cookie.indexOf("token=") !== -1) {
       return (
-        <a href="/profile">
+        <Link to="/profile">
           <IconButton aria-label="close" size="large">
-            <PersonIcon sx={{ color: "#1976d2" }} />
+            <PersonIcon />
           </IconButton>
-        </a>
+        </Link>
       );
     } else {
-      return <a href="/login">Login</a>;
+      return <Link to="/login">Login</Link>;
     }
   }
 
@@ -40,33 +53,48 @@ export default function Header() {
     <header>
       <div className="header-wrapper-desktop">
         <div className="left">
-          <a href="/">
+          <Link to="/">
             <b>Cas de Pender</b>
-          </a>
+          </Link>
         </div>
 
         <div className="center">
           {isAuthenticated()}
-          <a href="/about">About</a>
+          <Link to="/about">About</Link>
         </div>
         <div className="right">
           <div>{profileOrLoginButton()}</div>
         </div>
       </div>
       <div className="header-wrapper-mobile">
-        <IconButton aria-label="close" size="large">
-          <MenuIcon sx={{ color: linkColor }} />
+        <IconButton
+          aria-label="close"
+          size="large"
+          onClick={() => handleClick()}
+        >
+          <MenuIcon />
         </IconButton>
-        <a href="/">
+        <Menu
+          id="basic-menu"
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          <MenuItem onClick={() => handleClose("notes")}>Notes</MenuItem>
+          <MenuItem onClick={() => handleClose("about")}>About</MenuItem>
+        </Menu>
+        <Link to="/">
           <IconButton aria-label="close" size="large">
-            <HomeIcon sx={{ color: linkColor }} />
+            <HomeIcon />
           </IconButton>
-        </a>
-        <a href="/planner">
+        </Link>
+        <Link to="/planner">
           <IconButton aria-label="close" size="large">
-            <CalendarMonthIcon sx={{ color: linkColor }} />
+            <CalendarMonthIcon />
           </IconButton>
-        </a>
+        </Link>
 
         <div>{profileOrLoginButton()}</div>
       </div>

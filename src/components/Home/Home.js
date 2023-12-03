@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
+import { Link } from "react-router-dom";
+
 import { Button } from "@mui/material";
 
 import "./Home.scss";
@@ -26,16 +28,17 @@ function Home() {
       <div className="intro">
         <div className="left">
           <h1 className="slogan">
-            One dashboard, <br /> one portfolio
+            One website, <br />
+            One dashboard
           </h1>
           <div className="undertext">
             <p className="welcomeBack">{welcomBack()}</p>
           </div>
           <div className="details">
             <p>See full overview of information</p>
-            <a href="/about">
+            <Link to="/about">
               <Button variant="contained">View details here</Button>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="right">

@@ -1,15 +1,22 @@
 @import "../../assets/scss/theme.scss";
 
 .notes {
+  margin: 0 auto;
   .notesWrapper {
-    display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     padding-left: 0;
+    -webkit-columns: 200px 4; /* Chrome, Safari, Opera */
+    -moz-columns: 200px 4; /* Firefox */
+    columns: 200px 4;
     .note {
       list-style: none;
       flex-basis: calc((100% - 24rem) / 4);
-      margin: 0 1rem 1rem;
+      margin: 0 0 1rem;
       padding: 1rem 2rem;
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+      break-inside: avoid-column;
+
       background-color: rgba(82, 84, 98, 0.9);
     }
   }
@@ -40,6 +47,16 @@
     .notesWrapper {
       .note {
         flex-basis: calc((100% - 6rem) / 1);
+      }
+    }
+  }
+}
+
+.light {
+  .notes {
+    .notesWrapper {
+      .note {
+        background-color: #e6e676;
       }
     }
   }

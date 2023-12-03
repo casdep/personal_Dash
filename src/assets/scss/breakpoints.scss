@@ -1,13 +1,26 @@
 /* resolutions */
 /* width */
+$widescreen: 1400.5px;
 $desktop: 1200.5px;
 $laptop: 992.5px;
 $tablet: 768.5px;
-$phone: 540.5px;
+$phone: 576.5px;
 $phone-xs: 320.5px;
 
 /* height */
 $phone-s: 670px;
+
+@mixin max-widescreen {
+  @media screen and (max-width: $widescreen) {
+    @content;
+  }
+}
+
+@mixin min-widescreen {
+  @media screen and (min-width: $widescreen) {
+    @content;
+  }
+}
 
 @mixin max-desktop {
   @media screen and (max-width: $desktop) {
