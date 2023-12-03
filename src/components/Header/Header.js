@@ -23,6 +23,11 @@ export default function Header() {
     navigate("/" + route);
   };
 
+  const linkColorProfile = "#F2F2F2";
+  const linkColorHome = "#1976d2";
+  const linkColorPlanner = "#1976d2";
+  const linkColorHamburgerMenu = "#1976d2";
+
   function isAuthenticated() {
     if (document.cookie.indexOf("token=") !== -1) {
       return (
@@ -40,7 +45,7 @@ export default function Header() {
       return (
         <Link to="/profile">
           <IconButton aria-label="close" size="large">
-            <PersonIcon />
+            <PersonIcon sx={{ color: linkColorProfile }} />
           </IconButton>
         </Link>
       );
@@ -72,7 +77,7 @@ export default function Header() {
           size="large"
           onClick={() => handleClick()}
         >
-          <MenuIcon />
+          <MenuIcon sx={{ color: linkColorHamburgerMenu }} />
         </IconButton>
         <Menu
           id="basic-menu"
@@ -86,13 +91,13 @@ export default function Header() {
           <MenuItem onClick={() => handleClose("about")}>About</MenuItem>
         </Menu>
         <Link to="/">
-          <IconButton aria-label="close" size="large">
-            <HomeIcon />
+          <IconButton aria-label="close" size="large" color={linkColorHome}>
+            <HomeIcon color="secondary" />
           </IconButton>
         </Link>
         <Link to="/planner">
           <IconButton aria-label="close" size="large">
-            <CalendarMonthIcon />
+            <CalendarMonthIcon sx={{ color: linkColorPlanner }} />
           </IconButton>
         </Link>
 
