@@ -1,23 +1,42 @@
 @import "../../assets/scss/theme.scss";
 
+.createNoteForm {
+  height: 400px;
+  width: 400px;
+}
+
 .notes {
   margin: 0 auto;
-  .notesWrapper {
-    align-items: center;
-    padding-left: 0;
-    -webkit-columns: 200px 4; /* Chrome, Safari, Opera */
-    -moz-columns: 200px 4; /* Firefox */
-    columns: 200px 4;
-    .note {
-      list-style: none;
-      flex-basis: calc((100% - 24rem) / 4);
-      margin: 0 0 1rem;
-      padding: 1rem 2rem;
-      -webkit-column-break-inside: avoid;
-      page-break-inside: avoid;
-      break-inside: avoid-column;
+  .topBar {
+    padding-bottom: 1rem;
 
-      background-color: rgba(82, 84, 98, 0.9);
+    .createButton {
+      display: block;
+      margin-left: auto;
+      margin-right: 0;
+    }
+  }
+
+  .notesWrapper {
+    ul {
+      padding: 0;
+      margin: 0;
+      align-items: center;
+      padding-left: 0;
+      -webkit-columns: 200px 4; /* Chrome, Safari, Opera */
+      -moz-columns: 200px 4; /* Firefox */
+      columns: 200px 4;
+      .note {
+        list-style: none;
+        flex-basis: calc((100% - 24rem) / 4);
+        margin: 0 0 1rem;
+        padding: 1rem 2rem;
+        -webkit-column-break-inside: avoid;
+        page-break-inside: avoid;
+        break-inside: avoid-column;
+
+        background-color: rgba(82, 84, 98, 0.9);
+      }
     }
   }
 }

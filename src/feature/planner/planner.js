@@ -234,7 +234,7 @@ export default function Planner() {
             onClick={() => createHandleClickOpen()}
             size="large"
           >
-            Create Item
+            Create task
           </Button>
         </div>
       </div>
