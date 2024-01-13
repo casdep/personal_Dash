@@ -134,16 +134,16 @@ export default function LoginForm() {
                 component={"span"}
                 inputProps={{ style: { color: "red" } }}
               >
-                <Link href="/resetPassword" underline="hover">
+                <Link to="/resetPassword" underline="hover">
                   {"Forgot password?"}
                 </Link>
               </Typography>
             </div>
             <hr />
             <div className="footer_item_two">
-              <Button variant="contained" href="/register">
-                Create new account
-              </Button>
+              <Link to="/register" underline="hover">
+                <Button variant="contained">Create new account</Button>
+              </Link>
             </div>
           </div>
         </div>

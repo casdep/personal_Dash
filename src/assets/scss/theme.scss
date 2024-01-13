@@ -25,6 +25,9 @@ span {
 
 .innerApp {
   margin: 0 auto;
+  height: auto;
+  padding-bottom: 3rem;
+
   @include min-phone {
     max-width: 540px;
   }
@@ -48,6 +51,8 @@ span {
 
 .dark {
   height: 100%;
+  min-height: 100vh;
+  flex-grow: 1;
   background-color: $dark-background;
   color: $dark-text;
 
@@ -94,6 +99,7 @@ span {
 
 .light {
   height: 100%;
+  min-height: 100vh;
   background-color: $light-color1;
   color: $light-text;
 

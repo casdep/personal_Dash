@@ -1,6 +1,10 @@
 .notesDialog {
-  .textField {
-    width: 80%;
-    height: 100px;
+  .createNoteForm {
+    height: 100%;
+    width: 100%;
+    .textField {
+      width: 80%;
+      height: 200px;
+    }
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./notes.scss";
 
@@ -6,17 +6,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { Button } from "@mui/material";
 
-import CloseIcon from "@mui/icons-material/Close";
 import NoteCreate from "./noteDialog";
 
-import { noteDialogOpen, selectedNote } from "../../store/slicers/noteSlice";
+import { noteDialogOpen } from "../../store/slicers/noteSlice";
 
 export default function Notes() {
   const dispatch = useDispatch();
-
-  const getNoteCreateOpen = useSelector(
-    (state) => state.planner.plannerDialogOpen
-  );
 
   const getNoteDialogOpen = useSelector((state) => state.note.noteDialogOpen);
 
@@ -24,19 +19,9 @@ export default function Notes() {
     console.log(id);
   }
 
-  function handleInputChange() {}
-
   function handleClickOpen() {
     dispatch(noteDialogOpen("create"));
   }
-
-  function handleClose() {
-    dispatch(noteDialogOpen(""));
-  }
-
-  function handleSubmit() {}
-
-  const formValue = "";
 
   const notes = [
     {

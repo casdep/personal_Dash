@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
 import "./noteDialog.scss";
@@ -15,8 +15,6 @@ import {
   DialogContentText,
   DialogTitle,
   IconButton,
-  TextField,
-  TextareaAutosize,
 } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
@@ -28,20 +26,10 @@ export default function NoteCreate() {
     (state) => state.planner.noteDialogOpen
   );
 
-  const formValue = "";
-
   const editorRef = useRef(null);
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
-
-  function editNote(id) {
-    console.log(id);
+  if (editorRef.current) {
+    console.log(editorRef.current.getContent());
   }
-
-  function handleInputChange() {}
 
   function handleSubmit() {}
 
@@ -81,9 +69,7 @@ export default function NoteCreate() {
             <Editor
               apiKey="your-api-key"
               onInit={(evt, editor) => (editorRef.current = editor)}
-              initialValue="<p>This is the initial content of the editor.</p>"
               init={{
-                height: 500,
                 menubar: false,
                 plugins: [
                   "advlist",
