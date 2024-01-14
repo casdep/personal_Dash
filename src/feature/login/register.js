@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-import { TextField, Button } from "@mui/material";
+import { TextField, Typography, Button, IconButton } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 import "./register.scss";
-import "../../assets/scss/theme.scss";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -20,6 +21,16 @@ export default function Register() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [passwordConfirmError, setPasswordConfirmError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+
+  function togglePasswordVisibility() {
+    setShowPassword(!showPassword);
+  }
+
+  function togglePasswordConfirmVisibility() {
+    setShowPasswordConfirm(!showPasswordConfirm);
+  }
 
   async function handleSubmit() {
     const registerFormData = new URLSearchParams();
@@ -123,33 +134,68 @@ export default function Register() {
               helperText={emailError}
             />
 
-            <TextField
-              type="password"
-              name="password"
-              margin="normal"
-              label="Password"
-              defaultValue={formValue.password}
-              onChange={handleChange}
-              fullWidth
-              error={passwordError}
-              helperText={passwordError}
-            />
-            <TextField
-              type="password"
-              name="passwordConfirmed"
-              margin="normal"
-              label="Confirm Password"
-              defaultValue={formValue.passwordConfirmed}
-              onChange={handleChange}
-              fullWidth
-              error={passwordConfirmError}
-              helperText={passwordConfirmError}
-            />
+            <div className="passwordRow">
+              <TextField
+                type={showPassword ? "text" : "password"}
+                name="password"
+                margin="normal"
+                label="Password"
+                defaultValue={formValue.password}
+                onChange={handleChange}
+                fullWidth
+                error={passwordError}
+                helperText={passwordError}
+              />
+              <div className="showPassword">
+                <IconButton
+                  onClick={togglePasswordVisibility}
+                  style={{ color: "#4299ff" }}
+                >
+                  {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                </IconButton>
+              </div>
+            </div>
+
+            <div className="passwordRow">
+              <TextField
+                type={showPasswordConfirm ? "text" : "password"}
+                name="passwordConfirmed"
+                margin="normal"
+                label="Confirm Password"
+                defaultValue={formValue.passwordConfirmed}
+                onChange={handleChange}
+                fullWidth
+                error={passwordConfirmError}
+                helperText={passwordConfirmError}
+              />
+              <div className="showPassword">
+                <IconButton
+                  onClick={togglePasswordConfirmVisibility}
+                  style={{ color: "#4299ff" }}
+                >
+                  {showPasswordConfirm ? (
+                    <VisibilityOffIcon />
+                  ) : (
+                    <VisibilityIcon />
+                  )}
+                </IconButton>
+              </div>
+            </div>
           </div>
 
           <br />
           <div className="footer_items">
             <div className="footer_item_one">
+              <Typography
+                gutterBottom
+                variant="body1"
+                component={"span"}
+                inputProps={{ style: { color: "red" } }}
+              >
+                <Link to="/login" underline="hover">
+                  {"Return to log in"}
+                </Link>
+              </Typography>
               <Button variant="contained" onClick={() => handleSubmit()}>
                 Register account
               </Button>

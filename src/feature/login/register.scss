@@ -32,15 +32,28 @@
     }
 
     .footer_items {
-      width: 80%;
+      align-items: center;
       display: flex;
-      margin: 0 auto;
-    }
+      flex-direction: column;
 
-    .footer_item_one {
-      display: table;
-      margin: 0 auto;
-      text-decoration: none;
+      Button {
+        margin: 1rem 0;
+      }
+
+      .footer_item_one {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-decoration: none;
+        .MuiButtonBase-root {
+          width: 100%;
+        }
+      }
+      hr {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
     }
   }
 }

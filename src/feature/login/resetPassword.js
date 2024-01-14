@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { TextField, Button, Link, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { TextField, Button, Typography } from "@mui/material";
 
 import "./resetPassword.scss";
 
@@ -39,7 +40,7 @@ export default function ResetPassword() {
                 component={"span"}
                 inputProps={{ style: { color: "red" } }}
               >
-                <Link href="/resetPassword" underline="hover">
+                <Link to="/login" underline="hover">
                   {"Return to log in"}
                 </Link>
               </Typography>

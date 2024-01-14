@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { TextField, Button, IconButton } from "@mui/material";
-import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 import "./login.scss";
-import "../../assets/scss/theme.scss";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -141,7 +139,7 @@ export default function LoginForm() {
             </div>
             <hr />
             <div className="footer_item_two">
-              <Link to="/register" underline="hover">
+              <Link to="/register">
                 <Button variant="contained">Create new account</Button>
               </Link>
             </div>

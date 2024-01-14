@@ -18,7 +18,6 @@ import {
 } from "@mui/material";
 
 import "./profileBrowser.scss";
-import "../../assets/scss/theme.scss";
 
 import { getCookie } from "../../utils/getCookie";
 
@@ -147,7 +146,7 @@ const ProfileBrowser = () => {
         {users.map((user, index) => {
           let id = user.id;
           return (
-            <Card key={id}>
+            <Card key={id} className="profileCard">
               <li>
                 <div className="container">
                   <div className="div-left">
