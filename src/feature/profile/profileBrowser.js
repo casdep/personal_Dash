@@ -23,7 +23,6 @@ import PersonIcon from "@mui/icons-material/Person";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 import { getCookie } from "../../utils/getCookie";
-import { EmailOutlined } from "@mui/icons-material";
 
 const ProfileBrowser = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -158,7 +157,7 @@ const ProfileBrowser = () => {
                       <PersonIcon /> {user.username}
                     </p>
                     <p>
-                      <EmailOutlined /> {user.email}
+                      <MailOutlineIcon /> {user.email}
                     </p>
                   </div>
                   <div className="div-right">
