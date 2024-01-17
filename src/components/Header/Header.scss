@@ -20,9 +20,12 @@ header {
     padding: 15px 5%;
     margin: -5px 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background-color: #131719;
+    .logo {
+      max-height: 3rem;
+    }
   }
   .header-wrapper-mobile {
     display: none;
@@ -84,4 +87,9 @@ header {
       }
     }
   }
+}
+
+.MuiMenu-paper {
+  padding: 0.5rem 0.5rem;
+  margin: 0 0 10rem 0;
 }

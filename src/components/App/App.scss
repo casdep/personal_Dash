@@ -17,10 +17,6 @@ body {
   padding: 6rem 15% 0;
 }
 
-.innerApp:has(.home) {
-  padding: 2rem 15% 0 !important;
-}
-
 @include max-laptop {
   .innerApp {
     height: 100vh;

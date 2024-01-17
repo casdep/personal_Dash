@@ -68,6 +68,21 @@
         flex-basis: calc((100% - 6rem) / 1);
       }
     }
+
+    .topBar {
+      display: none;
+    }
+
+    .create-button-mobile {
+      position: fixed;
+      bottom: 90px;
+      right: 30px;
+    }
+  }
+}
+@include min-phone {
+  .create-button-mobile {
+    display: none;
   }
 }
 

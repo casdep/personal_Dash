@@ -108,7 +108,7 @@ export default function Planner() {
 
         const uniqueCategories = [
           ...new Set(tasks.map((task) => task.category)),
-        ];
+        ].sort();
         if (tasksCategories.length === 0) {
           setTasksCategories(uniqueCategories);
         }
@@ -213,17 +213,17 @@ export default function Planner() {
               <MenuItem selected value="">
                 None
               </MenuItem>
-              <MenuItem value="createdAt_desc">
-                <strong>Created</strong> &nbsp; - Newest first
-              </MenuItem>
-              <MenuItem value="createdAt_asc">
-                <strong>Created</strong> &nbsp; - Oldest first
+              <MenuItem value="priority_asc">
+                <strong>Priority</strong> &nbsp; - Lowest first
               </MenuItem>
               <MenuItem value="priority_desc">
                 <strong>Priority</strong> &nbsp; - Highest first
               </MenuItem>
-              <MenuItem value="priority_asc">
-                <strong>Priority</strong> &nbsp; - Lowest first
+              <MenuItem value="createdAt_asc">
+                <strong>Created</strong> &nbsp; - Oldest first
+              </MenuItem>
+              <MenuItem value="createdAt_desc">
+                <strong>Created</strong> &nbsp; - Newest first
               </MenuItem>
             </Select>
           </FormControl>

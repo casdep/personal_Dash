@@ -88,20 +88,22 @@ export default function Profile() {
               alt="profile"
             />
             <div className="overlay">
-              <Link className="left" onClick={() => deleteProfilePicture()}>
-                <strong>Delete</strong>
-              </Link>
-              <input
-                type="file"
-                id="fileInput"
-                accept="image/*"
-                style={{ display: "none" }}
-                ref={fileInputRef}
-                onChange={handleFileChange}
-              />
-              <button className="right" onClick={editProfilePicture}>
-                <strong>Edit</strong>
-              </button>
+              <div className="buttonWrapper">
+                <button className="deleteButton" onClick={deleteProfilePicture}>
+                  <strong>Delete</strong>
+                </button>
+                <input
+                  type="file"
+                  id="fileInput"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                />
+                <button className="editButton" onClick={editProfilePicture}>
+                  <strong>Edit</strong>
+                </button>
+              </div>
             </div>
           </div>
           <div className="profile--content">

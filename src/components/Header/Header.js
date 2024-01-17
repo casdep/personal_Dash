@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
-
 import "./Header.scss";
-
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import HomeIcon from "@mui/icons-material/Home";
@@ -12,21 +9,25 @@ import PersonIcon from "@mui/icons-material/Person";
 
 export default function Header() {
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
 
-  const handleClick = function (event) {
-    setOpen(true);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const logo = require("./../../assets/media/logo_white.png");
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = function (route) {
-    setOpen(false);
-    navigate("/" + route);
+  const handleClose = (route) => {
+    setAnchorEl(null);
+    if (route) {
+      navigate("/" + route);
+    }
   };
 
   function isAuthenticated() {
     if (document.cookie.indexOf("token=") !== -1) {
       return (
-        //this empty tag is needed as a parent tag
         <>
           <Link to="/notes">Notes</Link>
           <Link to="/planner">Planner</Link>
@@ -54,7 +55,7 @@ export default function Header() {
       <div className="header-wrapper-desktop">
         <div className="left">
           <Link to="/">
-            <b>Cas de Pender</b>
+            <img className="logo" src={logo} alt="profile" />
           </Link>
         </div>
 
@@ -67,20 +68,15 @@ export default function Header() {
         </div>
       </div>
       <div className="header-wrapper-mobile">
-        <IconButton
-          aria-label="close"
-          size="large"
-          onClick={() => handleClick()}
-        >
+        <IconButton aria-label="menu" size="large" onClick={handleClick}>
           <MenuIcon />
         </IconButton>
         <Menu
           id="basic-menu"
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            "aria-labelledby": "basic-button",
-          }}
+          anchorEl={anchorEl}
+          //next line checks if anchorEl is set
+          open={Boolean(anchorEl)}
+          onClose={() => handleClose()}
         >
           <MenuItem onClick={() => handleClose("notes")}>Notes</MenuItem>
           <MenuItem onClick={() => handleClose("about")}>About</MenuItem>

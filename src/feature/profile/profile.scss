@@ -17,89 +17,54 @@
     opacity: 1;
   }
 
-  &Picture {
+  .profilePicture {
     max-width: 12.5rem;
     border-radius: 5px;
   }
 
   .overlay {
     display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-    height: 200px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     border-radius: 5px;
-
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
+    top: 2rem;
+    height: 10rem;
+    width: 10rem;
     opacity: 0;
     transition: 0.5s ease;
     background-color: rgba(0, 0, 0, 0.55);
-
-    .left,
-    .right {
-      padding: 0.5rem 12.5%;
-      text-decoration-line: none;
-      text-align: center;
-      cursor: pointer;
-      width: 100%;
-
-      &:hover {
-        transition: 0.5s ease;
-        background: rgb(215, 215, 215);
-
-        background: #ffffff;
-        background: radial-gradient(
-          at center,
-          rgba(255, 255, 255, 0.7),
-          rgba(255, 255, 255, 0)
-        );
-      }
-      input {
-        display: none;
-      }
-    }
-
-    .left {
-      color: red;
-    }
   }
 
-  .text {
+  .buttonWrapper {
+    margin-top: auto;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .deleteButton,
+  .editButton {
+    padding: 0.5rem 1rem;
+    text-decoration-line: none;
+    cursor: pointer;
+    width: 100%;
     color: white;
-    font-size: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
+    border: none;
+    border-radius: 5px;
+    outline: none;
   }
 
-  .deleteProfilePicture {
-    cursor: pointer;
-    color: red;
-    text-decoration-color: red;
+  .deleteButton {
+    background: red;
+    &:hover {
+      background: rgb(215, 0, 0);
+    }
   }
-
-  .editProfilePicture {
-    cursor: pointer;
-  }
-
-  &--content {
-    width: 50%;
-    .logout {
-      color: rgb(236, 72, 72);
-      text-decoration: underline;
-      cursor: pointer;
-
-      &:hover {
-        color: rgb(222, 0, 0);
-      }
+  .editButton {
+    background: green;
+    &:hover {
+      background: rgb(16, 104, 16);
     }
   }
 

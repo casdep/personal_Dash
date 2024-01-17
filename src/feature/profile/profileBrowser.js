@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import "./profileBrowser.scss";
+
 import {
   Button,
   Card,
@@ -17,9 +19,11 @@ import {
   TextField,
 } from "@mui/material";
 
-import "./profileBrowser.scss";
+import PersonIcon from "@mui/icons-material/Person";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 import { getCookie } from "../../utils/getCookie";
+import { EmailOutlined } from "@mui/icons-material";
 
 const ProfileBrowser = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -130,7 +134,7 @@ const ProfileBrowser = () => {
         severity="success"
         message={`Role of ${selectedUsername} has been changed to ${selectedRole}!`}
       />
-      <div>
+      <div className="searchInput">
         <TextField
           type="text"
           name="category"
@@ -142,7 +146,7 @@ const ProfileBrowser = () => {
           onChange={handleInputChange}
         />
       </div>
-      <ul>
+      <ul className="resultResultProfileCard">
         {users.map((user, index) => {
           let id = user.id;
           return (
@@ -151,22 +155,20 @@ const ProfileBrowser = () => {
                 <div className="container">
                   <div className="div-left">
                     <p>
-                      <strong>Username:</strong>
-                      <br />
-                      {user.username}
+                      <PersonIcon /> {user.username}
                     </p>
                     <p>
-                      <strong>ID: </strong>
-                      {user.id}
+                      <EmailOutlined /> {user.email}
                     </p>
                   </div>
                   <div className="div-right">
                     <p>
-                      <strong>Email:</strong>
-                      <br />
-                      {user.email}
+                      <strong>ID: </strong>
+                      {user.id}
                     </p>
-                    <p>{getSimplifiedDate(user.createdAt)}</p>
+                    <p className="createdDate">
+                      {getSimplifiedDate(user.createdAt)}
+                    </p>
                   </div>
                 </div>
                 <FormControl size="small" fullWidth>

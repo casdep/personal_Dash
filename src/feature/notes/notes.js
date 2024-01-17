@@ -5,6 +5,8 @@ import "./notes.scss";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Button } from "@mui/material";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 
 import NoteCreate from "./noteDialog";
 
@@ -85,8 +87,13 @@ export default function Notes() {
         </Button>
       </div>
       <div className="noteCreate"></div>
+      <div className="create-button-mobile">
+        <Fab color="primary" aria-label="add" onClick={() => handleClickOpen()}>
+          <AddIcon />
+        </Fab>
+      </div>
       <div className="notesWrapper">
-        <ul>
+        <ul className="resultResultProfileCard">
           {notes.map((note, index) => {
             let id = note.id;
             return (

@@ -1,3 +1,5 @@
+@import "../../assets/scss/theme.scss";
+
 .profileBrowser {
   width: 50%;
 
@@ -23,13 +25,41 @@
         .div-left {
           display: inline-block;
           padding-right: 5%;
+
+          p {
+            display: flex;
+            align-items: center;
+            svg {
+              padding-right: 0.25rem;
+            }
+          }
         }
         .div-right {
           width: 100%;
-          align-content: flex-end;
-          text-align: right;
+
+          p {
+            display: flex;
+            justify-content: flex-end;
+          }
+
+          .createdDate {
+            padding-top: 0.4rem;
+          }
         }
       }
+    }
+  }
+}
+
+@include max-phone {
+  .profileBrowser {
+    display: contents;
+    margin-top: 0;
+
+    .searchInput,
+    .resultResultProfileCard {
+      padding: 0 0.5rem;
+      margin-top: 0;
     }
   }
 }
