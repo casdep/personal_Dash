@@ -1,10 +1,10 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState } from "draft-js";
 import { convertToHTML } from "draft-convert";
-import DOMPurify from "dompurify";
+// import DOMPurify from "dompurify";
 
 import "./noteDialog.scss";
 
@@ -43,7 +43,6 @@ export default function NoteCreate() {
 
   function handleSubmit() {
     if (convertedContent !== "<p></p>") {
-      
     }
     dispatch(noteDialogOpen(""));
   }
