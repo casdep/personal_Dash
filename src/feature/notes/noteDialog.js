@@ -1,5 +1,10 @@
-import React, { useRef } from "react";
-import { Editor } from "@tinymce/tinymce-react";
+import React, { useRef, useState, useEffect } from "react";
+
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { EditorState } from "draft-js";
+import { convertToHTML } from "draft-convert";
+import DOMPurify from "dompurify";
 
 import "./noteDialog.scss";
 
@@ -22,16 +27,26 @@ import CloseIcon from "@mui/icons-material/Close";
 export default function NoteCreate() {
   const dispatch = useDispatch();
 
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty()
+  );
+  const [convertedContent, setConvertedContent] = useState(null);
+
+  useEffect(() => {
+    let html = convertToHTML(editorState.getCurrentContent());
+    setConvertedContent(html);
+  }, [editorState]);
+
   const getNoteDialogOpen = useSelector(
     (state) => state.planner.noteDialogOpen
   );
 
-  const editorRef = useRef(null);
-  if (editorRef.current) {
-    console.log(editorRef.current.getContent());
+  function handleSubmit() {
+    if (convertedContent !== "<p></p>") {
+      
+    }
+    dispatch(noteDialogOpen(""));
   }
-
-  function handleSubmit() {}
 
   function handleClose(event, reason) {
     if (reason && reason === "backdropClick") {
@@ -67,37 +82,23 @@ export default function NoteCreate() {
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             <Editor
-              apiKey="your-api-key"
-              onInit={(evt, editor) => (editorRef.current = editor)}
-              init={{
-                menubar: false,
-                plugins: [
-                  "advlist",
-                  "autolink",
-                  "lists",
+              editorState={editorState}
+              onEditorStateChange={setEditorState}
+              wrapperClassName="wrapper-class"
+              editorClassName="editor-class"
+              toolbarClassName="toolbar-class"
+              toolbar={{
+                options: [
+                  "inline",
+                  "blockType",
+                  "fontSize",
+                  "fontFamily",
+                  "list",
+                  "colorPicker",
                   "link",
-                  "image",
-                  "charmap",
-                  "preview",
-                  "anchor",
-                  "searchreplace",
-                  "visualblocks",
-                  "code",
-                  "fullscreen",
-                  "insertdatetime",
-                  "media",
-                  "table",
-                  "code",
-                  "help",
-                  "wordcount",
+                  "remove",
+                  "history",
                 ],
-                toolbar:
-                  "undo redo | blocks | " +
-                  "bold italic forecolor | alignleft aligncenter " +
-                  "alignright alignjustify | bullist numlist outdent indent | " +
-                  "removeformat | help",
-                content_style:
-                  "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
               }}
             />
           </DialogContentText>

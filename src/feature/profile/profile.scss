@@ -26,12 +26,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 98%;
+    width: 100%;
     border-radius: 5px;
     position: absolute;
-    top: 2rem;
-    height: 10rem;
-    width: 10rem;
+    top: 0;
     opacity: 0;
     transition: 0.5s ease;
     background-color: rgba(0, 0, 0, 0.55);
@@ -254,6 +253,11 @@ FCFCFC - stars
         max-width: 10rem;
         .profilePicture {
           max-width: 10rem;
+        }
+        .overlay {
+          top: 2rem;
+          height: 10rem;
+          width: 10rem;
         }
       }
       .profile--content {
