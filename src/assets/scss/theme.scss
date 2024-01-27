@@ -166,6 +166,11 @@ p {
 }
 
 @include max-phone {
+  p,
+  span {
+    font-size: 80%;
+  }
+
   .pageTitle {
     text-align: center !important;
     display: unset;

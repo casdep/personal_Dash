@@ -2,6 +2,14 @@
   .createNoteForm {
     height: 100%;
     width: 100%;
+
+    .rdw-editor-toolbar {
+      [title="Monospace"],
+      [title="Superscript"],
+      [title="Subscript"] {
+        display: none;
+      }
+    }
     .rdw-editor-main {
       margin-top: 1rem;
       min-height: 10rem;

@@ -34,6 +34,9 @@ const ProfileBrowser = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const handleInputChange = (event) => {
+    if (event.target.value.length === 0) {
+      setUsers([]);
+    }
     setSearchTerm(event.target.value);
   };
 
@@ -100,7 +103,6 @@ const ProfileBrowser = () => {
   }
 
   async function setUserRule() {
-    console.log(selectedRole);
     try {
       await axios({
         method: "put",

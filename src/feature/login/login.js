@@ -74,6 +74,21 @@ export default function LoginForm() {
     setShowPassword(!showPassword);
   }
 
+  function handleKeyPress(event) {
+    console.log(event);
+    if (event.key === "Enter" || event.keyCode === 13) {
+      event.preventDefault();
+
+      if (event.target.name === "userIdentifier") {
+        // If Enter is pressed in the username field, focus on the password field
+        document.getElementById("passwordField").focus();
+      } else if (event.target.name === "password") {
+        // If Enter is pressed in the password field, submit the form
+        handleSubmit();
+      }
+    }
+  }
+
   return (
     <div className="login">
       <div className="pageTitle">
@@ -92,6 +107,7 @@ export default function LoginForm() {
               label="Username or email"
               defaultValue={formValue.userIdentifier}
               onChange={handleChange}
+              onKeyDown={handleKeyPress}
               fullWidth
               error={userIdentifierError}
               helperText={
@@ -100,12 +116,14 @@ export default function LoginForm() {
             />
             <div className="passwordRow">
               <TextField
+                id="passwordField"
                 type={showPassword ? "text" : "password"}
                 name="password"
                 margin="normal"
                 label="Password"
                 defaultValue={formValue.password}
                 onChange={handleChange}
+                onKeyDown={handleKeyPress}
                 fullWidth
                 error={passwordError}
                 helperText={passwordError ? "Please enter your password" : ""}

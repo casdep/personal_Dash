@@ -95,7 +95,6 @@ export default function NoteCreate() {
                   "list",
                   "colorPicker",
                   "link",
-                  "remove",
                   "history",
                 ],
               }}
