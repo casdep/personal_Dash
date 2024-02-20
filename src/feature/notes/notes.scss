@@ -34,7 +34,6 @@
         -webkit-column-break-inside: avoid;
         page-break-inside: avoid;
         break-inside: avoid-column;
-
         background-color: rgba(82, 84, 98, 0.9);
       }
     }
@@ -64,8 +63,12 @@
 @include max-phone {
   .notes {
     .notesWrapper {
-      .note {
-        flex-basis: calc((100% - 6rem) / 1);
+      ul {
+        .note {
+          flex-basis: calc((100% - 6rem) / 1);
+          margin-bottom: 0.5rem;
+          padding: 0.75rem 1rem;
+        }
       }
     }
 

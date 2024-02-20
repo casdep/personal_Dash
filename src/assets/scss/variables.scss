@@ -26,45 +26,14 @@ $dark-primary: #252627;
 $dark-secondary: #666666;
 $dark-accent: #4299ff;
 
+$dark-color: #1a1a1a;
+$light-color: #ffffff;
+
 $light-text: #333333;
 $light-background: #ffffff;
-$light-primary: #f9f9f9;
-$light-secondary: #f9f9f9;
+$light-primary: #e5e5e5;
+$light-secondary: #b5b5b5;
 $light-accent: #4299ff;
-
-$dark-color1: #1a1a1a;
-$dark-color2: #333333;
-$dark-color3: #4d4d4d;
-$dark-color4: #666666;
-$dark-color5: #808080;
-
-$light-color1: #ffffff;
-$light-color2: #f9f9f9;
-$light-color3: #f5f5f5;
-$light-color4: #ededed;
-$light-color5: #e0e0e0;
-
-$accent1: #1976d2;
-$accent2: #2581db;
-$accent3: #318ce4;
-$accent4: #3c97ed;
-$accent5: #47a2f6;
-$accent6: #52adf0;
-$accent7: #5db8f9;
-$accent8: #68c3ff;
-$accent9: #73ceff;
-$accent10: #7ed9ff;
-
-$shade1: #7ed9ff;
-$shade2: #8ce3ff;
-$shade3: #9aeaff;
-$shade4: #a8f2ff;
-$shade5: #b6f9ff;
-$shade6: #c4ffff;
-$shade7: #d2ffff;
-$shade8: #e0f1ff;
-$shade9: #eeffff;
-$shade10: #fcffff;
 
 $success: #00c000;
 $error: red;
@@ -78,14 +47,7 @@ $warning: #ec5252;
   background-color: $light-background;
 }
 
-// $theme-colors: (
-//   "background": $background,
-//   "bright": $bright,
-//   "accent": $accent,
-//   "success": $success,
-//   "error": $error,
-//   "warning": $warning,
-// );
+$header-height: 5rem;
 
 // Spacing
 $spacing: 0.3125rem;
@@ -137,5 +99,3 @@ $font-sizes: (
   "large": $large,
   "extra-large": $extra-large,
 );
-
-$header-height: 3.8rem;

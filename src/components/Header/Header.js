@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.scss";
 import { IconButton, Menu, MenuItem } from "@mui/material";
@@ -12,7 +14,10 @@ export default function Header() {
 
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const logo = require("./../../assets/media/logo_white.png");
+  const logoLightTheme = require("./../../assets/media/logo_header_black.png");
+  const logoDarkTheme = require("./../../assets/media/logo_header_white.png");
+
+  const getAppTheme = useSelector((state) => state.general.appTheme);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -55,7 +60,11 @@ export default function Header() {
       <div className="header-wrapper-desktop">
         <div className="left">
           <Link to="/">
-            <img className="logo" src={logo} alt="profile" />
+            <img
+              className="logo"
+              src={getAppTheme === "light" ? logoLightTheme : logoDarkTheme}
+              alt="profile"
+            />
           </Link>
         </div>
 

@@ -108,13 +108,13 @@ const ProfileBrowser = () => {
         method: "put",
         url:
           process.env.REACT_APP_API_URL +
-          "/account-management/users/role/" +
+          "/account-management/users/" +
           selectedUserId,
-        data: { role: selectedRole },
         headers: {
           Authorization: "Bearer " + getCookie("token"),
           "content-type": "application/json",
         },
+        data: { action: "editRole", value: selectedRole },
       });
     } catch (error) {
       console.log(error);
@@ -156,19 +156,16 @@ const ProfileBrowser = () => {
                 <div className="container">
                   <div className="div-left">
                     <p>
+                      <strong>ID:&nbsp;</strong>
+                      {user.id}&nbsp;&nbsp;
+                      <strong>Date:&nbsp;</strong>
+                      {getSimplifiedDate(user.createdAt)}
+                    </p>
+                    <p>
                       <PersonIcon /> {user.username}
                     </p>
                     <p>
                       <MailOutlineIcon /> {user.email}
-                    </p>
-                  </div>
-                  <div className="div-right">
-                    <p>
-                      <strong>ID: </strong>
-                      {user.id}
-                    </p>
-                    <p className="createdDate">
-                      {getSimplifiedDate(user.createdAt)}
                     </p>
                   </div>
                 </div>

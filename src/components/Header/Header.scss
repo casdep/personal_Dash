@@ -15,26 +15,21 @@ header {
     text-decoration: none;
   }
 
-  /* Style the header with a grey background and some padding */
   .header-wrapper-desktop {
     padding: 15px 5%;
     margin: -5px 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #131719;
+    background-color: $dark-background;
+
+    border-bottom: 1px solid $dark-primary;
     .logo {
       max-height: 3rem;
     }
   }
   .header-wrapper-mobile {
     display: none;
-  }
-}
-
-@include max-laptop {
-  .header-wrapper {
-    padding: 15px 12.5%;
   }
 }
 
@@ -49,22 +44,21 @@ header {
   }
 }
 
-@include min-phone {
-}
-
 @include max-phone {
   header {
+    height: $header-height;
     width: 100%;
     position: fixed;
     text-align: center;
     bottom: 0;
     .header-wrapper-mobile {
-      margin: -15px 0;
       padding: 0 10%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #131719;
+      background-color: $dark-background;
+
+      border-top: 1px solid $dark-primary;
     }
     .header-wrapper-desktop {
       display: none;
@@ -81,15 +75,12 @@ header {
   header {
     .header-wrapper-mobile,
     .header-wrapper-desktop {
-      background-color: $light-color4;
+      background-color: $light-background;
+      border-bottom: 1px solid $light-secondary;
+      border-top: 1px solid $light-secondary;
       a {
         color: $light-text;
       }
     }
   }
-}
-
-.MuiMenu-paper {
-  padding: 0.5rem 0.5rem;
-  margin: 0 0 10rem 0;
 }

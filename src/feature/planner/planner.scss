@@ -1,6 +1,7 @@
 @import "../../assets/scss/theme.scss";
 
 .planner {
+  height: 100%;
   .top-bar-wrapper {
     display: flex;
   }
@@ -30,110 +31,26 @@
     margin-left: auto;
   }
 
-  @include max-tablet {
-    .top-bar {
-      display: block;
-    }
-
-    .item-left {
-      width: 100%;
-    }
-
-    .item-right {
-      width: 100%;
-    }
+  ul {
+    padding: 0 $spacing 0 0;
+    overflow: hidden;
+    overflow-y: hidden;
+    overflow-y: scroll;
+    height: calc(100% - $header-height);
   }
 
   li {
     list-style-type: none;
     width: 80%;
-    padding-bottom: 3px;
+    padding-bottom: 4px;
+    &:last-child {
+      padding-bottom: $header-height;
+    }
   }
 
   .loader {
     list-style-type: none;
     width: 80%;
-  }
-
-  @include max-laptop {
-    .top-bar-wrapper {
-      display: flex;
-    }
-
-    li {
-      list-style-type: none;
-      width: 90%;
-      padding-bottom: 3px;
-    }
-
-    .loader {
-      list-style-type: none;
-      width: 90%;
-    }
-  }
-
-  @include max-phone {
-    li {
-      list-style-type: none;
-      width: 100%;
-    }
-
-    .loader {
-      list-style-type: none;
-      width: 100%;
-    }
-
-    .item-one {
-      flex-basis: 45%;
-    }
-
-    .item-two {
-      flex-basis: 45%;
-    }
-
-    .item-three {
-      display: none;
-    }
-
-    .create-button-mobile {
-      position: fixed;
-      bottom: 90px;
-      right: 30px;
-    }
-  }
-  @include min-phone {
-    .create-button-mobile {
-      display: none;
-    }
-  }
-
-  ul {
-    padding: 0;
-    border-radius: 25%;
-  }
-
-  .createItemCategoryTextfield {
-    width: 70%;
-  }
-
-  .createItemPriorityTextfield {
-    width: 25%;
-    float: right;
-  }
-
-  .top-bar-container {
-    display: flex;
-  }
-  .top-bar-item {
-    color: white;
-    display: inline-block;
-    width: 65%;
-  }
-  .top-bar-item_right {
-    color: white;
-    display: flex;
-    align-items: center;
-    width: 30%;
   }
 
   .card-content-top {
@@ -183,21 +100,6 @@
     }
   }
 
-  .container {
-    display: flex;
-  }
-
-  .item {
-    color: black;
-    display: inline-block;
-    width: 80%;
-  }
-  .item_right {
-    padding-top: 18px;
-    display: inline-block;
-    align-content: flex-end;
-  }
-
   .dialog-create-container,
   .dialog-edit-container {
     display: flex;
@@ -215,14 +117,61 @@
     align-content: flex-end;
   }
 
-  .MuiButtonBase-root {
-    min-height: 56px !important;
-    min-width: 56px !important;
-    width: auto !important;
+  @include max-tablet {
+    .top-bar {
+      display: block;
+    }
   }
-  .MuiIconButton-root {
-    background: none !important;
-    border-radius: 0% !important;
-    width: fit-content !important;
+
+  @include max-laptop {
+    .top-bar-wrapper {
+      display: flex;
+    }
+
+    li {
+      list-style-type: none;
+      width: 90%;
+    }
+
+    .loader {
+      list-style-type: none;
+      width: 90%;
+    }
+  }
+
+  @include max-phone {
+    li {
+      list-style-type: none;
+      width: 100%;
+      padding-right: $spacing-2;
+    }
+
+    .loader {
+      list-style-type: none;
+      width: 100%;
+    }
+
+    .item-one {
+      flex-basis: 45%;
+    }
+
+    .item-two {
+      flex-basis: 45%;
+    }
+
+    .item-three {
+      display: none;
+    }
+
+    .create-button-mobile {
+      position: fixed;
+      bottom: 90px;
+      right: 30px;
+    }
+  }
+  @include min-phone {
+    .create-button-mobile {
+      display: none;
+    }
   }
 }

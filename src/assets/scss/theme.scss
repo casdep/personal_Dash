@@ -1,10 +1,11 @@
 @import "./variables";
 @import "./breakpoints.scss";
 @import "./global.scss";
+@import "./materialOverwrites.scss";
 
 html,
 body {
-  overflow-x: hidden;
+  overflow: hidden;
   width: 100%;
 }
 
@@ -24,14 +25,21 @@ p {
   font-size: 15px;
 }
 
+a {
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .pageTitle {
   display: none;
 }
 
 .innerApp {
   margin: 0 auto;
-  height: auto;
-  padding-bottom: 3rem;
+  height: calc(100vh - $header-height);
 
   @include min-phone {
     max-width: 540px;
@@ -81,10 +89,10 @@ p {
   }
 
   .MuiPaper-root {
-    background-color: #252627;
+    background-color: #252627 !important;
 
     .MuiSvgIcon-root {
-      color: $light-color1;
+      color: $light-color !important;
     }
   }
 
@@ -105,7 +113,7 @@ p {
 .light {
   height: 100%;
   min-height: 100vh;
-  background-color: $light-color1;
+  background-color: $light-color;
   color: $light-text;
 
   h1,
@@ -131,14 +139,14 @@ p {
   }
 
   .MuiPaper-root {
-    background-color: $light-color1;
+    background-color: $light-color !important;
 
     .MuiSvgIcon-root {
-      color: #252627;
+      color: #252627 !important;
     }
   }
   .MuiSvgIcon-root {
-    color: $light-color1 !important;
+    color: $dark-color !important;
   }
   .MuiFormLabel-root,
   .MuiFormLabel-root.MuiSvgIcon-root,
@@ -168,13 +176,13 @@ p {
 @include max-phone {
   p,
   span {
-    font-size: 80%;
+    font-size: 90%;
   }
 
   .pageTitle {
     text-align: center !important;
     display: unset;
     font-size: 10px;
-    color: $light-color1;
+    color: $light-accent;
   }
 }

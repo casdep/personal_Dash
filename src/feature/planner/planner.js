@@ -261,7 +261,7 @@ export default function Planner() {
                       <div className="card-content-top-title">
                         <Typography
                           gutterBottom
-                          variant="h5"
+                          variant="h6"
                           component={"span"}
                         >
                           {value.title}

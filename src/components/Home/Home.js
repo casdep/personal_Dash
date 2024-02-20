@@ -49,11 +49,6 @@ function Home() {
           />
         </div>
       </div>
-      <hr />
-
-      <div className="homeBody">
-        <p>Jump right back in</p>
-      </div>
     </div>
   );
 }

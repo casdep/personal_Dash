@@ -45,6 +45,7 @@
   .deleteButton,
   .editButton {
     padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
     text-decoration-line: none;
     cursor: pointer;
     width: 100%;
@@ -277,7 +278,7 @@ FCFCFC - stars
   .light {
     .profile {
       .profile--content {
-        background-color: $light-color4;
+        background-color: $light-primary;
       }
     }
   }
