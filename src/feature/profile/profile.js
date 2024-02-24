@@ -70,53 +70,8 @@ export default function Profile() {
       reader.onload = function (e) {
         const imageData = e.target.result;
 
-        const img = new Image();
-        img.src = imageData;
-
-        img.onload = function () {
-          const canvas = document.createElement("canvas");
-          const ctx = canvas.getContext("2d");
-
-          // Set the maximum width and height
-          const maxSize = 300;
-
-          let width = img.width;
-          let height = img.height;
-          let offsetX = 0;
-          let offsetY = 0;
-
-          if (width > height) {
-            // Landscape image
-            width = height;
-            offsetX = (img.width - img.height) / 2;
-          } else {
-            // Portrait or square image
-            height = width;
-            offsetY = (img.height - img.width) / 2;
-          }
-
-          canvas.width = maxSize;
-          canvas.height = maxSize;
-
-          // Draw the image on the canvas
-          ctx.drawImage(
-            img,
-            offsetX,
-            offsetY,
-            width,
-            height,
-            0,
-            0,
-            maxSize,
-            maxSize
-          );
-
-          // Convert canvas to a compressed base64 string
-          const resizedImageData = canvas.toDataURL("image/jpeg", 0.75);
-
-          setSelectedImage(resizedImageData);
-          setOpenDialogProfilePicture(true);
-        };
+        setSelectedImage(imageData);
+        setOpenDialogProfilePicture(true);
       };
 
       reader.readAsDataURL(selectedFile);
@@ -328,7 +283,7 @@ export default function Profile() {
             </IconButton>
             <DialogTitle id="alert-dialog-title">Selected Image</DialogTitle>
             <DialogContent>
-              <img src={selectedImage} alt="selected" />
+              <img src={selectedImage} className="profilePicture" alt="selected" />
             </DialogContent>
             <DialogActions>
               <Button onClick={handleCloseProfilePicture}>Close</Button>
