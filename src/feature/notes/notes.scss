@@ -6,6 +6,7 @@
 }
 
 .notes {
+  height: 100%;
   margin: 0 auto;
   .topBar {
     padding-bottom: 1rem;
@@ -18,6 +19,8 @@
   }
 
   .notesWrapper {
+    height: calc(100% - $header-height);
+    overflow-y: auto;
     ul {
       padding: 0;
       margin: 0;
@@ -30,11 +33,34 @@
         list-style: none;
         flex-basis: calc((100% - 24rem) / 4);
         margin: 0 0 1rem;
-        padding: 1rem 2rem;
+        padding: 0.5rem 1rem 0.75rem 1rem;
+        word-wrap: break-word;
         -webkit-column-break-inside: avoid;
         page-break-inside: avoid;
         break-inside: avoid-column;
         background-color: rgba(82, 84, 98, 0.9);
+        border-radius: 5px;
+        span {
+          ul {
+            padding-left: 0.75rem;
+          }
+          p {
+            margin: 5px;
+          }
+        }
+        &:last-child {
+          margin-bottom: $header-height;
+        }
+      }
+    }
+  }
+}
+
+.light {
+  .notes {
+    .notesWrapper {
+      .note {
+        background-color: $light-primary;
       }
     }
   }
@@ -64,10 +90,11 @@
   .notes {
     .notesWrapper {
       ul {
+        padding-right: 0.5rem;
         .note {
           flex-basis: calc((100% - 6rem) / 1);
           margin-bottom: 0.5rem;
-          padding: 0.75rem 1rem;
+          padding: 0.5rem 1rem 0.75rem 1rem;
         }
       }
     }
@@ -86,15 +113,5 @@
 @include min-phone {
   .create-button-mobile {
     display: none;
-  }
-}
-
-.light {
-  .notes {
-    .notesWrapper {
-      .note {
-        background-color: #e6e676;
-      }
-    }
   }
 }

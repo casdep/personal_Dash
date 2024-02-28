@@ -9,7 +9,6 @@ export default function ResetPassword() {
   const [userIdentifierError, setUserIdentifierError] = useState(false);
 
   function handleSubmit() {
-    console.log("lol");
     //todo
     setUserIdentifierError("lol");
   }

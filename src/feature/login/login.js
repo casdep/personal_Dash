@@ -75,7 +75,6 @@ export default function LoginForm() {
   }
 
   function handleKeyPress(event) {
-    console.log(event);
     if (event.key === "Enter" || event.keyCode === 13) {
       event.preventDefault();
 

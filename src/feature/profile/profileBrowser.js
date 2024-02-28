@@ -23,6 +23,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 import { getCookie } from "../../utils/getCookie";
+import { getTokenValue } from "../../utils/getTokenValue";
 
 const ProfileBrowser = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -60,9 +61,7 @@ const ProfileBrowser = () => {
         );
         const users = res.data.data;
         setUsers(users);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     }
   }
 
@@ -116,100 +115,102 @@ const ProfileBrowser = () => {
         },
         data: { action: "editRole", value: selectedRole },
       });
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
 
   return (
-    <div className="profileBrowser">
-      <Snackbar
-        open={snackbarOpen}
-        onClose={handleSnackbarClose}
-        autoHideDuration={10000}
-        sx={{ margin: "75px 0 0" }}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        severity="success"
-        message={`Role of ${selectedUsername} has been changed to ${selectedRole}!`}
-      />
-      <div className="searchInput">
-        <TextField
-          type="text"
-          name="category"
-          label="Search for user"
-          className="searchForUser"
-          margin="normal"
-          fullWidth
-          value={searchTerm}
-          onChange={handleInputChange}
-        />
-      </div>
-      <ul className="resultResultProfileCard">
-        {users.map((user, index) => {
-          let id = user.id;
-          return (
-            <Card key={id} className="profileCard">
-              <li>
-                <div className="container">
-                  <div className="div-left">
-                    <p>
-                      <strong>ID:&nbsp;</strong>
-                      {user.id}&nbsp;&nbsp;
-                      <strong>Date:&nbsp;</strong>
-                      {getSimplifiedDate(user.createdAt)}
-                    </p>
-                    <p>
-                      <PersonIcon /> {user.username}
-                    </p>
-                    <p>
-                      <MailOutlineIcon /> {user.email}
-                    </p>
-                  </div>
-                </div>
-                <FormControl size="small" fullWidth>
-                  <InputLabel>Role</InputLabel>
-                  <Select
-                    labelId="select-small-label"
-                    id="demo-select-small"
-                    label="Role"
-                    value={user.role}
-                    onChange={(event) => handleRoleChange(user, event)}
+    <div>
+      {getTokenValue("role") === "admin" && (
+        <div className="profileBrowser">
+          <Snackbar
+            open={snackbarOpen}
+            onClose={handleSnackbarClose}
+            autoHideDuration={10000}
+            sx={{ margin: "75px 0 0" }}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            severity="success"
+            message={`Role of ${selectedUsername} has been changed to ${selectedRole}!`}
+          />
+          <div className="searchInput">
+            <TextField
+              type="text"
+              name="category"
+              label="Search for user"
+              className="searchForUser"
+              margin="normal"
+              fullWidth
+              value={searchTerm}
+              onChange={handleInputChange}
+            />
+          </div>
+          <ul className="resultResultProfileCard">
+            {users.map((user, index) => {
+              let id = user.id;
+              return (
+                <Card key={id} className="profileCard">
+                  <li>
+                    <div className="container">
+                      <div className="div-left">
+                        <p>
+                          <strong>ID:&nbsp;</strong>
+                          {user.id}&nbsp;&nbsp;
+                          <strong>Date:&nbsp;</strong>
+                          {getSimplifiedDate(user.createdAt)}
+                        </p>
+                        <p>
+                          <PersonIcon /> {user.username}
+                        </p>
+                        <p>
+                          <MailOutlineIcon /> {user.email}
+                        </p>
+                      </div>
+                    </div>
+                    <FormControl size="small" fullWidth>
+                      <InputLabel>Role</InputLabel>
+                      <Select
+                        labelId="select-small-label"
+                        id="demo-select-small"
+                        label="Role"
+                        value={user.role}
+                        onChange={(event) => handleRoleChange(user, event)}
+                      >
+                        <MenuItem value="user">User</MenuItem>
+                        <MenuItem value="member">Member</MenuItem>
+                        <MenuItem value="admin">Admin</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </li>
+                  <Dialog
+                    open={dialogOpen}
+                    onClose={dismissDialog}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
                   >
-                    <MenuItem value="user">User</MenuItem>
-                    <MenuItem value="member">Member</MenuItem>
-                    <MenuItem value="admin">Admin</MenuItem>
-                  </Select>
-                </FormControl>
-              </li>
-              <Dialog
-                open={dialogOpen}
-                onClose={dismissDialog}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-              >
-                <DialogTitle id="alert-dialog-title">
-                  Change User Role?
-                </DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="alert-dialog-description">
-                    Are you sure you want to set the role of{" "}
-                    <b>{selectedUsername}</b> to <b>{selectedRole}</b>?
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={dismissDialog}>Cancel</Button>
-                  <Button onClick={acceptDialog} autoFocus>
-                    Confirm
-                  </Button>
-                </DialogActions>
-              </Dialog>
-            </Card>
-          );
-        })}
-      </ul>
+                    <DialogTitle id="alert-dialog-title">
+                      Change User Role?
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                        Are you sure you want to set the role of{" "}
+                        <b>{selectedUsername}</b> to <b>{selectedRole}</b>?
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={dismissDialog}>Cancel</Button>
+                      <Button onClick={acceptDialog} autoFocus>
+                        Confirm
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
+                </Card>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

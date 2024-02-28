@@ -161,7 +161,7 @@ export default function Planner() {
     } catch (error) {}
   }
 
-  function handleEditOpen(e) {
+  function handleEditOpen() {
     dispatch(plannerDialogOpen("edit"));
   }
 
@@ -347,7 +347,7 @@ export default function Planner() {
                   </DialogTitle>
                   <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                      Are you sure you want to delete the task:
+                      Are you sure you want to delete the task:&nbsp;
                       <b>{taskToDeleteName}</b>
                     </DialogContentText>
                   </DialogContent>

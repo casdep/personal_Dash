@@ -60,15 +60,15 @@
   }
 
   .deleteButton {
-    background: red;
+    background: #e74c3c;
     &:hover {
-      background: rgb(215, 0, 0);
+      background: #ee3622;
     }
   }
   .editButton {
-    background: green;
+    background: #3498db;
     &:hover {
-      background: rgb(16, 104, 16);
+      background: #2099e9;
     }
   }
 

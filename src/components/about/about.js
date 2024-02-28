@@ -12,9 +12,15 @@ const About = () => {
         <h1>About</h1>
       </div>
       <div className="socials">
-        <b>
+        <strong>
           <p>Cas de Pender</p>
-        </b>
+        </strong>
+        <p>
+          This website is made as both a portfolio/skill showcase, as a tool
+          used for task and note management. This is done using personal
+          accounts, a ToDo-list and using a note's page. All data is secured and
+          only accesble to the respective user of that item.
+        </p>
         <a href="https://github.com/casdep" target="_blank" rel="noreferrer">
           <p>
             <GitHubIcon />

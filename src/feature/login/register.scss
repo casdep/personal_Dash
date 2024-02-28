@@ -1,9 +1,5 @@
 @import "../../assets/scss/theme";
 
-.light .register_container {
-  background-color: $dark-secondary;
-}
-
 .register_container {
   margin: 0 auto;
   width: 50%;
@@ -56,6 +52,10 @@
       }
     }
   }
+}
+
+.light .register_container {
+  background-color: $light-primary;
 }
 
 @include max-phone {

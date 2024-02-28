@@ -9,6 +9,10 @@
       [title="Subscript"] {
         display: none;
       }
+      .rdw-dropdown-optionwrapper {
+        overflow-y: auto;
+        max-width: 100%;
+      }
     }
     .rdw-editor-main {
       margin-top: 1rem;
@@ -29,5 +33,9 @@
         }
       }
     }
+  }
+
+  .MuiPaper-root {
+    margin: 0 22px 0 16px !important;
   }
 }

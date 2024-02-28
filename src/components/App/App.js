@@ -40,7 +40,6 @@ export default function App() {
 
   function checkStartPage() {
     if (!sessionStorage.getItem("isNewSession") && getCookie("token")) {
-      console.log("Cookie not logged in");
       sessionStorage.setItem("isNewSession", "false");
       //ToDo get the favo page of the user and use the navigate to that, not just to /planner
       navigate("/planner");

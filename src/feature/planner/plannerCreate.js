@@ -32,7 +32,6 @@ export default function PlannerCreate() {
 
   const [formValue, setFormValue] = useState({
     id: "",
-    user: "cas",
     title: "",
     category: "",
     description: "",
@@ -107,11 +106,6 @@ export default function PlannerCreate() {
       setCategoryError();
     }
 
-    if (!formValue.title || !formValue.category) {
-      return;
-    }
-
-    createTaskFormData.append("user", formValue.user);
     createTaskFormData.append("title", formValue.title);
     createTaskFormData.append("category", formValue.category);
     createTaskFormData.append("priority", formValue.priority);
@@ -128,7 +122,6 @@ export default function PlannerCreate() {
         },
       }).then((res) => {
         setFormValue({
-          user: "cas",
           title: "",
           category: "",
           description: "",

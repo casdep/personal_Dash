@@ -6,9 +6,15 @@
 .MuiButtonBase-root {
   min-height: 56px !important;
   min-width: 56px !important;
-  width: auto !important;
 }
+
 .MuiIconButton-root {
   background: none !important;
   width: fit-content !important;
+}
+
+@include max-phone {
+  .MuiDialogContent-root {
+    padding: 16px 12px !important;
+  }
 }

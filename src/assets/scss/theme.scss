@@ -113,7 +113,7 @@ a {
 .light {
   height: 100%;
   min-height: 100vh;
-  background-color: $light-color;
+  background-color: $light-background;
   color: $light-text;
 
   h1,
@@ -139,7 +139,8 @@ a {
   }
 
   .MuiPaper-root {
-    background-color: $light-color !important;
+    background-color: $light-primary !important;
+    border-color: $light-primary !important;
 
     .MuiSvgIcon-root {
       color: #252627 !important;
@@ -163,7 +164,7 @@ a {
     width: fit-content;
   }
   .MuiCard-root {
-    box-shadow: 1px 1px 5px #c7c7c7 !important;
+    box-shadow: 1px 1px 2.5px $light-primary !important;
     border: #fbfbfb;
     border-style: double;
     border-width: 1px;

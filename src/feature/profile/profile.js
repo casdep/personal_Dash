@@ -30,9 +30,11 @@ export default function Profile() {
 
   const [openDialogProfilePicture, setOpenDialogProfilePicture] =
     useState(false);
+  const [openDialogProfilePictureDelete, setOpenDialogProfilePictureDelete] =
+    useState(false);
   const [openDialogLogout, setOpenDialogLogout] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [profileImage, setProfileImage] = useState(null);
+  const [profilePicture, setProfilePicture] = useState(null);
 
   const noProfilePicture = require("../../assets/media/noProfilePicture.png");
 
@@ -43,17 +45,6 @@ export default function Profile() {
     getProfilePicture();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const handleClickOpenLogout = () => {
-    setOpenDialogLogout(true);
-  };
-  const handleCloseLogout = () => {
-    setOpenDialogLogout(false);
-  };
-
-  const handleCloseProfilePicture = () => {
-    setOpenDialogProfilePicture(false);
-  };
 
   const fileInputRef = useRef(null);
 
@@ -79,7 +70,6 @@ export default function Profile() {
   };
 
   async function confirmProfilePicture() {
-    console.log(getTokenValue("userId"));
     await axios({
       method: "put",
       url:
@@ -92,7 +82,7 @@ export default function Profile() {
       data: { action: "editProfilePicture", value: selectedImage },
     })
       .then(function (res) {
-        setProfileImage(selectedImage);
+        setProfilePicture(selectedImage);
         setOpenDialogProfilePicture(false);
       })
       .catch(function (response) {});
@@ -111,14 +101,13 @@ export default function Profile() {
       data: { action: "editProfilePicture", value: null },
     })
       .then(function (res) {
-        setProfileImage(noProfilePicture);
-        setOpenDialogProfilePicture(false);
+        setProfilePicture(noProfilePicture);
+        setOpenDialogProfilePictureDelete(false);
       })
-      .catch(function (response) {});
+      .catch(setOpenDialogProfilePictureDelete(false));
   }
 
   async function getProfilePicture() {
-    console.log("get Profile Pic");
     await axios({
       method: "get",
       url:
@@ -131,16 +120,13 @@ export default function Profile() {
     })
       .then(function (res) {
         if (res.data.profilePicture && res.status === 200) {
-          console.log(res.data);
-          setProfileImage(res.data.profilePicture);
+          setProfilePicture(res.data.profilePicture);
         } else {
-          console.log("Profile picture not found");
-          setProfileImage(noProfilePicture);
+          setProfilePicture(noProfilePicture);
         }
-        console.log(profileImage);
         setOpenDialogProfilePicture(false);
       })
-      .catch(function (response) {});
+      .catch(setProfilePicture(noProfilePicture));
   }
 
   function handleChange(e) {
@@ -168,12 +154,21 @@ export default function Profile() {
       <div className="profileContainer">
         <div>
           <div className="profilePictureContainer">
-            <img className="profilePicture" src={profileImage} alt="profile" />
+            <img
+              className="profilePicture"
+              src={profilePicture}
+              alt="profile"
+            />
             <div className="overlay">
               <div className="buttonWrapper">
-                <button className="deleteButton" onClick={deleteProfilePicture}>
-                  <strong>Delete</strong>
-                </button>
+                {profilePicture !== noProfilePicture && (
+                  <button
+                    className="deleteButton"
+                    onClick={() => setOpenDialogProfilePictureDelete(true)}
+                  >
+                    <strong>Delete</strong>
+                  </button>
+                )}
                 <input
                   type="file"
                   id="fileInput"
@@ -190,6 +185,11 @@ export default function Profile() {
           </div>
           <div className="profile--content">
             <p>
+              <b>Account id: &nbsp;</b>
+              {getTokenValue("userId")}
+            </p>
+            <hr />
+            <p>
               <b>Name:</b>
               <br />
               {getTokenValue("username")}
@@ -198,11 +198,6 @@ export default function Profile() {
             <p>
               <b>E-mail:</b> <br />
               {getTokenValue("email")}
-            </p>
-            <hr />
-            <p>
-              <b>Account id:</b> <br />
-              {getTokenValue("userId")}
             </p>
             <hr />
             <p>
@@ -229,19 +224,19 @@ export default function Profile() {
             <p>
               <b>Click here to log out:</b>
             </p>
-            <Link className="logout" onClick={handleClickOpenLogout}>
+            <Link className="logout" onClick={() => setOpenDialogLogout(true)}>
               Log Out
             </Link>
           </div>
           <Dialog
             open={openDialogLogout}
-            onClose={handleCloseLogout}
+            onClose={() => setOpenDialogLogout(false)}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
           >
             <IconButton
               aria-label="close"
-              onClick={handleCloseLogout}
+              onClick={() => setOpenDialogLogout(false)}
               sx={{
                 position: "absolute",
                 right: 8,
@@ -258,20 +253,20 @@ export default function Profile() {
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleCloseLogout}>No</Button>
+              <Button onClick={() => setOpenDialogLogout(false)}>No</Button>
               <Button onClick={confirmLogout}>Yes</Button>
             </DialogActions>
           </Dialog>
 
           <Dialog
             open={openDialogProfilePicture}
-            onClose={handleCloseProfilePicture}
+            onClose={() => setOpenDialogProfilePicture(false)}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
           >
             <IconButton
               aria-label="close"
-              onClick={handleCloseProfilePicture}
+              onClick={() => setOpenDialogProfilePicture(false)}
               sx={{
                 position: "absolute",
                 right: 8,
@@ -283,11 +278,50 @@ export default function Profile() {
             </IconButton>
             <DialogTitle id="alert-dialog-title">Selected Image</DialogTitle>
             <DialogContent>
-              <img src={selectedImage} className="profilePicture" alt="selected" />
+              <img
+                src={selectedImage}
+                className="profilePicture"
+                alt="selected"
+              />
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleCloseProfilePicture}>Close</Button>
+              <Button onClick={() => setOpenDialogProfilePicture(false)}>
+                Close
+              </Button>
               <Button onClick={confirmProfilePicture}>Confirm</Button>
+            </DialogActions>
+          </Dialog>
+          <Dialog
+            open={openDialogProfilePictureDelete}
+            onClose={() => setOpenDialogProfilePictureDelete(false)}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <IconButton
+              aria-label="close"
+              onClick={() => setOpenDialogProfilePictureDelete(false)}
+              sx={{
+                position: "absolute",
+                right: 8,
+                top: 8,
+                color: (theme) => theme.palette.grey[500],
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+            <DialogTitle id="alert-dialog-title">
+              Delete profile picture?
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Are you sure you want to delete your profile picture?
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setOpenDialogProfilePictureDelete(false)}>
+                No
+              </Button>
+              <Button onClick={deleteProfilePicture}>Yes</Button>
             </DialogActions>
           </Dialog>
         </div>

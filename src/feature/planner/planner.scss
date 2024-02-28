@@ -33,19 +33,15 @@
 
   ul {
     padding: 0 $spacing 0 0;
-    overflow: hidden;
-    overflow-y: hidden;
-    overflow-y: scroll;
-    height: calc(100% - $header-height);
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: calc(100% - 5.5rem);
+    width: 80%;
   }
 
   li {
     list-style-type: none;
-    width: 80%;
     padding-bottom: 4px;
-    &:last-child {
-      padding-bottom: $header-height;
-    }
   }
 
   .loader {
@@ -128,9 +124,12 @@
       display: flex;
     }
 
+    ul {
+      width: 90%;
+    }
+
     li {
       list-style-type: none;
-      width: 90%;
     }
 
     .loader {
@@ -140,10 +139,17 @@
   }
 
   @include max-phone {
+    ul {
+      height: calc(100% - 7.9rem);
+      width: 100%;
+    }
+
     li {
       list-style-type: none;
-      width: 100%;
       padding-right: $spacing-2;
+      &:last-child {
+        padding-bottom: $header-height;
+      }
     }
 
     .loader {

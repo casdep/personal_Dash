@@ -1,9 +1,5 @@
 @import "../../assets/scss/theme";
 
-.light .login_container {
-  background-color: $dark-secondary;
-}
-
 .login_container {
   margin: 0 auto;
   width: 50%;
@@ -46,6 +42,10 @@
       }
     }
   }
+}
+
+.light .login_container {
+  background-color: $light-primary;
 }
 
 @include max-phone {
