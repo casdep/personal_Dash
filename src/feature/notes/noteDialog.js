@@ -64,11 +64,44 @@ export default function NoteCreate() {
   }
 
   async function handleSubmit() {
+    if (getNoteDialogOpen === "create") {
+      createNote();
+    } else {
+      editNote();
+    }
+  }
+
+  async function createNote() {
     if (convertedContent !== "<p></p>") {
       try {
         await axios({
           method: "post",
           url: process.env.REACT_APP_API_URL + "/note-management/notes",
+          headers: {
+            Authorization: "Bearer " + getCookie("token"),
+          },
+          data: { noteContent: convertedContent },
+        }).then((res) => {
+          dispatch(noteDialogOpen(""));
+          //reloads the page to retreive the new item
+          window.location.reload();
+        });
+      } catch (error) {
+        dispatch(noteDialogOpen(""));
+      }
+    }
+    dispatch(noteDialogOpen(""));
+  }
+
+  async function editNote() {
+    if (convertedContent !== "<p></p>") {
+      try {
+        await axios({
+          method: "put",
+          url:
+            process.env.REACT_APP_API_URL +
+            "/note-management/notes/" +
+            getSelectedNote.id,
           headers: {
             Authorization: "Bearer " + getCookie("token"),
           },

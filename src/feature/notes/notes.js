@@ -53,6 +53,9 @@ export default function Notes() {
     })
       .then(function (res) {
         const notes = res.data.data;
+
+        notes.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
         setNotes(notes);
         setNotesLoader(false);
       })
