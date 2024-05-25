@@ -16,7 +16,11 @@ import {
   DialogTitle,
   DialogContent,
   DialogContentText,
+  FormControl,
+  InputLabel,
   Link,
+  MenuItem,
+  Select,
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
@@ -28,6 +32,7 @@ export default function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [selectedStartPage, setSelectedStartPage] = useState("Home page");
   const [openDialogProfilePicture, setOpenDialogProfilePicture] =
     useState(false);
   const [openDialogProfilePictureDelete, setOpenDialogProfilePictureDelete] =
@@ -43,10 +48,32 @@ export default function Profile() {
       document.getElementById("checkbox").checked = true;
     }
     getProfilePicture();
+    getStartPage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fileInputRef = useRef(null);
+
+  function getStartPage() {
+    if (localStorage.getItem("startPage")) {
+      const startPageFromStorage = localStorage.getItem("startPage");
+      if (startPageFromStorage === "/") {
+        setSelectedStartPage("Home page");
+      } else {
+        const startPageFromStorageFormatted = startPageFromStorage.substring(1);
+        setSelectedStartPage(startPageFromStorageFormatted);
+      }
+    }
+  }
+
+  function handleStartPageChange(event) {
+    let startPage = event.target.value;
+    setSelectedStartPage(startPage);
+    if (startPage === "Home page") {
+      startPage = "";
+    }
+    localStorage.setItem("startPage", "/" + startPage);
+  }
 
   const editProfilePicture = () => {
     fileInputRef.current.click();
@@ -152,179 +179,193 @@ export default function Profile() {
         <h1>Profile</h1>
       </div>
       <div className="profileContainer">
-        <div>
-          <div className="profilePictureContainer">
-            <img
-              className="profilePicture"
-              src={profilePicture}
-              alt="profile"
-            />
-            <div className="overlay">
-              <div className="buttonWrapper">
-                {profilePicture !== noProfilePicture && (
-                  <button
-                    className="deleteButton"
-                    onClick={() => setOpenDialogProfilePictureDelete(true)}
-                  >
-                    <strong>Delete</strong>
-                  </button>
-                )}
-                <input
-                  type="file"
-                  id="fileInput"
-                  accept="image/*"
-                  style={{ display: "none" }}
-                  ref={fileInputRef}
-                  onChange={handeEditProfilePicture}
-                />
-                <button className="editButton" onClick={editProfilePicture}>
-                  <strong>Edit</strong>
+        <div className="profilePictureContainer">
+          <img className="profilePicture" src={profilePicture} alt="profile" />
+          <div className="overlay">
+            <div className="buttonWrapper">
+              {profilePicture !== noProfilePicture && (
+                <button
+                  className="deleteButton"
+                  onClick={() => setOpenDialogProfilePictureDelete(true)}
+                >
+                  <strong>Delete</strong>
                 </button>
+              )}
+              <input
+                type="file"
+                id="fileInput"
+                accept="image/*"
+                style={{ display: "none" }}
+                ref={fileInputRef}
+                onChange={handeEditProfilePicture}
+              />
+              <button className="editButton" onClick={editProfilePicture}>
+                <strong>Edit</strong>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="profile--content">
+          <p>
+            <b>Account id: &nbsp;</b>
+            {getTokenValue("userId")}
+          </p>
+          <hr />
+          <p>
+            <b>Name:</b>
+            <br />
+            {getTokenValue("username")}
+          </p>
+          <hr />
+          <p>
+            <b>E-mail:</b> <br />
+            {getTokenValue("email")}
+          </p>
+          <hr />
+          <p>
+            <b>Start page</b> <br />
+            Default page when opening the app <br />
+            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+              <InputLabel htmlFor="grouped-native-select">Page</InputLabel>
+              <Select
+                className="sortingItemsSelector"
+                label="Sorting"
+                labelId="demo-simple-select-standard-label"
+                displayEmpty
+                value={selectedStartPage}
+                onChange={handleStartPageChange}
+              >
+                <MenuItem value="Home page">Home page</MenuItem>
+                <MenuItem value="planner">Planner</MenuItem>
+                <MenuItem value="notes">Notes</MenuItem>
+              </Select>
+            </FormControl>
+          </p>
+          <hr />
+          <p>
+            <b>Theme</b>
+          </p>
+          <div className="dark-light-wrapper">
+            <div className="toggle">
+              <input
+                className="toggle-input"
+                type="checkbox"
+                id="checkbox"
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+              />
+              <div className="toggle-bg"></div>
+              <div className="toggle-switch">
+                <div className="toggle-switch-figure"></div>
+                <div className="toggle-switch-figureAlt"></div>
               </div>
             </div>
           </div>
-          <div className="profile--content">
-            <p>
-              <b>Account id: &nbsp;</b>
-              {getTokenValue("userId")}
-            </p>
-            <hr />
-            <p>
-              <b>Name:</b>
-              <br />
-              {getTokenValue("username")}
-            </p>
-            <hr />
-            <p>
-              <b>E-mail:</b> <br />
-              {getTokenValue("email")}
-            </p>
-            <hr />
-            <p>
-              <b>Theme</b>
-            </p>
-            <div className="dark-light-wrapper">
-              <div className="toggle">
-                <input
-                  className="toggle-input"
-                  type="checkbox"
-                  id="checkbox"
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
-                />
-                <div className="toggle-bg"></div>
-                <div className="toggle-switch">
-                  <div className="toggle-switch-figure"></div>
-                  <div className="toggle-switch-figureAlt"></div>
-                </div>
-              </div>
-            </div>
-            <hr />
-            <p>
-              <b>Click here to log out:</b>
-            </p>
+          <hr />
+          <div>
+            <b>Click here to log out:&nbsp;</b>
             <Link className="logout" onClick={() => setOpenDialogLogout(true)}>
               Log Out
             </Link>
           </div>
-          <Dialog
-            open={openDialogLogout}
-            onClose={() => setOpenDialogLogout(false)}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <IconButton
-              aria-label="close"
-              onClick={() => setOpenDialogLogout(false)}
-              sx={{
-                position: "absolute",
-                right: 8,
-                top: 8,
-                color: (theme) => theme.palette.grey[500],
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-            <DialogTitle id="alert-dialog-title">{"Log Out"}</DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Are you sure you want to Log Out from Dashboard?
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={() => setOpenDialogLogout(false)}>No</Button>
-              <Button onClick={confirmLogout}>Yes</Button>
-            </DialogActions>
-          </Dialog>
-
-          <Dialog
-            open={openDialogProfilePicture}
-            onClose={() => setOpenDialogProfilePicture(false)}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <IconButton
-              aria-label="close"
-              onClick={() => setOpenDialogProfilePicture(false)}
-              sx={{
-                position: "absolute",
-                right: 8,
-                top: 8,
-                color: (theme) => theme.palette.grey[500],
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-            <DialogTitle id="alert-dialog-title">Selected Image</DialogTitle>
-            <DialogContent>
-              <img
-                src={selectedImage}
-                className="profilePicture"
-                alt="selected"
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={() => setOpenDialogProfilePicture(false)}>
-                Close
-              </Button>
-              <Button onClick={confirmProfilePicture}>Confirm</Button>
-            </DialogActions>
-          </Dialog>
-          <Dialog
-            open={openDialogProfilePictureDelete}
-            onClose={() => setOpenDialogProfilePictureDelete(false)}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <IconButton
-              aria-label="close"
-              onClick={() => setOpenDialogProfilePictureDelete(false)}
-              sx={{
-                position: "absolute",
-                right: 8,
-                top: 8,
-                color: (theme) => theme.palette.grey[500],
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-            <DialogTitle id="alert-dialog-title">
-              Delete profile picture?
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Are you sure you want to delete your profile picture?
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={() => setOpenDialogProfilePictureDelete(false)}>
-                No
-              </Button>
-              <Button onClick={deleteProfilePicture}>Yes</Button>
-            </DialogActions>
-          </Dialog>
         </div>
+        <Dialog
+          open={openDialogLogout}
+          onClose={() => setOpenDialogLogout(false)}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <IconButton
+            aria-label="close"
+            onClick={() => setOpenDialogLogout(false)}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <DialogTitle id="alert-dialog-title">{"Log Out"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Are you sure you want to Log Out from Dashboard?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setOpenDialogLogout(false)}>No</Button>
+            <Button onClick={confirmLogout}>Yes</Button>
+          </DialogActions>
+        </Dialog>
+
+        <Dialog
+          open={openDialogProfilePicture}
+          onClose={() => setOpenDialogProfilePicture(false)}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <IconButton
+            aria-label="close"
+            onClick={() => setOpenDialogProfilePicture(false)}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <DialogTitle id="alert-dialog-title">Selected Image</DialogTitle>
+          <DialogContent>
+            <img
+              src={selectedImage}
+              className="profilePicture"
+              alt="selected"
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setOpenDialogProfilePicture(false)}>
+              Close
+            </Button>
+            <Button onClick={confirmProfilePicture}>Confirm</Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          open={openDialogProfilePictureDelete}
+          onClose={() => setOpenDialogProfilePictureDelete(false)}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <IconButton
+            aria-label="close"
+            onClick={() => setOpenDialogProfilePictureDelete(false)}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <DialogTitle id="alert-dialog-title">
+            Delete profile picture?
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Are you sure you want to delete your profile picture?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setOpenDialogProfilePictureDelete(false)}>
+              No
+            </Button>
+            <Button onClick={deleteProfilePicture}>Yes</Button>
+          </DialogActions>
+        </Dialog>
       </div>
       <div>{profileBroswer()}</div>
     </div>

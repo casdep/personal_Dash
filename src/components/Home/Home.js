@@ -49,7 +49,6 @@ function Home() {
           />
         </div>
       </div>
-      <hr />
     </div>
   );
 }

@@ -41,8 +41,9 @@ export default function App() {
   function checkStartPage() {
     if (!sessionStorage.getItem("isNewSession") && getCookie("token")) {
       sessionStorage.setItem("isNewSession", "false");
-      //ToDo get the favo page of the user and use the navigate to that, not just to /planner
-      navigate("/planner");
+      if (localStorage.getItem("startPage")) {
+        navigate(localStorage.getItem("startPage"));
+      }
     }
   }
   async function checkServerStatus() {

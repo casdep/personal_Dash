@@ -11,16 +11,59 @@ const About = () => {
       <div className="pageTitle">
         <h1>About</h1>
       </div>
+      <p>
+        Casdepender.nl is made as both a portfolio/skill showcase, as a tool
+        used for task and note management. <br />
+        The d is done using personal accounts, a ToDo-list and using a note's
+        page. All data is secured and only accesble to the respective user
+      </p>
+      <br />
+      <h2>Website developed with:</h2>
+      <div className="container">
+        <div className="left-div">
+          <h3>Front-end</h3>
+          <p>
+            Create-React-app <br />
+            Material UI <br />
+            SCSS
+            <br />
+            <br />
+          </p>
+        </div>
+        <div className="right-div">
+          <h3>Back-end</h3>
+          <p>
+            Prisma - NodeJs Express <br />
+            PostgreSQL- SQLDatabase <br />
+            JWT
+          </p>
+        </div>
+      </div>
+      <div className="container">
+        <div className="left-div">
+          <h3>Functional</h3>
+          <p>
+            User accounts with roles
+            <br />
+            Profile browsing (Admin only) <br />
+            Favourite starting pages, loaded per first session visit <br />
+            ToDo items (Planner) with sort and filter <br />
+            Notes using the DraftJs library, including HTML sanitization <br />
+            Custom profile picture or GIF <br />
+            Black and white theme <br />
+          </p>
+        </div>
+        <div className="right-div">
+          <h3>Technical</h3>
+          <p>
+            Authentication with JSON Web Tokens <br />
+            Hashed user passwords <br />
+            Back-end filtering to reduce unnecessary payload size <br />
+            PWA support <br />
+          </p>
+        </div>
+      </div>
       <div className="socials">
-        <strong>
-          <p>Cas de Pender</p>
-        </strong>
-        <p>
-          This website is made as both a portfolio/skill showcase, as a tool
-          used for task and note management. This is done using personal
-          accounts, a ToDo-list and using a note's page. All data is secured and
-          only accesble to the respective user of that item.
-        </p>
         <a href="https://github.com/casdep" target="_blank" rel="noreferrer">
           <p>
             <GitHubIcon />
@@ -38,24 +81,6 @@ const About = () => {
           </p>
         </a>
       </div>
-      <br />
-      <h2>Website developed with:</h2>
-      <h3>Front-end</h3>
-      <p>
-        <b>Tech-stack</b> <br />
-        Create-React-app <br />
-        Material UI <br />
-        SCSS
-        <br />
-        <b></b> <br />
-      </p>
-      <h3>Back-end</h3>
-      <p>
-        <b>Tech-stack</b> <br />
-        Prisma - NodeJs Express <br />
-        PostgreSQL- SQLDatabase <br />
-        JWT
-      </p>
     </div>
   );
 };

@@ -40,6 +40,10 @@ a {
 .innerApp {
   margin: 0 auto;
   height: calc(100vh - $header-height);
+  //No overflow on .planner-page Since Custom scroll has been implemented to keep the filters in-screen on scroll.
+  &:not(:has(.planner)) {
+    overflow-y: auto;
+  }
 
   @include min-phone {
     max-width: 540px;

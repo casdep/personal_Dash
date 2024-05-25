@@ -19,7 +19,6 @@
   }
 
   .notesWrapper {
-    height: calc(100% - $header-height);
     overflow-y: auto;
     ul {
       padding: 0;
