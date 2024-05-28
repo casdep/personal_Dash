@@ -25,7 +25,7 @@ const About = () => {
           <p>
             - Create-React-app (React and Redux) <br />
             - Material UI <br />
-            - SCSS
+            - SCSS <br /> - Hosting and CI/CD using Netlify
             <br />
             <br />
           </p>
@@ -34,7 +34,8 @@ const About = () => {
           <h3>Back-end</h3>
           <p>
             - Prisma - NodeJs Express <br />
-            - PostgreSQL- SQLDatabase <br />- JWT
+            - PostgreSQL- SQLDatabase <br />
+            - JWT <br /> - Hosting using PM2 and SSH <br />
           </p>
         </div>
       </div>
@@ -46,9 +47,8 @@ const About = () => {
             <br />
             - Profile browsing (Admin only) <br />
             - Favourite starting pages, loaded per first session visit <br />
-            - ToDo items (Planner) with sort and filter <br />
-            - Notes using the DraftJs library, including HTML sanitization{" "}
-            <br />
+            - ToDo items (Planner) with sort and filter <br />- Notes using the
+            DraftJs library, including HTML sanitization <br />
             - Custom profile picture or GIF <br />
             - Black and white theme <br />
           </p>
