@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
-import { TextField, Typography, Button, IconButton } from "@mui/material";
+import {
+  TextField,
+  Typography,
+  Button,
+  InputAdornment,
+  IconButton,
+} from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
@@ -145,15 +151,23 @@ export default function Register() {
                 fullWidth
                 error={passwordError}
                 helperText={passwordError}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={togglePasswordVisibility}
+                        style={{ color: "#4299ff" }}
+                      >
+                        {showPassword ? (
+                          <VisibilityOffIcon />
+                        ) : (
+                          <VisibilityIcon />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
-              <div className="showPassword">
-                <IconButton
-                  onClick={togglePasswordVisibility}
-                  style={{ color: "#4299ff" }}
-                >
-                  {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                </IconButton>
-              </div>
             </div>
 
             <div className="passwordRow">
@@ -167,19 +181,23 @@ export default function Register() {
                 fullWidth
                 error={passwordConfirmError}
                 helperText={passwordConfirmError}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={togglePasswordConfirmVisibility}
+                        style={{ color: "#4299ff" }}
+                      >
+                        {showPasswordConfirm ? (
+                          <VisibilityOffIcon />
+                        ) : (
+                          <VisibilityIcon />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
-              <div className="showPassword">
-                <IconButton
-                  onClick={togglePasswordConfirmVisibility}
-                  style={{ color: "#4299ff" }}
-                >
-                  {showPasswordConfirm ? (
-                    <VisibilityOffIcon />
-                  ) : (
-                    <VisibilityIcon />
-                  )}
-                </IconButton>
-              </div>
             </div>
           </div>
 

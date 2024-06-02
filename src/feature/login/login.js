@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-import { TextField, Button, IconButton } from "@mui/material";
+import { setCookie } from "../../utils/setCookie";
+
+import { TextField, Button, InputAdornment, IconButton } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -49,12 +51,8 @@ export default function LoginForm() {
         data: loginFormData,
         headers: { "content-type": "application/x-www-form-urlencoded" },
       }).then((res) => {
-        const expirationDate = new Date();
-        //sets the cookie for one year
-        expirationDate.setFullYear(expirationDate.getFullYear() + 10);
-        document.cookie = `token=${
-          res.data.token
-        }; expires=${expirationDate.toUTCString()};`;
+        const token = res.data.token;
+        setCookie("token", token, 365 * 10);
         navigate("/");
         window.location.reload();
       });
@@ -126,15 +124,23 @@ export default function LoginForm() {
                 fullWidth
                 error={passwordError}
                 helperText={passwordError ? "Please enter your password" : ""}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={togglePasswordVisibility}
+                        style={{ color: "#4299ff" }}
+                      >
+                        {showPassword ? (
+                          <VisibilityOffIcon />
+                        ) : (
+                          <VisibilityIcon />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
-              <div className="showPassword">
-                <IconButton
-                  onClick={togglePasswordVisibility}
-                  style={{ color: "#4299ff" }}
-                >
-                  {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                </IconButton>
-              </div>
             </div>
           </div>
           <div className="footer_items">

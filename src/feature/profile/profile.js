@@ -8,6 +8,7 @@ import { appTheme } from "../../store/slicers/generalSlice";
 
 import { getTokenValue } from "../../utils/getTokenValue";
 import { getCookie } from "../../utils/getCookie";
+import { setCookie } from "../../utils/setCookie";
 
 import {
   Button,
@@ -17,13 +18,19 @@ import {
   DialogContent,
   DialogContentText,
   FormControl,
+  InputAdornment,
   InputLabel,
   Link,
   MenuItem,
   Select,
+  TextField,
 } from "@mui/material";
+
+import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 import "./profile.scss";
 import profileBroswer from "./profileBrowser";
@@ -37,6 +44,11 @@ export default function Profile() {
     useState(false);
   const [openDialogProfilePictureDelete, setOpenDialogProfilePictureDelete] =
     useState(false);
+  const [editUsernameMode, setEditUsernameMode] = useState(false);
+  const [username, setUsername] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [editEmailMode, setEditEmailMode] = useState(false);
+
   const [openDialogLogout, setOpenDialogLogout] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [profilePicture, setProfilePicture] = useState(null);
@@ -49,6 +61,7 @@ export default function Profile() {
     }
     getProfilePicture();
     getStartPage();
+    setUsername(getTokenValue("username"));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -156,6 +169,151 @@ export default function Profile() {
       .catch(setProfilePicture(noProfilePicture));
   }
 
+  function handleUsernameInputChange(e) {
+    console.log(e.target.value);
+    setUsername(e.target.value);
+  }
+
+  function handleEditUsername() {
+    if (editUsernameMode === true) {
+      return (
+        <div className="usernameEdit">
+          <b>Name:</b>
+          <br />
+          <TextField
+            type="text"
+            name="newUsername"
+            label="New username"
+            className="usernameTextfield"
+            margin="normal"
+            fullWidth
+            helperText={usernameError}
+            onChange={handleUsernameInputChange}
+            value={username}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={() => handleEditUsernameChange()}>
+                    <CheckOutlinedIcon />
+                  </IconButton>
+                  <IconButton onClick={() => setEditUsernameMode(false)}>
+                    <CloseOutlinedIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div className="username" onClick={() => setEditUsernameMode(true)}>
+          <div className="container">
+            <div className="left">
+              <p>
+                <b>Name:</b> <br />
+                {getTokenValue("username")}
+              </p>
+            </div>
+            <div className="right">
+              <ModeEditOutlinedIcon className="ModeEditOutlinedIcon" />
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  async function handleEditUsernameChange() {
+    if (username.includes("@")) {
+      setUsernameError("Username cannot contain the @ sign");
+      console.log("a");
+    } else {
+      await axios({
+        method: "put",
+        url:
+          process.env.REACT_APP_API_URL +
+          "/account-management/users/" +
+          getTokenValue("userId"),
+        headers: {
+          Authorization: "Bearer " + getCookie("token"),
+        },
+        data: { action: "editUsername", value: username },
+      })
+        .then(function (res) {
+          const token = res.data.token;
+          setCookie("token", token, 365 * 10);
+          setEditUsernameMode(false);
+        })
+        .catch(function (response) {});
+    }
+  }
+
+  function handleEditEmail() {
+    if (editEmailMode === true) {
+      return (
+        <div>
+          <b>Email:</b>
+          <br />
+          <TextField
+            type="text"
+            name="email"
+            label="New email"
+            className="emailTextfield"
+            margin="normal"
+            fullWidth
+            value={getTokenValue("email")}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={() => handleEditEmailChange()}>
+                    <CheckOutlinedIcon />
+                  </IconButton>
+                  <IconButton onClick={() => setEditEmailMode(false)}>
+                    <CloseOutlinedIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div className="email" onClick={() => setEditEmailMode(true)}>
+          <div className="container">
+            <div className="left">
+              <p>
+                <b>Email:</b> <br />
+                {getTokenValue("email")}
+              </p>
+            </div>
+            <div className="right">
+              <ModeEditOutlinedIcon className="ModeEditOutlinedIcon" />
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  async function handleEditEmailChange(newEmail) {
+    try {
+      await axios({
+        method: "put",
+        url:
+          process.env.REACT_APP_API_URL +
+          "/account-management/users/" +
+          getTokenValue("userId"),
+        headers: {
+          Authorization: "Bearer " + getCookie("token"),
+          "content-type": "application/json",
+        },
+        data: { action: "editEmail", value: newEmail },
+      }).then(setEditEmailMode(false));
+    } catch (error) {}
+  }
+
   function handleChange(e) {
     if (e.target.checked === false) {
       dispatch(appTheme("light"));
@@ -206,25 +364,18 @@ export default function Profile() {
           </div>
         </div>
         <div className="profile--content">
-          <p>
-            <b>Account id: &nbsp;</b>
-            {getTokenValue("userId")}
-          </p>
+          <b>Account id: &nbsp;</b>
+          {getTokenValue("userId")} <br />
           <hr />
-          <p>
-            <b>Name:</b>
-            <br />
-            {getTokenValue("username")}
-          </p>
+          {handleEditUsername()}
           <hr />
-          <p>
-            <b>E-mail:</b> <br />
-            {getTokenValue("email")}
-          </p>
+          {handleEditEmail()}
           <hr />
-          <p>
-            <b>Start page</b> <br />
-            Default page when opening the app <br />
+          <div>
+            <p>
+              <b>Start page</b> <br />
+              Default page when opening the app
+            </p>
             <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
               <InputLabel htmlFor="grouped-native-select">Page</InputLabel>
               <Select
@@ -240,7 +391,7 @@ export default function Profile() {
                 <MenuItem value="notes">Notes</MenuItem>
               </Select>
             </FormControl>
-          </p>
+          </div>
           <hr />
           <p>
             <b>Theme</b>
@@ -264,7 +415,8 @@ export default function Profile() {
           </div>
           <hr />
           <div>
-            <b>Click here to log out:&nbsp;</b>
+            <br />
+            <b>Click here to log out:&nbsp;</b> <br />
             <Link className="logout" onClick={() => setOpenDialogLogout(true)}>
               Log Out
             </Link>
