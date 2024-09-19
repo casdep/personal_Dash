@@ -170,7 +170,6 @@ export default function Profile() {
   }
 
   function handleUsernameInputChange(e) {
-    console.log(e.target.value);
     setUsername(e.target.value);
   }
 
@@ -227,7 +226,6 @@ export default function Profile() {
   async function handleEditUsernameChange() {
     if (username.includes("@")) {
       setUsernameError("Username cannot contain the @ sign");
-      console.log("a");
     } else {
       await axios({
         method: "put",
