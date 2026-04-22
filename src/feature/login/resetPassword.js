@@ -1,16 +1,29 @@
 import React, { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TextField, Button, Typography } from "@mui/material";
 
 import "./resetPassword.scss";
 
 export default function ResetPassword() {
-  const [userIdentifierError, setUserIdentifierError] = useState(false);
+  const navigate = useNavigate();
+  const [userIdentifierError, setUserIdentifierError] = useState("");
+  const [email, setEmail] = useState("");
 
   function handleSubmit() {
-    //todo
-    setUserIdentifierError("lol");
+    if (!email) {
+      setUserIdentifierError("Please enter your email address");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setUserIdentifierError("Please enter a valid email address");
+      return;
+    } else {
+      setUserIdentifierError("");
+    }
+    navigate("/resetPasswordConfirmation");
   }
 
   return (
@@ -27,9 +40,9 @@ export default function ResetPassword() {
             label="Email address"
             fullWidth
             error={userIdentifierError}
-            helperText={
-              userIdentifierError ? "Please enter your email address" : ""
-            }
+            helperText={userIdentifierError ? userIdentifierError : ""}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <div className="footer_items">
             <div className="footer_item_one">

@@ -18,6 +18,7 @@ import Notes from "../../feature/notes/notes";
 import NotFound from "../NotFound/NotFound";
 import Register from "../../feature/login/register";
 import ResetPassword from "../../feature/login/resetPassword";
+import ResetPasswordConfirmation from "../../feature/login/resetPasswordConfirmation";
 
 import { getCookie } from "../../utils/getCookie";
 
@@ -89,6 +90,10 @@ export default function App() {
           </Route>
           <Route path="/register" element={<Register />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
+          <Route
+            path="/resetPasswordConfirmation"
+            element={<ResetPasswordConfirmation />}
+          />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
